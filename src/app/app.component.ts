@@ -429,8 +429,8 @@ Guidelines:
         });
       },
       {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
+        threshold: 0.05,        // Trigger earlier — when only 5% is visible
+        rootMargin: '0px 0px 0px 0px'  // No delay — reveal as soon as in viewport
       }
     );
 
