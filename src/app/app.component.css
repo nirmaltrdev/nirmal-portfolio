@@ -197,6 +197,8 @@
   padding-top: 100px;
   overflow: hidden;
   text-align: center;
+  width: 100%;
+  max-width: 100vw;
 }
 
 .hero-bg-glow {
@@ -305,13 +307,23 @@
   color: var(--text-primary);
   font-weight: 500;
   margin-bottom: 1.5rem;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  width: 100%;
+  padding: 0 8px;
+  box-sizing: border-box;
 }
 
 .hero-desc {
   font-size: 1.1rem;
   color: var(--text-secondary);
   max-width: 650px;
+  width: 100%;
   margin-bottom: 2.5rem;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  padding: 0 8px;
+  box-sizing: border-box;
 }
 
 .hero-tech-pills {
@@ -338,7 +350,12 @@
 .hero-ctas {
   display: flex;
   align-items: center;
-  gap: 1.25rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+  padding: 0 8px;
+  box-sizing: border-box;
 }
 
 .btn-primary-glow {
@@ -1695,7 +1712,7 @@ body.light-theme .proj-link-btn.primary:hover {
 }
 
 @media (max-width: 768px) {
-  .nav-menu, .btn-talk {
+  .nav-menu, .btn-talk, .btn-cv-download {
     display: none;
   }
 
@@ -1705,14 +1722,28 @@ body.light-theme .proj-link-btn.primary:hover {
 
   .hero-name {
     font-size: 2.75rem;
+    padding: 0 8px;
+    box-sizing: border-box;
+    width: 100%;
   }
 
   .hero-title {
     font-size: 1.5rem;
+    width: 100%;
   }
 
   .hero-tagline {
-    font-size: 1.15rem;
+    font-size: 1.1rem;
+  }
+
+  .hero-desc {
+    font-size: 0.95rem;
+  }
+
+  .hero-container {
+    width: 100%;
+    padding: 0 16px;
+    box-sizing: border-box;
   }
 
   .about-stats {

@@ -469,13 +469,27 @@ Guidelines:
   }
 
   scrollTo(sectionId: string): void {
-    const el = document.getElementById(sectionId);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-    this.closeDrawer();
     this.activeSection = sectionId;
+
+    // If drawer is open (mobile), close it first and wait for
+    // the drawer close animation to finish before scrolling.
+    // This prevents the layout shift from cancelling the scroll.
+    if (this.drawerVisible) {
+      this.drawerVisible = false;
+      setTimeout(() => {
+        const el = document.getElementById(sectionId);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 320); // matches Ant Design drawer close animation duration
+    } else {
+      const el = document.getElementById(sectionId);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
   }
+
 
   submitForm(): void {
     if (this.contactForm.valid) {
