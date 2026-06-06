@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { NzMessageService } from 'ng-zorro-antd/message';
@@ -48,7 +48,7 @@ interface Publication {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   title = 'portfolio-web';
   drawerVisible = false;
   activeSection = 'hero';
@@ -257,7 +257,44 @@ Guidelines:
     setTimeout(() => {
       this.initScrollAnimations();
     }, 200);
+
+    // Apply security protections
+    this.setupSecurity();
   }
+
+  // ─── Security ─────────────────────────────────────────────────────────────
+  private _securityContextMenu = (e: Event) => e.preventDefault();
+  private _securityKeydown = (e: KeyboardEvent) => {
+    // Block F12
+    if (e.key === 'F12') { e.preventDefault(); return; }
+    // Block Ctrl+U (View Source)
+    if (e.ctrlKey && e.key.toLowerCase() === 'u') { e.preventDefault(); return; }
+    // Block Ctrl+S (Save Page)
+    if (e.ctrlKey && e.key.toLowerCase() === 's') { e.preventDefault(); return; }
+    // Block Ctrl+Shift+I / Ctrl+Shift+J / Ctrl+Shift+C (DevTools)
+    if (e.ctrlKey && e.shiftKey && ['i', 'j', 'c'].includes(e.key.toLowerCase())) {
+      e.preventDefault(); return;
+    }
+    // Block Ctrl+P (Print — reveals source structure)
+    if (e.ctrlKey && e.key.toLowerCase() === 'p') { e.preventDefault(); return; }
+  };
+  private _securityDragstart = (e: Event) => e.preventDefault();
+
+  private setupSecurity(): void {
+    if (typeof document === 'undefined') return;
+    document.addEventListener('contextmenu', this._securityContextMenu, { passive: false });
+    document.addEventListener('keydown', this._securityKeydown, { passive: false });
+    document.addEventListener('dragstart', this._securityDragstart, { passive: false });
+  }
+
+  ngOnDestroy(): void {
+    if (typeof document === 'undefined') return;
+    document.removeEventListener('contextmenu', this._securityContextMenu);
+    document.removeEventListener('keydown', this._securityKeydown);
+    document.removeEventListener('dragstart', this._securityDragstart);
+  }
+  // ──────────────────────────────────────────────────────────────────────────
+
 
   toggleTheme(): void {
     this.isLightTheme = !this.isLightTheme;

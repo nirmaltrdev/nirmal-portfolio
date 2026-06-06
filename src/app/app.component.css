@@ -131,10 +131,23 @@
 .mobile-menu-btn {
   display: none;
   background: none;
-  border: none;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
   color: var(--text-primary);
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   cursor: pointer;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  flex-shrink: 0;
+  transition: var(--transition-smooth);
+}
+
+.mobile-menu-btn:hover {
+  background: var(--primary-glow);
+  border-color: var(--primary);
 }
 
 /* Mobile Drawer Links */
@@ -1712,12 +1725,20 @@ body.light-theme .proj-link-btn.primary:hover {
 }
 
 @media (max-width: 768px) {
-  .nav-menu, .btn-talk, .btn-cv-download {
-    display: none;
+  .nav-menu,
+  .btn-talk,
+  .btn-cv-download {
+    display: none !important;
   }
 
   .mobile-menu-btn {
-    display: block;
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .nav-actions {
+    gap: 0.6rem;
   }
 
   .hero-name {
