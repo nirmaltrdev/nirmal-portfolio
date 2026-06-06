@@ -335,15 +335,14 @@ Guidelines:
   handlePresetClick(key: string): void {
     if (this.isTyping) return;
 
-    let question = '';
+    const presetMap: Record<string, string> = {
+      avail: 'Are you available for hire?',
+      stack: 'What is your tech stack?',
+      crm: 'Tell me about your CRM work'
+    };
 
-    if (key === 'avail') {
-      question = 'Are you available for hire?';
-    } else if (key === 'stack') {
-      question = 'What is your tech stack?';
-    } else if (key === 'crm') {
-      question = 'Tell me about your CRM work';
-    }
+    const question = presetMap[key];
+    if (!question) return; // Guard: ignore unknown preset keys
 
     this.addUserMessage(question);
     this.getBotReply(question);
@@ -352,12 +351,24 @@ Guidelines:
   addUserMessage(text: string): void {
     const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
     this.chatMessages.push({ sender: 'user', text, time });
+
+    // Memory guard: cap chat history at 50 messages
+    if (this.chatMessages.length > 50) {
+      this.chatMessages = this.chatMessages.slice(-50);
+    }
+
     setTimeout(() => this.scrollToChatBottom(), 50);
   }
 
   sendChatMessage(): void {
     const text = this.chatInputText.trim();
     if (!text || this.isTyping) return;
+
+    // Security: limit message length to prevent Gemini API abuse
+    if (text.length > 500) {
+      this.message.warning('Message too long. Please keep it under 500 characters.');
+      return;
+    }
 
     this.addUserMessage(text);
     this.chatInputText = '';
@@ -439,7 +450,7 @@ Guidelines:
       },
       error: (err) => {
         this.isTyping = false;
-        console.error('Gemini API Error:', err);
+        // Security: do not expose raw error details in production
         const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
         this.chatMessages.push({
           sender: 'bot',
@@ -483,8 +494,8 @@ Guidelines:
     // Header effect
     this.scrolled = scrollPosition > 50;
 
-    // Scrollspy logic
-    const sections = ['hero', 'about', 'skills', 'projects', 'experience', 'github', 'contact'];
+    // Scrollspy logic — includes ALL sections including services & education
+    const sections = ['hero', 'about', 'services', 'skills', 'projects', 'experience', 'education', 'github', 'contact'];
     for (const section of sections) {
       const el = document.getElementById(section);
       if (el) {

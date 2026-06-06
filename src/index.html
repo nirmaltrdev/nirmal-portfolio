@@ -7,6 +7,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 
+  <!-- ═══ Security Headers (via meta equivalents) ═══ -->
+  <!-- Prevent site from being embedded in iframes (clickjacking protection) -->
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <!-- Prevent MIME type sniffing -->
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <!-- Control referrer info sent on external links -->
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <!-- Disable browser features not needed -->
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()">
+
   <!-- Performance: DNS prefetch for external resources -->
   <link rel="dns-prefetch" href="https://fonts.googleapis.com">
   <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -23,10 +33,21 @@
 
   <!-- SEO & Performance Meta -->
   <meta name="description" content="Nirmal TR – Full Stack Developer specializing in CRM, Vehicle Inspection & Automation Solutions. Angular, Spring Boot, Java, MySQL.">
+  <meta name="keywords" content="Nirmal TR, Full Stack Developer, Angular, Spring Boot, Java, CRM, WhatsApp Automation, Trivandrum">
+  <meta name="author" content="Nirmal TR">
+  <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#0b0f19">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Open Graph (social sharing preview) -->
+  <meta property="og:title" content="Nirmal TR | Full Stack Developer">
+  <meta property="og:description" content="Full Stack Developer specializing in CRM, Vehicle Inspection & Automation Solutions.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nirmaltrdev.github.io/nirmal-portfolio/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Nirmal TR | Full Stack Developer">
 </head>
 <body class="dark-theme">
   <app-root></app-root>

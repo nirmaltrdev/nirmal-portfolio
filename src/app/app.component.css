@@ -669,7 +669,7 @@
 
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
   gap: 2rem;
 }
 
@@ -1174,7 +1174,7 @@ textarea.dark-input {
 
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
   gap: 2rem;
 }
 
@@ -1817,13 +1817,13 @@ body.light-theme .proj-link-btn.primary:hover {
 
 /* Floating Toggle Button */
 .custom-chat-toggle {
-  width: 60px;
-  height: 60px;
+  width: 54px;
+  height: 54px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  background: linear-gradient(135deg, var(--primary), #7c3aed);
   border: none;
   color: #ffffff;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   cursor: pointer;
   box-shadow: 0 10px 30px rgba(24, 144, 255, 0.4);
   display: flex;
@@ -1862,10 +1862,10 @@ body.light-theme .proj-link-btn.primary:hover {
 
 /* Chat Window */
 .custom-chat-window {
-  width: 380px;
+  width: 370px;
   height: 520px;
   border-radius: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -2190,11 +2190,80 @@ body.light-theme .chat-send-btn:disabled {
 /* Responsive adjustment */
 @media (max-width: 480px) {
   .custom-chatbot-container {
-    bottom: 20px;
-    right: 20px;
+    bottom: 16px;
+    right: 16px;
   }
+
+  .custom-chat-toggle {
+    width: 50px;
+    height: 50px;
+    font-size: 1.2rem;
+  }
+
   .custom-chat-window {
-    width: calc(100vw - 40px);
-    height: 480px;
+    width: calc(100vw - 32px);
+    height: 460px;
+    border-radius: 16px;
+  }
+
+  /* Hero section on very small screens */
+  .hero-name {
+    font-size: 2.2rem !important;
+  }
+
+  .hero-title {
+    font-size: 1.25rem !important;
+  }
+
+  .hero-tagline {
+    font-size: 1rem !important;
+  }
+
+  /* Fix section padding on very small phones */
+  .about-section, .services-section, .skills-section,
+  .projects-section, .experience-section, .education-section,
+  .github-section, .contact-section {
+    padding-top: 60px !important;
+    padding-bottom: 60px !important;
+  }
+
+  /* Reduce contact form padding */
+  .contact-form-wrapper {
+    padding: 1.25rem !important;
+  }
+
+  /* Reduce github card padding */
+  .github-card {
+    padding: 1.5rem !important;
+  }
+
+  /* Make the experience container snug */
+  .experience-timeline-container {
+    padding: 1rem !important;
+  }
+
+  /* Reduce section header margin */
+  .section-header {
+    margin-bottom: 2.5rem !important;
+  }
+
+  /* Reduce section title size */
+  .section-title {
+    font-size: 1.75rem !important;
+  }
+
+  /* Ensure container has enough padding */
+  .container {
+    padding: 0 16px !important;
+  }
+
+  /* Footer stacks cleanly */
+  .footer-container {
+    grid-template-columns: 1fr !important;
+  }
+
+  .footer-links {
+    flex-wrap: wrap;
+    gap: 1rem;
   }
 }

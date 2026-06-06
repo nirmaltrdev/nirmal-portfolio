@@ -609,7 +609,7 @@ developer.specialties.forEach(solution => {{ '{' }}
     <!-- Chat Input -->
     <div class="custom-chat-footer">
       <input type="text" [(ngModel)]="chatInputText" (keyup.enter)="sendChatMessage()" placeholder="Ask me anything..."
-        class="chat-input" />
+        class="chat-input" maxlength="500" autocomplete="off" />
       <button class="chat-send-btn" (click)="sendChatMessage()" [disabled]="!chatInputText.trim() || isTyping"
         aria-label="Send Message">
         <i class="fas fa-paper-plane"></i>
