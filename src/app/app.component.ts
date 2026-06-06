@@ -241,6 +241,18 @@ Guidelines:
       document.body.classList.add('dark-theme');
     }
 
+    // Load Gemini API Key dynamically from local config.json (Git ignored)
+    this.http.get<{ geminiApiKey: string }>('assets/config.json').subscribe({
+      next: (config) => {
+        if (config && config.geminiApiKey) {
+          this.geminiApiKey = config.geminiApiKey;
+        }
+      },
+      error: (err) => {
+        console.warn('Could not load assets/config.json, using default fallback responses.', err);
+      }
+    });
+
     // Initialize viewport scroll reveal animations
     setTimeout(() => {
       this.initScrollAnimations();
