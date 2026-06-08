@@ -454,7 +454,11 @@ Guidelines:
         } else if (has('hello', 'hey', 'greetings', 'howdy') || t === 'hi' || t.startsWith('hi ') || t.endsWith(' hi')) {
           reply = "Hello there! 👋 I'm Nirmal's virtual assistant.\n\nYou can ask me about his:\n• Skills & tech stack\n• Experience & projects\n• Availability & rates\n• How to get in touch\n\nOr click a quick option below!";
 
-          // --- Default
+          // --- General overview / capabilities
+        } else if (t.includes('what else') || t.includes('what can') || t.includes('capabilities') || t.includes('overview') || has('everything', 'details', 'about', 'tell', 'who', 'nirmal')) {
+          reply = "Here's a quick overview of Nirmal TR: 👨‍💻\n\n📌 Role: Full Stack Developer with 4 years experience\n🏢 Current: LOGICINFEEL, Trivandrum (Feb 2023–Present)\n\n🔹 Frontend: Angular, TypeScript, HTML5, CSS3\n🔹 Backend: Java (Spring Boot), PHP (CodeIgniter 4), Node.js\n🔹 Databases: MySQL, MongoDB\n🔹 Cloud: AWS S3, Firebase, Socket.IO, WhatsApp API, VoIP\n\n📂 Key Projects: Enterprise CRM, Vehicle Inspection System, WhatsApp Automation\n📜 Publication: Healthcare Data Fusion (IJERT, 2021)\n\nFeel free to click the options below or ask anything specific!";
+
+        // --- Default
         } else {
           reply = "Thanks for your message! 🙏 For the best answer, please use the Contact Form or email nirmaltrejilal@gmail.com directly — Nirmal will respond within 24 hours!";
         }
