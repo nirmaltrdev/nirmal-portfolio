@@ -42,19 +42,19 @@
   (nzOnClose)="closeDrawer()">
   <ng-container *nzDrawerContent>
     <div class="mobile-nav-list">
-      <a class="mobile-nav-link" [class.active]="activeSection === 'about'" (click)="scrollTo('about')">About</a>
+      <a class="mobile-nav-link" [class.active]="activeSection === 'about'" (click)="scrollTo('about')" style="touch-action: manipulation;">About</a>
       <a class="mobile-nav-link" [class.active]="activeSection === 'services'"
-        (click)="scrollTo('services')">Services</a>
-      <a class="mobile-nav-link" [class.active]="activeSection === 'skills'" (click)="scrollTo('skills')">Skills</a>
+        (click)="scrollTo('services')" style="touch-action: manipulation;">Services</a>
+      <a class="mobile-nav-link" [class.active]="activeSection === 'skills'" (click)="scrollTo('skills')" style="touch-action: manipulation;">Skills</a>
       <a class="mobile-nav-link" [class.active]="activeSection === 'projects'"
-        (click)="scrollTo('projects')">Projects</a>
+        (click)="scrollTo('projects')" style="touch-action: manipulation;">Projects</a>
       <a class="mobile-nav-link" [class.active]="activeSection === 'experience'"
-        (click)="scrollTo('experience')">Experience</a>
-      <a class="mobile-nav-link" [class.active]="activeSection === 'github'" (click)="scrollTo('github')">GitHub</a>
-      <a class="mobile-nav-link" [class.active]="activeSection === 'contact'" (click)="scrollTo('contact')">Contact</a>
+        (click)="scrollTo('experience')" style="touch-action: manipulation;">Experience</a>
+      <a class="mobile-nav-link" [class.active]="activeSection === 'github'" (click)="scrollTo('github')" style="touch-action: manipulation;">GitHub</a>
+      <a class="mobile-nav-link" [class.active]="activeSection === 'contact'" (click)="scrollTo('contact')" style="touch-action: manipulation;">Contact</a>
       <a href="assets/Resume.pdf" download="Resume_Nirmal_TR.pdf" nz-button nzBlock class="mt-4"><i
           class="fas fa-download"></i> Download CV</a>
-      <button nz-button nzType="primary" nzBlock class="mt-2" (click)="scrollTo('contact')">Let's Talk</button>
+      <button nz-button nzType="primary" nzBlock class="mt-2" (click)="scrollTo('contact')" style="touch-action: manipulation;">Let's Talk</button>
     </div>
   </ng-container>
 </nz-drawer>
@@ -70,21 +70,15 @@
     </div>
 
     <div class="hero-container container animate-fade-in">
-      <div class="hero-badge">
-        <span class="pulse-indicator"></span>
-        <span>Available for Freelance & Full Stack Roles</span>
-      </div>
-
       <h1 class="hero-name">Nirmal TR</h1>
       <h2 class="hero-title">Full Stack Developer</h2>
 
       <p class="hero-tagline">
-        Building CRM, Vehicle Inspection & Automation Solutions
+        Crafting Scalable Backends &amp; Elegant Frontend Experiences
       </p>
 
       <p class="hero-desc">
-        Specializing in crafting premium, high-performance web applications, automating complex business workflows, and
-        designing scalable database architecture.
+        4 years building enterprise CRM systems, automation workflows, and responsive Angular UIs.
       </p>
 
       <div class="hero-tech-pills">
@@ -106,10 +100,13 @@
           <span>Download CV</span>
           <i class="fas fa-download"></i>
         </a>
-        <a href="https://wa.me/918138055705" target="_blank" rel="noopener noreferrer" class="whatsapp-icon-btn">
+        <a href="https://wa.me/918138055705" target="_blank" rel="noopener noreferrer" class="whatsapp-icon-btn" nz-tooltip nzTooltipTitle="WhatsApp">
           <i class="fab fa-whatsapp"></i>
         </a>
-        <a href="https://github.com/nirmaltrdev" target="_blank" rel="noopener noreferrer" class="github-icon-btn">
+        <a href="https://www.linkedin.com/in/nirmaltr" target="_blank" rel="noopener noreferrer" class="linkedin-icon-btn" nz-tooltip nzTooltipTitle="LinkedIn">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+        <a href="https://github.com/nirmaltrdev" target="_blank" rel="noopener noreferrer" class="github-icon-btn" nz-tooltip nzTooltipTitle="GitHub">
           <i class="fab fa-github"></i>
         </a>
       </div>
@@ -145,16 +142,16 @@
 
         <div class="about-stats">
           <div class="stat-card glass-panel">
-            <span class="stat-num">CRM</span>
-            <span class="stat-label">Development</span>
+            <span class="stat-num">4</span>
+            <span class="stat-label">Years Experience</span>
           </div>
           <div class="stat-card glass-panel">
-            <span class="stat-num">API</span>
-            <span class="stat-label">Integration</span>
+            <span class="stat-num">2</span>
+            <span class="stat-label">Companies</span>
           </div>
           <div class="stat-card glass-panel">
-            <span class="stat-num">100%</span>
-            <span class="stat-label">Responsive</span>
+            <span class="stat-num">1</span>
+            <span class="stat-label">Publication</span>
           </div>
         </div>
       </div>
@@ -286,12 +283,12 @@ developer.specialties.forEach(solution => {{ '{' }}
         </div>
 
         <div class="project-links">
-          <a [href]="project.github" target="_blank" class="proj-link-btn primary">
-            <span>Codebase</span>
-            <i class="fab fa-github"></i>
-          </a>
-          <span class="proj-link-btn disabled" nz-tooltip nzTooltipTitle="Internal Enterprise Application">
-            <span>SaaS Demo</span>
+          <span class="proj-link-btn confidential" nz-tooltip nzTooltipTitle="Source code is proprietary & confidential to the employer">
+            <i class="fas fa-shield-alt"></i>
+            <span>Confidential Code</span>
+          </span>
+          <span class="proj-link-btn disabled" nz-tooltip nzTooltipTitle="Internal Enterprise Application — Live demo not publicly available">
+            <span>Enterprise SaaS</span>
             <i class="fas fa-lock"></i>
           </span>
         </div>
@@ -356,9 +353,9 @@ developer.specialties.forEach(solution => {{ '{' }}
             <p class="pub-authors">{{ pub.authors }}</p>
             <div class="pub-meta">
               <span class="pub-date"><i class="far fa-calendar-alt"></i> {{ pub.date }}</span>
-              <a [href]="'https://doi.org/' + pub.doi" target="_blank" class="pub-doi-link">
-                <span>DOI Link</span>
-                <i class="fas fa-external-link-alt ml-1"></i>
+              <a [href]="pub.url || ('https://doi.org/' + pub.doi)" target="_blank" rel="noopener noreferrer" class="pub-doi-link">
+                <i class="fas fa-external-link-alt"></i>
+                <span>View Publication</span>
               </a>
             </div>
           </div>

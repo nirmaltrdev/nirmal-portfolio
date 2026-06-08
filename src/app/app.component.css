@@ -163,6 +163,14 @@
   color: var(--text-secondary);
   text-decoration: none;
   font-weight: 500;
+  cursor: pointer;
+  display: block;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: rgba(59, 130, 246, 0.1);
+  padding: 0.25rem 0;
 }
 
 .mobile-nav-link.active {
@@ -452,6 +460,29 @@
   background: #25d366;
   border-color: #25d366;
   box-shadow: 0 0 15px rgba(37, 211, 102, 0.4);
+  transform: translateY(-2px);
+}
+
+.linkedin-icon-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  background: rgba(0, 119, 181, 0.1);
+  border: 1px solid rgba(0, 119, 181, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0077b5;
+  font-size: 1.35rem;
+  transition: var(--transition-smooth);
+  text-decoration: none;
+}
+
+.linkedin-icon-btn:hover {
+  color: #fff;
+  background: #0077b5;
+  border-color: #0077b5;
+  box-shadow: 0 0 15px rgba(0, 119, 181, 0.4);
   transform: translateY(-2px);
 }
 
@@ -766,6 +797,14 @@
   background: var(--primary);
   border-color: var(--primary);
   color: #fff;
+}
+
+.proj-link-btn.confidential {
+  background: rgba(245, 158, 11, 0.06);
+  border: 1px dashed rgba(245, 158, 11, 0.3);
+  color: #f59e0b;
+  cursor: default;
+  gap: 0.4rem;
 }
 
 .proj-link-btn.disabled {
@@ -1358,6 +1397,13 @@ textarea.dark-input {
   display: flex;
   align-items: center;
   gap: 0.25rem;
+  padding: 0.4rem 0.6rem;
+  border-radius: 6px;
+  background: rgba(59, 130, 246, 0.07);
+  border: 1px solid rgba(59, 130, 246, 0.15);
+  transition: var(--transition-smooth);
+  min-height: 36px;
+  white-space: nowrap;
 }
 
 .pub-doi-link:hover {
@@ -1694,6 +1740,7 @@ body.light-theme .proj-link-btn.primary:hover {
 /* Helper Utilities */
 .ml-2 { margin-left: 0.5rem; }
 .mt-4 { margin-top: 1rem; }
+.mt-2 { margin-top: 0.5rem; }
 
 /* Responsive Media Queries */
 @media (max-width: 992px) {
@@ -1813,7 +1860,7 @@ body.light-theme .proj-link-btn.primary:hover {
   bottom: 30px;
   right: 30px;
   z-index: 10000;
-  font-family: var(--font-main);
+  font-family: var(--font-body);
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -2211,8 +2258,11 @@ body.light-theme .chat-send-btn:disabled {
 
   .custom-chat-window {
     width: calc(100vw - 32px);
+    max-width: 400px;
     height: 460px;
+    max-height: calc(100dvh - 100px);
     border-radius: 16px;
+    right: 0;
   }
 
   /* Hero section on very small screens */

@@ -41,6 +41,7 @@ interface Publication {
   authors: string;
   date: string;
   doi: string;
+  url?: string;
 }
 
 @Component({
@@ -151,7 +152,8 @@ export class AppComponent implements OnInit, OnDestroy {
       title: 'Healthcare Data Fusion',
       authors: 'Adithya Jayaprakash Pillai, Nirmal TR, Asif Ali, Asni KK',
       date: 'July 2021',
-      doi: '10.17577/IJERTCONV9IS13031'
+      doi: '10.17577/IJERTCONV9IS13031',
+      url: 'https://www.ijert.org/healthcare-data-fusion'
     }
   ];
 
@@ -166,10 +168,14 @@ export class AppComponent implements OnInit, OnDestroy {
   chatPresets = [
     { label: '💼 Are you available for hire?', key: 'avail' },
     { label: '🛠️ What is your tech stack?', key: 'stack' },
-    { label: '🚀 Tell me about your CRM work', key: 'crm' }
+    { label: '🚀 Tell me about your CRM project', key: 'crm' },
+    { label: '🌍 Are you open to remote work?', key: 'remote' },
+    { label: '⏳ What is your notice period?', key: 'notice' },
+    { label: '💰 What are your rates / salary?', key: 'rate' }
   ];
 
   // Paste your Google Gemini API Key here (Free from https://aistudio.google.com/)
+  // OR set it in src/assets/config.json as { "geminiApiKey": "your-key" }
   private geminiApiKey = 'YOUR_GEMINI_API_KEY';
 
   private getSystemPrompt(): string {
@@ -338,11 +344,14 @@ Guidelines:
     const presetMap: Record<string, string> = {
       avail: 'Are you available for hire?',
       stack: 'What is your tech stack?',
-      crm: 'Tell me about your CRM work'
+      crm: 'Tell me about your CRM project',
+      remote: 'Are you open to remote work?',
+      notice: 'What is your notice period?',
+      rate: 'What are your rates or expected salary?'
     };
 
     const question = presetMap[key];
-    if (!question) return; // Guard: ignore unknown preset keys
+    if (!question) return;
 
     this.addUserMessage(question);
     this.getBotReply(question);
@@ -381,28 +390,79 @@ Guidelines:
     setTimeout(() => this.scrollToChatBottom(), 50);
 
     if (!this.geminiApiKey || this.geminiApiKey === 'YOUR_GEMINI_API_KEY') {
-      // Fallback keyword-based response if API key is not configured
+      // Fallback keyword-based response when no valid API key is configured
       setTimeout(() => {
         this.isTyping = false;
-        const lowerText = userQuestion.toLowerCase();
+        const t = userQuestion.toLowerCase();
+        // Helper: word-boundary safe match
+        const has = (...words: string[]) => words.some(w => new RegExp(`\\b${w}\\b`).test(t));
         let reply = '';
-        if (lowerText.includes('resume') || lowerText.includes('cv') || lowerText.includes('biodata')) {
-          reply = "You can download my CV/Resume directly using the button in the main Hero section of this website!";
-        } else if (lowerText.includes('experience') || lowerText.includes('work') || lowerText.includes('job') || lowerText.includes('company')) {
-          reply = "I currently work as a Software Engineer at LOGICINFEEL, building enterprise SaaS apps. Check out my full timeline in the 'Experience' section of the site!";
-        } else if (lowerText.includes('github') || lowerText.includes('projects') || lowerText.includes('portfolio') || lowerText.includes('code')) {
-          reply = "I maintain active open-source projects on GitHub! You can view my featured works in the 'Projects' section, or check my profile at github.com/nirmaltrdev.";
-        } else if (lowerText.includes('email') || lowerText.includes('contact') || lowerText.includes('phone') || lowerText.includes('whatsapp') || lowerText.includes('hire')) {
-          reply = "You can contact me directly via email at nirmaltrejilal@gmail.com or call/message me on WhatsApp at +91 8138055705. Alternatively, just fill out the Contact Form below!";
-        } else if (lowerText.includes('hello') || lowerText.includes('hi') || lowerText.includes('hey') || lowerText.includes('greetings')) {
-          reply = "Hello there! 👋 Let me know if you have any questions about my full-stack capabilities, recent projects, or availability!";
+
+        // --- Preset: Are you available for hire?
+        if (has('available', 'hire', 'hiring', 'open') || t.includes('for hire')) {
+          reply = "Yes! I am actively open to full-time roles and freelance/contract projects. 🙌\n\nBest ways to reach me:\n• 📧 Email: nirmaltrejilal@gmail.com\n• 💬 WhatsApp: +91 8138055705\n• 🔗 LinkedIn: linkedin.com/in/nirmaltr\n• 📝 Contact Form on this page";
+
+          // --- Preset: What is your tech stack?
+        } else if (has('tech', 'stack', 'skill', 'language', 'framework', 'tools') || t.includes('tech stack')) {
+          reply = "Here is my full tech stack:\n\n🔹 Backend: Java (Spring Boot), PHP (CodeIgniter 4), Node.js, REST APIs\n🔹 Frontend: Angular, TypeScript, HTML5, CSS3\n🔹 Databases: MySQL, MongoDB\n🔹 Cloud & Integrations: AWS S3, Firebase, FCM, Socket.IO, WhatsApp API, VoIP\n🔹 Tools: Git, GitHub, Postman, MPDF\n\nCheck out the Skills section for the complete breakdown!";
+
+          // --- Preset: CRM project
+        } else if (has('crm') || t.includes('crm work') || t.includes('crm project')) {
+          reply = "My flagship project is an Enterprise CRM & Automation Hub: 🏢\n\n• Dual-backend microservices: PHP (CodeIgniter 4) + Java (Spring Boot)\n• Angular frontend with real-time Socket.IO chat\n• WhatsApp API campaign automation & bulk messaging\n• VoIP call/telephony system integration\n• AWS S3 file storage & PDF report generation\n• Led a team of 2–4 developers\n\nIt is a large-scale internal SaaS platform — source is confidential, but happy to discuss architecture!";
+
+          // --- Preset: Remote work
+        } else if (has('remote', 'work from home', 'wfh', 'location', 'onsite', 'hybrid') || t.includes('remote work')) {
+          reply = "Yes, I am fully open to remote work! 🌍\n\nI am based in Trivandrum, Kerala, India (GMT+5:30) and comfortable working with teams across time zones. I am also open to hybrid or onsite roles in Trivandrum.";
+
+          // --- Preset: Notice period
+        } else if (has('notice') || t.includes('notice period') || t.includes('join') || t.includes('start')) {
+          reply = "My notice period is typically 30 days. For urgent freelance projects, I can start within a few days depending on scope. 📅\n\nFeel free to reach me at nirmaltrejilal@gmail.com to discuss timelines!";
+
+          // --- Preset: Salary / rate
+        } else if (has('salary', 'rate', 'cost', 'price', 'charge', 'budget', 'pay', 'ctc', 'compensation')) {
+          reply = "For salary and rate discussions, I prefer a direct conversation to understand the role and scope first. 💬\n\nPlease reach out via:\n• 📧 nirmaltrejilal@gmail.com\n• 📝 Contact Form on this page\n\nI will respond within 24 hours!";
+
+          // --- Experience
+        } else if (has('experience', 'years', 'background', 'career') || t.includes('how long')) {
+          reply = "I have 4 years of professional experience as a Software Engineer: 🗂️\n\n• LOGICINFEEL, Trivandrum (Feb 2023 – Present): Enterprise CRM, WhatsApp automation, VoIP, real-time systems\n• Bitbridge Technologies, Trivandrum (Jul 2022 – Feb 2023): Auth systems, REST APIs, responsive UI\n\nSee the Experience section for the full timeline!";
+
+          // --- Projects
+        } else if (has('project', 'portfolio', 'built', 'developed', 'vehicle', 'inspection', 'whatsapp', 'automation')) {
+          reply = "Here are my 3 key projects: 🚀\n\n1️⃣ Enterprise CRM & Automation Hub — Angular, Spring Boot, WhatsApp API, VoIP, Socket.IO\n2️⃣ Vehicle Inspection & Job Card System — Spring Boot, Angular, MySQL, REST APIs\n3️⃣ WhatsApp Automation Platform — Angular, Node.js, Webhooks, bulk campaigns\n\nAll are enterprise-grade internal systems. See the Projects section for details!";
+
+          // --- Angular / Frontend
+        } else if (has('angular', 'frontend', 'ui', 'react', 'vue', 'css', 'html', 'typescript') || t.includes('front end') || t.includes('front-end')) {
+          reply = "Yes, Angular is one of my primary skills! 🅰️\n\nI have 4 years of Angular experience building large enterprise UIs with TypeScript, reactive forms, routing, state management, and REST API integration. I also work with HTML5, CSS3, and responsive design.";
+
+          // --- Java / Backend
+        } else if (has('java', 'spring', 'springboot', 'backend', 'api', 'php', 'node') || t.includes('spring boot') || t.includes('back end') || t.includes('back-end')) {
+          reply = "On the backend I work primarily with: ⚙️\n\n• Java + Spring Boot for enterprise microservices\n• PHP + CodeIgniter 4 for CRM backend systems\n• Node.js for automation and webhook workflows\n• REST API design, JWT auth, database integration";
+
+          // --- Education / certifications
+        } else if (has('education', 'degree', 'college', 'university', 'certification', 'certified', 'study')) {
+          reply = "🎓 B.Tech in Computer Science Engineering — APJ Abdul Kalam Technological University (2021)\n\n📜 Certifications:\n• Java Programming Masterclass (Udemy)\n• AWS Development Tools & Services (AWS)\n• Cybersecurity & IoT (Coursera)\n• Certified Secure Computer User (EC-Council)\n• Google Analytics for Beginners (Google)";
+
+          // --- Contact / connect
+        } else if (has('contact', 'email', 'phone', 'reach', 'connect', 'message', 'linkedin')) {
+          reply = "Here is how to reach me: 📬\n\n• 📧 Email: nirmaltrejilal@gmail.com\n• 💬 WhatsApp: +91 8138055705\n• 🔗 LinkedIn: linkedin.com/in/nirmaltr\n• 🐙 GitHub: github.com/nirmaltrdev\n• 📝 Contact Form on this page\n\nI typically respond within 24 hours!";
+
+          // --- Resume / CV
+        } else if (has('resume', 'cv', 'biodata', 'download')) {
+          reply = "You can download my CV/Resume using the \"Download CV\" button in the hero section at the top of this page! 📄";
+
+          // --- Greeting
+        } else if (has('hello', 'hey', 'greetings', 'howdy') || t === 'hi' || t.startsWith('hi ') || t.endsWith(' hi')) {
+          reply = "Hello there! 👋 I'm Nirmal's virtual assistant.\n\nYou can ask me about his:\n• Skills & tech stack\n• Experience & projects\n• Availability & rates\n• How to get in touch\n\nOr click a quick option below!";
+
+          // --- Default
         } else {
-          reply = "Thanks for the message! (Note: Connect your free Gemini API key in app.component.ts to unlock full smart AI answers). For direct inquiries, feel free to fill in the Contact Form or reach me at nirmaltrejilal@gmail.com.";
+          reply = "Thanks for your message! 🙏 For the best answer, please use the Contact Form or email nirmaltrejilal@gmail.com directly — Nirmal will respond within 24 hours!";
         }
+
         const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
         this.chatMessages.push({ sender: 'bot', text: reply, time });
         setTimeout(() => this.scrollToChatBottom(), 50);
-      }, 1000);
+      }, 900);
       return;
     }
 
@@ -450,11 +510,10 @@ Guidelines:
       },
       error: (err) => {
         this.isTyping = false;
-        // Security: do not expose raw error details in production
         const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
         this.chatMessages.push({
           sender: 'bot',
-          text: "I'm having trouble connecting to my AI brain right now. Please feel free to email me at nirmaltrejilal@gmail.com or use the contact form!",
+          text: "Sorry, I couldn't process that right now. Please reach me directly at nirmaltrejilal@gmail.com or use the Contact Form — I'll respond within 24 hours!",
           time
         });
         setTimeout(() => this.scrollToChatBottom(), 50);

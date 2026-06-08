@@ -6,6 +6,7 @@
   --bg-card-hover: rgba(31, 41, 55, 0.8);
   --bg-navbar: rgba(11, 15, 25, 0.8);
   --primary: #3b82f6;
+  --secondary: #7c3aed;
   --primary-hover: #2563eb;
   --primary-glow: rgba(59, 130, 246, 0.15);
   --accent: #60a5fa;
@@ -229,7 +230,7 @@ html, body {
 .hero-section, .about-section, .services-section,
 .skills-section, .projects-section, .experience-section,
 .education-section, .github-section, .contact-section {
-  contain: layout style;
+  contain: layout;
 }
 
 /* On mobile: disable expensive backdrop-filter/blur on glass panels */
