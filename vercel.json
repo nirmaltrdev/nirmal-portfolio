@@ -1,0 +1,6 @@
+{
+  "buildCommand": "echo '{\"geminiApiKey\":\"'$GEMINI_API_KEY'\"}' > src/assets/config.json && npx ng build --configuration production",
+  "outputDirectory": "dist/portfolio-web",
+  "installCommand": "npm ci",
+  "framework": null
+}
