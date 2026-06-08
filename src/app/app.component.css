@@ -2133,12 +2133,47 @@ body.light-theme .proj-link-btn.primary:hover {
 
 /* Presets Chips */
 .custom-chat-presets {
-  padding: 0.5rem 1.25rem;
+  padding: 0 12px 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.presets-header {
   display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  border-top: 1px solid rgba(255, 255, 255, 0.03);
-  background: rgba(0, 0, 0, 0.05);
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 4px 6px;
+  cursor: pointer;
+  color: var(--text-muted);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  user-select: none;
+  transition: color 0.2s ease;
+}
+
+.presets-header:hover {
+  color: var(--text-secondary);
+}
+
+.presets-header i {
+  font-size: 0.65rem;
+  transition: transform 0.25s ease;
+}
+
+.presets-chips {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  overflow: hidden;
+  max-height: 300px;
+  transition: max-height 0.3s ease, opacity 0.25s ease;
+  opacity: 1;
+}
+
+.presets-chips.collapsed {
+  max-height: 0;
+  opacity: 0;
 }
 
 .preset-chip {

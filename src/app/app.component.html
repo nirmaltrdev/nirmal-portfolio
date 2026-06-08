@@ -596,9 +596,15 @@ developer.specialties.forEach(solution => {{ '{' }}
 
     <!-- Quick Options Presets -->
     <div class="custom-chat-presets" *ngIf="chatMessages.length < 5 && !isTyping">
-      <button *ngFor="let preset of chatPresets" (click)="handlePresetClick(preset.key)" class="preset-chip">
-        {{ preset.label }}
-      </button>
+      <div class="presets-header" (click)="presetsCollapsed = !presetsCollapsed">
+        <span>Quick Questions</span>
+        <i class="fas" [class.fa-chevron-up]="!presetsCollapsed" [class.fa-chevron-down]="presetsCollapsed"></i>
+      </div>
+      <div class="presets-chips" [class.collapsed]="presetsCollapsed">
+        <button *ngFor="let preset of chatPresets" (click)="handlePresetClick(preset.key)" class="preset-chip">
+          {{ preset.label }}
+        </button>
+      </div>
     </div>
 
     <!-- Chat Input -->

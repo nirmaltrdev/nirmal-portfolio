@@ -163,6 +163,7 @@ export class AppComponent implements OnInit, OnDestroy {
   // Chatbot State
   chatOpen = false;
   isTyping = false;
+  presetsCollapsed = false;
   chatInputText = '';
   chatMessages: Array<{ sender: 'user' | 'bot'; text: string; time: string; link?: string; linkText?: string }> = [];
   chatPresets = [
