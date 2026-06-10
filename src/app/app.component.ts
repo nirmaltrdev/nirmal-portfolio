@@ -235,7 +235,7 @@ Guidelines:
     this.chatMessages = [
       {
         sender: 'bot',
-        text: "Hi there! 👋 I am Nirmal AI assistant. How can I assist you today? Ask me anything or select a quick option below!",
+        text: "Hi there! 👋 I am Nirmal's AI Assistant. How can I assist you today? Ask me anything or select a quick option below!",
         time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
       }
     ];
@@ -484,7 +484,7 @@ Guidelines:
 
           // --- Greeting
         } else if (has('hello', 'hey', 'greetings', 'howdy') || t === 'hi' || t.startsWith('hi ') || t.endsWith(' hi')) {
-          reply = "Hello there! 👋 I'm Nirmal AI assistant.\n\nYou can ask me about his:\n• Skills & tech stack\n• Experience & projects\n• Availability & rates\n• How to get in touch\n\nOr click a quick option below!";
+          reply = "Hello there! 👋 I'm Nirmal's AI Assistant.\n\nYou can ask me about his:\n• Skills & tech stack\n• Experience & projects\n• Availability & rates\n• How to get in touch\n\nOr click a quick option below!";
 
           // --- General overview / capabilities
         } else if (t.includes('what else') || t.includes('what can') || t.includes('capabilities') || t.includes('overview') || has('everything', 'details', 'about', 'tell', 'who', 'nirmal')) {
