@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener, AfterViewInit, Renderer2, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { NzMessageService } from 'ng-zorro-antd/message';
@@ -49,8 +49,12 @@ interface Publication {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
   title = 'portfolio-web';
+
+  // Theme State
+  isLightTheme = false;
+
   drawerVisible = false;
   activeSection = 'hero';
   scrolled = false;
@@ -150,15 +154,12 @@ export class AppComponent implements OnInit, OnDestroy {
   publications: Publication[] = [
     {
       title: 'Healthcare Data Fusion',
-      authors: 'Adithya Jayaprakash Pillai, Nirmal TR, Asif Ali, Asni KK',
+      authors: 'Adithya Jayaprakash Pillai, Nirmal T R, Asif Ali, Asni KK',
       date: 'July 2021',
       doi: '10.17577/IJERTCONV9IS13031',
       url: 'https://www.ijert.org/healthcare-data-fusion'
     }
   ];
-
-  // Theme State
-  isLightTheme = false;
 
   // Chatbot State
   chatOpen = false;
@@ -175,17 +176,15 @@ export class AppComponent implements OnInit, OnDestroy {
     { label: '💰 What are your rates / salary?', key: 'rate' }
   ];
 
-  // Paste your Google Gemini API Key here (Free from https://aistudio.google.com/)
-  // OR set it in src/assets/config.json as { "geminiApiKey": "your-key" }
   private geminiApiKey = 'YOUR_GEMINI_API_KEY';
 
   private getSystemPrompt(): string {
-    return `You are the professional AI Assistant for Nirmal TR, a Full Stack Developer.
+    return `You are the professional AI Assistant for Nirmal T R, a Full Stack Developer.
 Your goal is to answer questions from potential employers, recruiters, and freelance clients.
 Keep your answers highly professional, confident, and polite. Make sure to represent Nirmal accurately.
 
-Here are Nirmal TR's professional details:
-- Name: Nirmal TR
+Here are Nirmal T R's professional details:
+- Name: Nirmal T R
 - Title: Full Stack Developer / Software Engineer
 - Location: Trivandrum, Kerala, India (GMT+5:30)
 - Contact Email: nirmaltrejilal@gmail.com
@@ -224,29 +223,22 @@ Guidelines:
   constructor(
     private fb: FormBuilder,
     private message: NzMessageService,
-    private http: HttpClient
+    private http: HttpClient,
+    private renderer: Renderer2,
+    private el: ElementRef
   ) { }
 
   ngOnInit(): void {
-    this.contactForm = this.fb.group({
-      name: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.email]],
-      subject: ['', [Validators.required]],
-      message: ['', [Validators.required]]
-    });
+    this.initContactForm();
+    this.checkSavedTheme();
 
     this.chatMessages = [
       {
         sender: 'bot',
-        text: "Hi there! 👋 I am Nirmal's virtual assistant. How can I assist you today? Ask me anything or select a quick option below!",
+        text: "Hi there! 👋 I am Nirmal AI assistant. How can I assist you today? Ask me anything or select a quick option below!",
         time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
       }
     ];
-
-    // Default to dark-theme on body
-    if (typeof document !== 'undefined') {
-      document.body.classList.add('dark-theme');
-    }
 
     // Load Gemini API Key dynamically from local config.json (Git ignored)
     this.http.get<{ geminiApiKey: string }>('assets/config.json').subscribe({
@@ -260,17 +252,55 @@ Guidelines:
       }
     });
 
+    // Apply security protections
+    this.setupSecurity();
+    
+    // Check local storage for theme
+    this.checkSavedTheme();
+  }
+
+  checkSavedTheme(): void {
+    if (typeof localStorage !== 'undefined') {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'light') {
+        this.isLightTheme = true;
+        if (typeof document !== 'undefined') {
+          document.body.classList.remove('dark-theme');
+          document.body.classList.add('light-theme');
+        }
+      } else {
+        this.isLightTheme = false;
+        if (typeof document !== 'undefined') {
+          document.body.classList.add('dark-theme');
+        }
+      }
+    }
+  }
+
+  ngAfterViewInit(): void {
     // Initialize viewport scroll reveal animations
     setTimeout(() => {
       this.initScrollAnimations();
     }, 200);
+  }
 
-    // Apply security protections
-    this.setupSecurity();
+  private initContactForm(): void {
+    this.contactForm = this.fb.group({
+      name: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      subject: ['', [Validators.required]],
+      message: ['', [Validators.required]]
+    });
   }
 
   // ─── Security ─────────────────────────────────────────────────────────────
+  @HostListener('document:contextmenu', ['$event'])
+  onRightClick(event: MouseEvent) {
+    event.preventDefault();
+  }
+  
   private _securityContextMenu = (e: Event) => e.preventDefault();
+
   private _securityKeydown = (e: KeyboardEvent) => {
     // Block F12
     if (e.key === 'F12') { e.preventDefault(); return; }
@@ -288,10 +318,11 @@ Guidelines:
   private _securityDragstart = (e: Event) => e.preventDefault();
 
   private setupSecurity(): void {
-    if (typeof document === 'undefined') return;
-    document.addEventListener('contextmenu', this._securityContextMenu, { passive: false });
-    document.addEventListener('keydown', this._securityKeydown, { passive: false });
-    document.addEventListener('dragstart', this._securityDragstart, { passive: false });
+    // Disabled temporarily for debugging
+    // if (typeof document === 'undefined') return;
+    // document.addEventListener('contextmenu', this._securityContextMenu, { passive: false });
+    // document.addEventListener('keydown', this._securityKeydown, { passive: false });
+    // document.addEventListener('dragstart', this._securityDragstart, { passive: false });
   }
 
   ngOnDestroy(): void {
@@ -309,11 +340,11 @@ Guidelines:
       if (this.isLightTheme) {
         document.body.classList.remove('dark-theme');
         document.body.classList.add('light-theme');
-        this.message.info('Switched to Light Mode');
+        if (typeof localStorage !== 'undefined') localStorage.setItem('theme', 'light');
       } else {
         document.body.classList.remove('light-theme');
         document.body.classList.add('dark-theme');
-        this.message.info('Switched to Dark Mode');
+        if (typeof localStorage !== 'undefined') localStorage.setItem('theme', 'dark');
       }
     }
   }
@@ -453,11 +484,11 @@ Guidelines:
 
           // --- Greeting
         } else if (has('hello', 'hey', 'greetings', 'howdy') || t === 'hi' || t.startsWith('hi ') || t.endsWith(' hi')) {
-          reply = "Hello there! 👋 I'm Nirmal's virtual assistant.\n\nYou can ask me about his:\n• Skills & tech stack\n• Experience & projects\n• Availability & rates\n• How to get in touch\n\nOr click a quick option below!";
+          reply = "Hello there! 👋 I'm Nirmal AI assistant.\n\nYou can ask me about his:\n• Skills & tech stack\n• Experience & projects\n• Availability & rates\n• How to get in touch\n\nOr click a quick option below!";
 
           // --- General overview / capabilities
         } else if (t.includes('what else') || t.includes('what can') || t.includes('capabilities') || t.includes('overview') || has('everything', 'details', 'about', 'tell', 'who', 'nirmal')) {
-          reply = "Here's a quick overview of Nirmal TR: 👨‍💻\n\n📌 Role: Full Stack Developer with 4 years experience\n🏢 Current: LOGICINFEEL, Trivandrum (Feb 2023–Present)\n\n🔹 Frontend: Angular, TypeScript, HTML5, CSS3\n🔹 Backend: Java (Spring Boot), PHP (CodeIgniter 4), Node.js\n🔹 Databases: MySQL, MongoDB\n🔹 Cloud: AWS S3, Firebase, Socket.IO, WhatsApp API, VoIP\n\n📂 Key Projects: Enterprise CRM, Vehicle Inspection System, WhatsApp Automation\n📜 Publication: Healthcare Data Fusion (IJERT, 2021)\n\nFeel free to click the options below or ask anything specific!";
+          reply = "Here's a quick overview of Nirmal T R: 👨‍💻\n\n📌 Role: Full Stack Developer with 4 years experience\n🏢 Current: LOGICINFEEL, Trivandrum (Feb 2023–Present)\n\n🔹 Frontend: Angular, TypeScript, HTML5, CSS3\n🔹 Backend: Java (Spring Boot), PHP (CodeIgniter 4), Node.js\n🔹 Databases: MySQL, MongoDB\n🔹 Cloud: AWS S3, Firebase, Socket.IO, WhatsApp API, VoIP\n\n📂 Key Projects: Enterprise CRM, Vehicle Inspection System, WhatsApp Automation\n📜 Publication: Healthcare Data Fusion (IJERT, 2021)\n\nFeel free to click the options below or ask anything specific!";
 
         // --- Default
         } else {

@@ -1,626 +1,123 @@
-<!-- Header / Navigation -->
-<header class="navbar" [class.scrolled]="scrolled">
-  <div class="nav-container">
-    <div class="nav-brand" (click)="scrollTo('hero')">
-      <span class="logo-accent">&lt;</span>Nirmal TR<span class="logo-accent"> /&gt;</span>
-    </div>
+<!-- app.component.html (SaaS Structural Shell) -->
 
-    <nav class="nav-menu">
-      <a class="nav-link" [class.active]="activeSection === 'about'" (click)="scrollTo('about')">About</a>
-      <a class="nav-link" [class.active]="activeSection === 'services'" (click)="scrollTo('services')">Services</a>
-      <a class="nav-link" [class.active]="activeSection === 'skills'" (click)="scrollTo('skills')">Skills</a>
-      <a class="nav-link" [class.active]="activeSection === 'projects'" (click)="scrollTo('projects')">Projects</a>
-      <a class="nav-link" [class.active]="activeSection === 'experience'"
-        (click)="scrollTo('experience')">Experience</a>
-      <a class="nav-link" [class.active]="activeSection === 'github'" (click)="scrollTo('github')">GitHub</a>
-      <a class="nav-link" [class.active]="activeSection === 'contact'" (click)="scrollTo('contact')">Contact</a>
-    </nav>
+<div class="saas-shell" [class.scrolled]="scrolled">
+  <!-- Custom Cursor (Desktop) -->
+  <div class="cursor-dot" id="cursor-dot"></div>
+  <div class="cursor-outline" id="cursor-outline"></div>
 
-    <div class="nav-actions">
-      <!-- Dark/Light Theme Switcher -->
-      <button class="theme-toggle-btn" (click)="toggleTheme()" nz-tooltip nzTooltipTitle="Toggle Theme"
-        nzTooltipPlacement="bottom">
-        <i class="fas" [class.fa-sun]="!isLightTheme" [class.fa-moon]="isLightTheme"></i>
-      </button>
-
-      <a href="assets/Resume.pdf" download="Resume_Nirmal_TR.pdf" class="btn-cv-download">
-        <i class="fas fa-download"></i> <span>Download CV</span>
+  <!-- Sticky Blurred Navbar -->
+  <header class="saas-nav" [class.glass-nav]="scrolled">
+    <div class="container nav-inner">
+      <a class="nav-brand" (click)="scrollTo('hero')">
+        <span class="brand-text text-gradient-primary">Nirmal T R</span>
       </a>
-      <button nz-button nzType="primary" class="btn-talk" (click)="scrollTo('contact')">
-        <span>Let's Talk</span>
-        <i class="fas fa-arrow-right ml-2"></i>
-      </button>
-      <button class="mobile-menu-btn" (click)="toggleDrawer()">
-        <i class="fas" [class.fa-bars]="!drawerVisible" [class.fa-times]="drawerVisible"></i>
-      </button>
-    </div>
-  </div>
-</header>
+      
+      <nav class="nav-links">
+        <a class="nav-link" [class.active]="activeSection === 'about'" (click)="scrollTo('about')">About</a>
+        <a class="nav-link" [class.active]="activeSection === 'skills'" (click)="scrollTo('skills')">Skills</a>
+        <a class="nav-link" [class.active]="activeSection === 'projects'" (click)="scrollTo('projects')">Work</a>
+        <a class="nav-link" [class.active]="activeSection === 'experience'" (click)="scrollTo('experience')">Experience</a>
+      </nav>
 
-<!-- Mobile Navigation Drawer -->
-<nz-drawer [nzClosable]="true" [nzVisible]="drawerVisible" nzPlacement="right" nzTitle="Navigation"
-  (nzOnClose)="closeDrawer()">
-  <ng-container *nzDrawerContent>
-    <div class="mobile-nav-list">
-      <a class="mobile-nav-link" [class.active]="activeSection === 'about'" (click)="scrollTo('about')" style="touch-action: manipulation;">About</a>
-      <a class="mobile-nav-link" [class.active]="activeSection === 'services'"
-        (click)="scrollTo('services')" style="touch-action: manipulation;">Services</a>
-      <a class="mobile-nav-link" [class.active]="activeSection === 'skills'" (click)="scrollTo('skills')" style="touch-action: manipulation;">Skills</a>
-      <a class="mobile-nav-link" [class.active]="activeSection === 'projects'"
-        (click)="scrollTo('projects')" style="touch-action: manipulation;">Projects</a>
-      <a class="mobile-nav-link" [class.active]="activeSection === 'experience'"
-        (click)="scrollTo('experience')" style="touch-action: manipulation;">Experience</a>
-      <a class="mobile-nav-link" [class.active]="activeSection === 'github'" (click)="scrollTo('github')" style="touch-action: manipulation;">GitHub</a>
-      <a class="mobile-nav-link" [class.active]="activeSection === 'contact'" (click)="scrollTo('contact')" style="touch-action: manipulation;">Contact</a>
-      <a href="assets/Resume.pdf" download="Resume_Nirmal_TR.pdf" nz-button nzBlock class="mt-4"><i
-          class="fas fa-download"></i> Download CV</a>
-      <button nz-button nzType="primary" nzBlock class="mt-2" (click)="scrollTo('contact')" style="touch-action: manipulation;">Let's Talk</button>
-    </div>
-  </ng-container>
-</nz-drawer>
-
-<!-- Main Content Container -->
-<main class="portfolio-content">
-
-  <!-- Hero Section -->
-  <section id="hero" class="hero-section">
-    <div class="hero-bg-glow">
-      <div class="glow-orb orb-1"></div>
-      <div class="glow-orb orb-2"></div>
-    </div>
-
-    <div class="hero-container container animate-fade-in">
-      <h1 class="hero-name">Nirmal TR</h1>
-      <h2 class="hero-title">Full Stack Developer</h2>
-
-      <p class="hero-tagline">
-        Crafting Scalable Backends &amp; Elegant Frontend Experiences
-      </p>
-
-      <p class="hero-desc">
-        4 years building enterprise CRM systems, automation workflows, and responsive Angular UIs.
-      </p>
-
-      <div class="hero-tech-pills">
-        <span class="tech-pill"><i class="fab fa-java"></i> Java</span>
-        <span class="tech-pill"><i class="fas fa-leaf"></i> Spring Boot</span>
-        <span class="tech-pill"><i class="fab fa-angular"></i> Angular</span>
-        <span class="tech-pill"><i class="fab fa-js"></i> TypeScript</span>
-        <span class="tech-pill"><i class="fas fa-database"></i> MySQL</span>
-        <span class="tech-pill"><i class="fab fa-aws"></i> AWS EC2</span>
-      </div>
-
-      <div class="hero-ctas">
-        <button nz-button nzType="primary" nzSize="large" class="btn-primary-glow" (click)="scrollTo('projects')">
-          <span>View Projects</span>
-          <i class="fas fa-project-diagram"></i>
+      <div class="nav-actions">
+        <button class="theme-toggle-btn" (click)="toggleTheme()" aria-label="Toggle Theme">
+          <i class="fa-solid" [class.fa-moon]="isLightTheme" [class.fa-sun]="!isLightTheme"></i>
         </button>
-        <a href="assets/Resume.pdf" download="Resume_Nirmal_TR.pdf" nz-button nzType="default" nzSize="large"
-          class="btn-outline-resume">
-          <span>Download CV</span>
-          <i class="fas fa-download"></i>
-        </a>
-        <a href="https://wa.me/918138055705" target="_blank" rel="noopener noreferrer" class="whatsapp-icon-btn" nz-tooltip nzTooltipTitle="WhatsApp">
-          <i class="fab fa-whatsapp"></i>
-        </a>
-        <a href="https://www.linkedin.com/in/nirmaltr" target="_blank" rel="noopener noreferrer" class="linkedin-icon-btn" nz-tooltip nzTooltipTitle="LinkedIn">
-          <i class="fab fa-linkedin-in"></i>
-        </a>
-        <a href="https://github.com/nirmaltrdev" target="_blank" rel="noopener noreferrer" class="github-icon-btn" nz-tooltip nzTooltipTitle="GitHub">
-          <i class="fab fa-github"></i>
-        </a>
+        <button class="btn btn-primary" (click)="scrollTo('contact')">Let's Talk <i class="fas fa-paper-plane" style="margin-left: 0.25rem;"></i></button>
       </div>
     </div>
+  </header>
 
-    <div class="scroll-down" (click)="scrollTo('about')">
-      <span>Scroll Down</span>
-      <i class="fas fa-chevron-down animate-bounce"></i>
-    </div>
-  </section>
+  <main class="saas-main-content">
+    
+    <!-- Hero Component -->
+    <app-hero id="hero"></app-hero>
 
-  <!-- About Me Section -->
-  <section id="about" class="about-section container reveal">
-    <div class="section-header">
-      <span class="section-subtitle">Introduction</span>
-      <h2 class="section-title">About Me</h2>
-      <div class="title-underline"></div>
-    </div>
+    <!-- About Section (Enterprise Architecture) -->
+    <app-about id="about"></app-about>
 
-    <div class="about-grid">
-      <div class="about-text">
-        <h3 class="about-headline">Solving Real-World Problems Through Scalable Code</h3>
-        <p class="about-paragraph">
-          I am a passionate Full Stack Developer experienced in engineering robust SaaS solutions, enterprise business
-          applications, and automated CRM workflows. My focus is on building high-performance, maintainable software
-          architectures that deliver clean user experiences and tangible business value.
-        </p>
-        <p class="about-paragraph">
-          Whether designing multi-layered RESTful APIs in Spring Boot, responsive reactive frontends in Angular, or
-          creating robust automation flows using Node.js, I emphasize clean code practices, performance tuning, and
-          scalable database schemas.
-        </p>
+    <!-- Skills Section (Terminal Tabs) -->
+    <app-skills id="skills" [skills]="skills"></app-skills>
 
-        <div class="about-stats">
-          <div class="stat-card glass-panel">
-            <span class="stat-num">4</span>
-            <span class="stat-label">Years Experience</span>
-          </div>
-          <div class="stat-card glass-panel">
-            <span class="stat-num">2</span>
-            <span class="stat-label">Companies</span>
-          </div>
-          <div class="stat-card glass-panel">
-            <span class="stat-num">1</span>
-            <span class="stat-label">Publication</span>
-          </div>
-        </div>
-      </div>
+    <!-- Projects Section -->
+    <app-projects id="projects" [projects]="projects"></app-projects>
 
-      <div class="about-visual">
-        <div class="terminal-mockup glass-panel">
-          <div class="terminal-header">
-            <span class="terminal-dot red"></span>
-            <span class="terminal-dot yellow"></span>
-            <span class="terminal-dot green"></span>
-            <span class="terminal-title">developer.ts</span>
-          </div>
-          <div class="terminal-body">
-            <pre><code><span class="keyword">const</span> developer = {{ '{' }}
-  name: <span class="string">'Nirmal TR'</span>,
-  role: <span class="string">'Full Stack Developer'</span>,
-  specialties: [
-    <span class="string">'CRM Management Systems'</span>,
-    <span class="string">'Vehicle Inspection Hubs'</span>,
-    <span class="string">'WhatsApp Workflows & API Automation'</span>
-  ],
-  passion: <span class="string">'Scalable Architecture & Clean UX'</span>,
-  readyForHire: <span class="keyword">true</span>
-{{ '}' }};
+    <!-- Experience Section (Sticky Scroll) -->
+    <app-experience id="experience" [experiences]="experiences"></app-experience>
 
-<span class="comment">// Let's build something amazing!</span>
-developer.specialties.forEach(solution => {{ '{' }}
-  console.log(<span class="string">"Deploying " + solution</span>);
-{{ '}' }});</code></pre>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+    <!-- Education Section -->
+    <app-education id="education" [education]="education" [certifications]="certifications" [publications]="publications"></app-education>
 
-  <!-- Freelance Services Section -->
-  <section id="services" class="services-section container reveal">
-    <div class="section-header">
-      <span class="section-subtitle">Solutions</span>
-      <h2 class="section-title">Freelance Services</h2>
-      <div class="title-underline"></div>
-    </div>
+    <!-- Contact Section -->
+    <app-contact id="contact" [contactForm]="contactForm" [isSubmitting]="isSubmitting" (formSubmit)="submitForm()"></app-contact>
 
-    <div class="services-grid">
-      <!-- Service 1 -->
-      <div class="service-card glass-panel">
-        <div class="service-icon-box orange">
-          <i class="fas fa-cubes"></i>
-        </div>
-        <h3 class="service-card-title">Custom Business CRMs</h3>
-        <p class="service-card-desc">
-          Get client lifecycle dashboards, automated quotation engines, workshop job-card trackers, and custom reporting
-          panels built specifically to scale your business operations.
-        </p>
-      </div>
+  </main>
 
-      <!-- Service 2 -->
-      <div class="service-card glass-panel">
-        <div class="service-icon-box green">
-          <i class="fas fa-cogs"></i>
-        </div>
-        <h3 class="service-card-title">Workflow & API Automation</h3>
-        <p class="service-card-desc">
-          Automate repetitive customer follow-ups and campaigns via WhatsApp APIs, configure time-bound shareable links,
-          and establish secure Webhook/REST API channels.
-        </p>
-      </div>
+  <!-- Footer -->
+  <app-footer></app-footer>
 
-      <!-- Service 3 -->
-      <div class="service-card glass-panel">
-        <div class="service-icon-box blue">
-          <i class="fas fa-tachometer-alt"></i>
-        </div>
-        <h3 class="service-card-title">Database & System Tuning</h3>
-        <p class="service-card-desc">
-          Ensure high performance with database schema design and complex query optimizations in MySQL and MongoDB, plus
-          secure storage deployments via AWS S3.
-        </p>
-      </div>
-    </div>
-  </section>
+  <!-- SaaS Chat Widget (Floating) -->
+  <div class="saas-chat-widget" [class.chat-open]="chatOpen">
+    <button class="chat-toggle-btn" (click)="toggleChat()">
+      <i class="fas fa-comment-dots" *ngIf="!chatOpen"></i>
+      <i class="fas fa-times" *ngIf="chatOpen"></i>
+    </button>
 
-  <!-- Skills Section -->
-  <section id="skills" class="skills-section container reveal">
-    <div class="section-header">
-      <span class="section-subtitle">Competencies</span>
-      <h2 class="section-title">My Tech Stack</h2>
-      <div class="title-underline"></div>
-    </div>
-
-    <div class="skills-grid">
-      <div class="skill-category-card glass-panel" *ngFor="let group of skills">
-        <div class="skill-category-header">
-          <div class="category-icon-wrapper">
-            <i class="fas" [class.fa-server]="group.icon === 'database'" [class.fa-code]="group.icon === 'layout'"
-              [class.fa-database]="group.icon === 'hdd'" [class.fa-cloud]="group.icon === 'cloud-server'"></i>
-          </div>
-          <h3 class="skill-category-title">{{ group.category }}</h3>
-        </div>
-        <div class="skill-tags">
-          <span class="skill-tag" *ngFor="let skill of group.skills">{{ skill }}</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Featured Projects Section -->
-  <section id="projects" class="projects-section container reveal">
-    <div class="section-header">
-      <span class="section-subtitle">Case Studies</span>
-      <h2 class="section-title">Featured Projects</h2>
-      <div class="title-underline"></div>
-    </div>
-
-    <div class="projects-grid">
-      <div class="project-card glass-panel" *ngFor="let project of projects">
-        <div class="project-card-header">
-          <div class="project-icon-box">
-            <i class="fas" [class.fa-users-cog]="project.icon === 'user-switch'"
-              [class.fa-car-crash]="project.icon === 'car'" [class.fa-comments]="project.icon === 'message'"></i>
-          </div>
-          <h3 class="project-title">{{ project.title }}</h3>
-        </div>
-
-        <p class="project-description">{{ project.description }}</p>
-
-        <div class="project-tech-tags">
-          <span class="tech-tag" *ngFor="let tech of project.technologies">{{ tech }}</span>
-        </div>
-
-        <div class="project-links">
-          <span class="proj-link-btn confidential" nz-tooltip nzTooltipTitle="Source code is proprietary & confidential to the employer">
-            <i class="fas fa-shield-alt"></i>
-            <span>Confidential Code</span>
-          </span>
-          <span class="proj-link-btn disabled" nz-tooltip nzTooltipTitle="Internal Enterprise Application — Live demo not publicly available">
-            <span>Enterprise SaaS</span>
-            <i class="fas fa-lock"></i>
-          </span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Experience Section -->
-  <section id="experience" class="experience-section container reveal">
-    <div class="section-header">
-      <span class="section-subtitle">Work History</span>
-      <h2 class="section-title">Professional Experience</h2>
-      <div class="title-underline"></div>
-    </div>
-
-    <div class="experience-timeline-container glass-panel">
-      <nz-timeline nzMode="alternate">
-        <nz-timeline-item *ngFor="let exp of experiences" [nzColor]="'blue'">
-          <div class="timeline-content">
-            <span class="timeline-date">{{ exp.duration }}</span>
-            <h3 class="timeline-role">{{ exp.role }}</h3>
-            <h4 class="timeline-company">{{ exp.company }}</h4>
-            <ul class="timeline-details">
-              <li *ngFor="let desc of exp.description">{{ desc }}</li>
-            </ul>
-          </div>
-        </nz-timeline-item>
-      </nz-timeline>
-    </div>
-  </section>
-
-  <!-- Education & Achievements Section -->
-  <section id="education" class="education-section container reveal">
-    <div class="section-header">
-      <span class="section-subtitle">Credentials</span>
-      <h2 class="section-title">Education & Certifications</h2>
-      <div class="title-underline"></div>
-    </div>
-
-    <div class="education-grid">
-      <!-- Left Column: Education & Publications -->
-      <div class="edu-left-col">
-        <!-- Education -->
-        <div class="edu-card glass-panel" *ngFor="let edu of education">
-          <div class="edu-card-body">
-            <div class="edu-icon-wrapper">
-              <i class="fas fa-graduation-cap"></i>
-            </div>
-            <div class="edu-details">
-              <span class="edu-year">{{ edu.year }}</span>
-              <h3 class="edu-degree">{{ edu.degree }}</h3>
-              <p class="edu-institution">{{ edu.institution }}</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Publications -->
-        <div class="pub-wrapper" *ngIf="publications && publications.length > 0">
-          <h3 class="subsection-title"><i class="fas fa-scroll mr-2"></i> Publications</h3>
-          <div class="pub-card glass-panel" *ngFor="let pub of publications">
-            <h4 class="pub-title">{{ pub.title }}</h4>
-            <p class="pub-authors">{{ pub.authors }}</p>
-            <div class="pub-meta">
-              <span class="pub-date"><i class="far fa-calendar-alt"></i> {{ pub.date }}</span>
-              <a [href]="pub.url || ('https://doi.org/' + pub.doi)" target="_blank" rel="noopener noreferrer" class="pub-doi-link">
-                <i class="fas fa-external-link-alt"></i>
-                <span>View Publication</span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Right Column: Certifications -->
-      <div class="edu-right-col">
-        <h3 class="subsection-title"><i class="fas fa-award mr-2"></i> Technical Certifications</h3>
-        <div class="certs-list">
-          <div class="cert-item glass-panel" *ngFor="let cert of certifications">
-            <div class="cert-icon-box">
-              <i class="fas fa-certificate"></i>
-            </div>
-            <div class="cert-info">
-              <h4 class="cert-name">{{ cert.name }}</h4>
-              <p class="cert-issuer">{{ cert.issuer }}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- GitHub Integration Section -->
-  <section id="github" class="github-section container reveal">
-    <div class="section-header">
-      <span class="section-subtitle">Contributions</span>
-      <h2 class="section-title">GitHub Portfolio</h2>
-      <div class="title-underline"></div>
-    </div>
-
-    <div class="github-card glass-panel">
-      <div class="github-header">
-        <div class="github-user-info">
-          <i class="fab fa-github github-big-icon"></i>
+    <div class="chat-window saas-card" *ngIf="chatOpen">
+      <div class="chat-header">
+        <div class="chat-header-info">
+          <div class="status-dot"></div>
           <div>
-            <h3 class="github-username">nirmaltrdev</h3>
-            <p class="github-link"><a href="https://github.com/nirmaltrdev" target="_blank">github.com/nirmaltrdev</a>
-            </p>
-          </div>
-        </div>
-        <a href="https://github.com/nirmaltrdev" target="_blank" nz-button nzType="primary" class="btn-github-visit">
-          <span>Follow on GitHub</span>
-          <i class="fas fa-external-link-alt"></i>
-        </a>
-      </div>
-
-      <div class="github-stats-grid">
-        <div class="github-stat-item">
-          <span class="stat-count">10+</span>
-          <span class="stat-name">Repositories</span>
-        </div>
-        <div class="github-stat-item">
-          <span class="stat-count">Spring / Angular</span>
-          <span class="stat-name">Core Focus</span>
-        </div>
-        <div class="github-stat-item">
-          <span class="stat-count">Clean Code</span>
-          <span class="stat-name">Style Pattern</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact" class="contact-section container reveal">
-    <div class="section-header">
-      <span class="section-subtitle">Get In Touch</span>
-      <h2 class="section-title">Let's Connect</h2>
-      <div class="title-underline"></div>
-    </div>
-
-    <div class="contact-grid">
-      <div class="contact-info">
-        <h3 class="contact-heading">Have a project in mind? Or looking for a developer?</h3>
-        <p class="contact-sub">
-          I am always excited about collaborating on new applications, building integrations, or consulting on
-          automation pipelines. Reach out via the form, or through any of my direct channels!
-        </p>
-
-        <div class="contact-methods">
-          <div class="contact-method-card glass-panel">
-            <div class="method-icon"><i class="fas fa-envelope"></i></div>
-            <div class="method-details">
-              <span class="method-label">Email Me</span>
-              <a href="mailto:nirmaltrejilal@gmail.com" class="method-val">nirmaltrejilal@gmail.com</a>
-            </div>
-          </div>
-
-          <div class="contact-method-card glass-panel">
-            <div class="method-icon"><i class="fab fa-whatsapp"></i></div>
-            <div class="method-details">
-              <span class="method-label">WhatsApp Chat</span>
-              <a href="https://wa.me/918138055705" target="_blank" class="method-val">+91 8138055705</a>
-            </div>
-          </div>
-
-          <div class="contact-method-card glass-panel">
-            <div class="method-icon"><i class="fab fa-linkedin-in"></i></div>
-            <div class="method-details">
-              <span class="method-label">LinkedIn</span>
-              <a href="https://www.linkedin.com/in/nirmaltr" target="_blank"
-                class="method-val">linkedin.com/in/nirmaltr</a>
-            </div>
-          </div>
-
-          <div class="contact-method-card glass-panel" (click)="openCrispChat()" style="cursor: pointer;">
-            <div class="method-icon" style="background: rgba(24, 144, 255, 0.15); color: #1890ff;"><i
-                class="fas fa-comments"></i></div>
-            <div class="method-details">
-              <span class="method-label">Live Chat Support</span>
-              <span class="method-val" style="color: #1890ff; font-weight: 600;">Chat Live Now &rarr;</span>
-            </div>
-          </div>
-
-          <div class="contact-method-card glass-panel">
-            <div class="method-icon"><i class="fas fa-map-marker-alt"></i></div>
-            <div class="method-details">
-              <span class="method-label">Location</span>
-              <span class="method-val">India (GMT+5:30)</span>
-            </div>
+            <h4 class="chat-title">Nirmal AI assistant</h4>
+            <span class="chat-status">Typically replies instantly</span>
           </div>
         </div>
       </div>
 
-      <div class="contact-form-wrapper glass-panel">
-        <form nz-form [formGroup]="contactForm" (ngSubmit)="submitForm()" class="contact-form">
-          <nz-form-item>
-            <nz-form-label [nzSpan]="24" nzRequired>Your Name</nz-form-label>
-            <nz-form-control nzErrorTip="Please input your name">
-              <input nz-input formControlName="name" placeholder="John Doe" class="dark-input" />
-            </nz-form-control>
-          </nz-form-item>
+      <div class="chat-body" id="custom-chat-body">
+        <div class="chat-message-row" *ngFor="let msg of chatMessages" [ngClass]="msg.sender">
+          <div class="chat-bubble">
+            <div class="chat-text" [innerHTML]="msg.text | slice:0:1000"></div>
+            <span class="chat-time">{{ msg.time }}</span>
+          </div>
+        </div>
+        
+        <div class="chat-message-row bot" *ngIf="isTyping">
+          <div class="chat-bubble typing-indicator">
+            <span></span><span></span><span></span>
+          </div>
+        </div>
+      </div>
 
-          <nz-form-item>
-            <nz-form-label [nzSpan]="24" nzRequired>Email Address</nz-form-label>
-            <nz-form-control nzErrorTip="Please input a valid email address">
-              <input nz-input formControlName="email" type="email" placeholder="john@example.com" class="dark-input" />
-            </nz-form-control>
-          </nz-form-item>
+      <div class="chat-footer">
+        <!-- Preset Questions Toggle -->
+        <div class="presets-container" [class.collapsed]="presetsCollapsed" style="margin-bottom: 1rem;">
+          <div class="presets-header" (click)="presetsCollapsed = !presetsCollapsed">
+            <span>Suggested Questions</span>
+            <i class="fas" [class.fa-chevron-down]="presetsCollapsed" [class.fa-chevron-up]="!presetsCollapsed"></i>
+          </div>
+          <div class="presets-grid" *ngIf="!presetsCollapsed" style="max-height: 200px; overflow-y: auto;">
+            <button *ngFor="let preset of chatPresets" 
+                    class="preset-chip" 
+                    (click)="handlePresetClick(preset.key)"
+                    [disabled]="isTyping">
+              {{ preset.label }}
+            </button>
+          </div>
+        </div>
 
-          <nz-form-item>
-            <nz-form-label [nzSpan]="24" nzRequired>Subject</nz-form-label>
-            <nz-form-control nzErrorTip="Please input a subject">
-              <input nz-input formControlName="subject" placeholder="Project Discussion" class="dark-input" />
-            </nz-form-control>
-          </nz-form-item>
-
-          <nz-form-item>
-            <nz-form-label [nzSpan]="24" nzRequired>Message</nz-form-label>
-            <nz-form-control nzErrorTip="Please input your message">
-              <textarea nz-input formControlName="message" [nzAutosize]="{ minRows: 4, maxRows: 8 }"
-                placeholder="Tell me about your project..." class="dark-input"></textarea>
-            </nz-form-control>
-          </nz-form-item>
-
-          <button nz-button nzType="primary" nzBlock nzSize="large" [nzLoading]="isSubmitting" class="btn-submit">
-            <span>Send Message</span>
+        <div class="chat-input-wrapper">
+          <input type="text" [(ngModel)]="chatInputText" (keyup.enter)="sendChatMessage()"
+                 placeholder="Ask me anything..." [disabled]="isTyping" maxlength="500">
+          <button class="chat-send-btn" (click)="sendChatMessage()" [disabled]="!chatInputText.trim() || isTyping">
             <i class="fas fa-paper-plane"></i>
           </button>
-        </form>
-      </div>
-    </div>
-  </section>
-
-</main>
-
-<!-- Footer -->
-<footer class="footer">
-  <div class="footer-container container">
-    <div class="footer-info">
-      <span class="footer-logo">&lt;Nirmal TR /&gt;</span>
-      <p class="footer-tagline">Building modern SaaS, CRM & automation workflows.</p>
-    </div>
-
-    <div class="footer-links">
-      <a (click)="scrollTo('about')">About</a>
-      <a (click)="scrollTo('skills')">Skills</a>
-      <a (click)="scrollTo('projects')">Projects</a>
-      <a (click)="scrollTo('experience')">Experience</a>
-      <a (click)="scrollTo('contact')">Contact</a>
-    </div>
-
-    <div class="footer-bottom">
-      <p class="copyright">&copy; 2026 Nirmal TR. All Rights Reserved.</p>
-      <div class="footer-socials">
-        <a href="https://github.com/nirmaltrdev" target="_blank"><i class="fab fa-github"></i></a>
-        <a href="https://www.linkedin.com/in/nirmaltr" target="_blank"><i class="fab fa-linkedin"></i></a>
-        <a href="mailto:nirmaltrejilal@gmail.com"><i class="fas fa-envelope"></i></a>
+        </div>
+        <div class="chat-watermark">
+          <span>Powered by Gemini AI</span>
+        </div>
       </div>
     </div>
   </div>
-</footer>
 
-<!-- Premium Custom Chatbot Widget (100% Free, Ad-Free, No Branding) -->
-<div class="custom-chatbot-container" [class.open]="chatOpen">
-  <!-- Chat Window -->
-  <div class="custom-chat-window glass-panel">
-    <!-- Chat Header -->
-    <div class="custom-chat-header">
-      <div class="chat-header-profile">
-        <div class="profile-avatar">
-          <i class="fas fa-robot"></i>
-        </div>
-        <div class="profile-info">
-          <span class="profile-name">Nirmal's AI Assistant</span>
-          <span class="profile-status"><span class="status-dot"></span>Online</span>
-        </div>
-      </div>
-      <button class="chat-close-btn" (click)="toggleChat()" aria-label="Close Chat">
-        <i class="fas fa-times"></i>
-      </button>
-    </div>
-
-    <!-- Chat Messages -->
-    <div class="custom-chat-body" id="custom-chat-body">
-      <div *ngFor="let msg of chatMessages" class="chat-message-row" [class.user-row]="msg.sender === 'user'"
-        [class.bot-row]="msg.sender === 'bot'">
-        <div class="message-bubble" [class.user-bubble]="msg.sender === 'user'"
-          [class.bot-bubble]="msg.sender === 'bot'">
-          <p class="message-text">{{ msg.text }}</p>
-        </div>
-        <span class="message-time">{{ msg.time }}</span>
-      </div>
-
-      <!-- Typing Indicator -->
-      <div *ngIf="isTyping" class="chat-message-row bot-row">
-        <div class="message-bubble bot-bubble typing-indicator-bubble">
-          <div class="typing-dots">
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Quick Options Presets -->
-    <div class="custom-chat-presets" *ngIf="chatMessages.length < 5 && !isTyping">
-      <div class="presets-header" (click)="presetsCollapsed = !presetsCollapsed">
-        <span>Quick Questions</span>
-        <i class="fas" [class.fa-chevron-up]="!presetsCollapsed" [class.fa-chevron-down]="presetsCollapsed"></i>
-      </div>
-      <div class="presets-chips" [class.collapsed]="presetsCollapsed">
-        <button *ngFor="let preset of chatPresets" (click)="handlePresetClick(preset.key)" class="preset-chip">
-          {{ preset.label }}
-        </button>
-      </div>
-    </div>
-
-    <!-- Chat Input -->
-    <div class="custom-chat-footer">
-      <input type="text" [(ngModel)]="chatInputText" (keyup.enter)="sendChatMessage()" placeholder="Ask me anything..."
-        class="chat-input" maxlength="500" autocomplete="off" />
-      <button class="chat-send-btn" (click)="sendChatMessage()" [disabled]="!chatInputText.trim() || isTyping"
-        aria-label="Send Message">
-        <i class="fas fa-paper-plane"></i>
-      </button>
-    </div>
-  </div>
-
-  <!-- Floating Toggle Button -->
-  <button class="custom-chat-toggle" (click)="toggleChat()" aria-label="Toggle Live Chat">
-    <i class="fas" [class.fa-comments]="!chatOpen" [class.fa-times]="chatOpen"></i>
-    <span class="toggle-pulse" *ngIf="!chatOpen"></span>
-  </button>
 </div>

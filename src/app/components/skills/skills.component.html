@@ -1,0 +1,44 @@
+<section class="section skills-section">
+  <div class="container">
+    <div class="section-header text-center reveal">
+      <h2 class="section-title">Technical Arsenal</h2>
+      <p class="section-subtitle text-muted">Core competencies and technologies.</p>
+    </div>
+
+    <div class="terminal-container saas-card reveal">
+      
+      <!-- Terminal Header / Tabs -->
+      <div class="terminal-header">
+        <div class="terminal-buttons">
+          <span class="t-btn close"></span>
+          <span class="t-btn min"></span>
+          <span class="t-btn max"></span>
+        </div>
+        <div class="terminal-tabs">
+          <button class="terminal-tab" *ngFor="let group of skills; let i = index" 
+                  [class.active]="activeTab === i" (click)="setActiveTab(i)">
+            <i class="fas fa-{{ group.icon }}"></i> {{ group.category }}
+          </button>
+        </div>
+      </div>
+
+      <!-- Terminal Body -->
+      <div class="terminal-body">
+        <ng-container *ngFor="let group of skills; let i = index">
+          <div class="terminal-content" *ngIf="activeTab === i">
+            <div class="terminal-prompt">
+              <span class="prompt-user">nirmal@system</span><span class="prompt-colon">:</span><span class="prompt-path">~/skills/{{ group.category.toLowerCase().replace(' ', '-') }}</span><span class="prompt-dollar">$</span> ls -la
+            </div>
+            
+            <div class="skills-grid">
+              <div class="skill-pill" *ngFor="let skill of group.skills">
+                <span class="skill-name">{{ skill }}</span>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+      
+    </div>
+  </div>
+</section>

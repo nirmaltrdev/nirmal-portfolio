@@ -26,11 +26,29 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzBadgeModule } from 'ng-zorro-antd/badge';
 import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 
+// Components
+import { FooterComponent } from './components/footer/footer.component';
+import { HeroComponent } from './components/hero/hero.component';
+import { AboutComponent } from './components/about/about.component';
+import { SkillsComponent } from './components/skills/skills.component';
+import { ProjectsComponent } from './components/projects/projects.component';
+import { ExperienceComponent } from './components/experience/experience.component';
+import { EducationComponent } from './components/education/education.component';
+import { ContactComponent } from './components/contact/contact.component';
+
 registerLocaleData(en);
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    FooterComponent,
+    HeroComponent,
+    AboutComponent,
+    SkillsComponent,
+    ProjectsComponent,
+    ExperienceComponent,
+    EducationComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
@@ -60,4 +78,3 @@ registerLocaleData(en);
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-

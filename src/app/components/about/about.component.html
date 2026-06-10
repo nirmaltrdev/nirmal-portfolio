@@ -1,0 +1,59 @@
+<section class="section about-section">
+  <div class="container">
+    
+    <div class="about-grid">
+      
+      <!-- Narrative (Left) -->
+      <div class="about-narrative reveal">
+        <h2 class="section-title">Engineering at Scale.</h2>
+        <p class="about-lead text-gradient">
+          I am a Full Stack Developer specializing in highly sophisticated, dual-backend enterprise platforms.
+        </p>
+        <p class="about-text">
+          My core expertise lies in architecting scalable solutions that bridge frontend user experiences with heavy backend processing. 
+          I have spent the last 4 years building enterprise CRM systems, real-time communication pipelines, and large-scale data workflows.
+        </p>
+        
+        <div class="stats-grid">
+          <div class="stat-card saas-card">
+            <span class="stat-value">4+</span>
+            <span class="stat-label">Years of Engineering</span>
+          </div>
+          <div class="stat-card saas-card">
+            <span class="stat-value">500K+</span>
+            <span class="stat-label">API Requests Handled</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Architecture Showcase (Right) -->
+      <div class="about-architecture reveal" style="animation-delay: 0.2s;">
+        <div class="arch-header">
+          <span class="arch-badge">System Architecture Diagram</span>
+        </div>
+        
+        <div class="arch-flow">
+          <ng-container *ngFor="let node of architectureNodes; let i = index; let last = last">
+            
+            <div class="arch-node saas-card">
+              <div class="arch-icon"><i [class]="node.icon"></i></div>
+              <div class="arch-info">
+                <span class="arch-name">{{ node.name }}</span>
+                <span class="arch-desc">{{ node.desc }}</span>
+              </div>
+            </div>
+
+            <!-- Flow Arrow -->
+            <div class="arch-connector" *ngIf="!last">
+              <div class="animated-line"></div>
+              <i class="fas fa-chevron-down text-muted"></i>
+            </div>
+
+          </ng-container>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>

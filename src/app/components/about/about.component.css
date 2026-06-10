@@ -1,0 +1,157 @@
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.about-lead {
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+}
+
+.about-text {
+  font-size: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.stat-card {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.stat-value {
+  font-size: 2rem;
+  font-weight: 800;
+  font-family: var(--font-mono);
+  color: var(--secondary);
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Architecture Flow Diagram */
+.about-architecture {
+  position: relative;
+  padding: 2rem;
+  background: rgba(15, 23, 42, 0.4);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+}
+
+.arch-header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.arch-badge {
+  background: rgba(59, 130, 246, 0.1);
+  color: var(--primary);
+  padding: 0.25rem 0.75rem;
+  border-radius: 100px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.arch-flow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.arch-node {
+  width: 100%;
+  max-width: 300px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  border-radius: var(--radius-md);
+  position: relative;
+  z-index: 2;
+}
+
+.arch-icon {
+  width: 40px;
+  height: 40px;
+  background: var(--bg-deep);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--secondary);
+  font-size: 1.25rem;
+}
+
+.arch-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.arch-name {
+  font-weight: 600;
+  color: var(--text-main);
+  font-size: 0.95rem;
+}
+
+.arch-desc {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+.arch-connector {
+  height: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.animated-line {
+  width: 2px;
+  height: 25px;
+  background: linear-gradient(to bottom, var(--primary), transparent);
+  animation: pulse-line 2s infinite;
+}
+
+.arch-connector i {
+  font-size: 0.65rem;
+  color: var(--primary);
+  margin-top: -5px;
+}
+
+@keyframes pulse-line {
+  0% { opacity: 0.3; height: 10px; }
+  50% { opacity: 1; height: 25px; }
+  100% { opacity: 0.3; height: 10px; }
+}
+
+@media (max-width: 900px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+}

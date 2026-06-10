@@ -1,0 +1,194 @@
+.projects-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8rem;
+  margin-top: 4rem;
+}
+
+.project-block {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+/* Reverse layout for alternating items */
+.project-block.reverse {
+  grid-template-columns: 1fr 1fr;
+}
+
+.project-block.reverse .project-visual {
+  order: 2;
+}
+
+.project-block.reverse .project-details {
+  order: 1;
+}
+
+/* Abstract Visual Representation */
+.project-visual {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(5, 8, 22, 1));
+}
+
+.visual-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, rgba(59, 130, 246, 0.15) 0%, transparent 60%);
+  z-index: 1;
+}
+
+.visual-icon {
+  font-size: 5rem;
+  color: var(--primary);
+  opacity: 0.2;
+  position: absolute;
+  z-index: 0;
+}
+
+/* Abstract Architecture Flow */
+.arch-flow-container {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 1.5rem;
+  transform: perspective(1000px) rotateY(-5deg) rotateX(2deg);
+  transition: transform 0.5s ease;
+}
+
+.project-block.reverse .arch-flow-container {
+  transform: perspective(1000px) rotateY(5deg) rotateX(2deg);
+}
+
+.project-visual:hover .arch-flow-container {
+  transform: perspective(1000px) rotateY(0deg) rotateX(0deg) translateY(-5px);
+}
+
+.arch-node-small {
+  background: rgba(5, 8, 22, 0.9);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 1.5rem;
+  text-align: center;
+  min-width: 180px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+  backdrop-filter: blur(5px);
+}
+
+.arch-node-small i {
+  font-size: 1.25rem;
+  margin-bottom: 0.4rem;
+  display: block;
+}
+
+.arch-node-small span {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-main);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.arch-node-small.highlight {
+  border-color: rgba(6, 182, 212, 0.4);
+  box-shadow: 0 0 15px rgba(6, 182, 212, 0.15);
+}
+
+.arch-connector-small {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 25px;
+}
+
+.pulsing-arrow {
+  color: var(--text-muted);
+  opacity: 0.5;
+  font-size: 0.8rem;
+  animation: pulse-arrow 2s infinite;
+}
+
+@keyframes pulse-arrow {
+  0% { transform: translateY(-3px); opacity: 0.2; }
+  50% { transform: translateY(3px); opacity: 0.8; color: var(--secondary); }
+  100% { transform: translateY(-3px); opacity: 0.2; }
+}
+
+/* Project Details */
+.project-details {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 3;
+}
+
+.project-label {
+  font-family: var(--font-mono);
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.05em;
+}
+
+.project-title {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: var(--text-main);
+}
+
+.project-desc {
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+.project-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.tech-pill {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.25rem 0.75rem;
+  border-radius: 100px;
+}
+
+.project-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+@media (max-width: 992px) {
+  .project-block, .project-block.reverse {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .project-block.reverse .project-visual {
+    order: 0;
+  }
+  
+  .project-block.reverse .project-details {
+    order: 1;
+  }
+}

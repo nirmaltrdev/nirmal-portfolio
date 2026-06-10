@@ -1,142 +1,208 @@
-/* Design System Variables */
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap');
+
 :root {
-  --bg-primary: #0b0f19;
-  --bg-secondary: #111827;
-  --bg-card: rgba(17, 24, 39, 0.7);
-  --bg-card-hover: rgba(31, 41, 55, 0.8);
-  --bg-navbar: rgba(11, 15, 25, 0.8);
+  /* Premium SaaS Ocean/Tech Blue Theme */
+  --bg-deep: #050816;
+  --bg-surface: #0f172a;
+  --bg-card: #111827;
+  
   --primary: #3b82f6;
-  --secondary: #7c3aed;
-  --primary-hover: #2563eb;
-  --primary-glow: rgba(59, 130, 246, 0.15);
-  --accent: #60a5fa;
-  --text-primary: #f3f4f6;
-  --text-secondary: #9ca3af;
-  --text-muted: #6b7280;
-  --border-color: rgba(255, 255, 255, 0.08);
-  --border-hover: rgba(59, 130, 246, 0.3);
-  --font-heading: 'Outfit', sans-serif;
-  --font-body: 'Inter', sans-serif;
-  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  --glass-backdrop: blur(12px);
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.15);
-  --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.3);
-  --shadow-glow: 0 0 25px rgba(59, 130, 246, 0.2);
+  --primary-glow: rgba(59, 130, 246, 0.5);
+  --secondary: #06b6d4;
+  --secondary-glow: rgba(6, 182, 212, 0.5);
+  --success: #10b981;
+  
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --text-dark: #334155;
+  
+  --border-light: rgba(255, 255, 255, 0.05);
+  --border-strong: rgba(255, 255, 255, 0.1);
+  
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 24px;
+  
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Light Theme Variables */
 body.light-theme {
-  --bg-primary: #f8fafc;
-  --bg-secondary: #f1f5f9;
-  --bg-card: rgba(255, 255, 255, 0.75);
-  --bg-card-hover: rgba(241, 245, 249, 0.85);
-  --bg-navbar: rgba(248, 250, 252, 0.8);
+  --bg-deep: #f8fafc;
+  --bg-surface: #ffffff;
+  --bg-card: #f1f5f9;
+  
   --primary: #2563eb;
-  --primary-hover: #1d4ed8;
-  --primary-glow: rgba(37, 99, 235, 0.08);
-  --accent: #3b82f6;
-  --text-primary: #0f172a;
-  --text-secondary: #334155;
+  --primary-glow: rgba(37, 99, 235, 0.3);
+  --secondary: #0891b2;
+  --secondary-glow: rgba(8, 145, 178, 0.3);
+  --success: #059669;
+  
+  --text-main: #0f172a;
   --text-muted: #64748b;
-  --border-color: rgba(15, 23, 42, 0.08);
-  --border-hover: rgba(37, 99, 235, 0.25);
-  --shadow-md: 0 8px 30px rgba(15, 23, 42, 0.05);
-  --shadow-glow: 0 0 25px rgba(37, 99, 235, 0.08);
-  overflow-x: hidden;
-}
-
-/* Global Reset & Base */
-body {
-  transition: background-color 0.4s ease, color 0.4s ease;
-  /* Security: prevent text selection on non-form content */
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  /* Remove tap highlight on mobile */
-  -webkit-tap-highlight-color: transparent;
-}
-
-/* Allow selection in form fields only */
-input, textarea, [contenteditable="true"] {
-  -webkit-user-select: text !important;
-  -moz-user-select: text !important;
-  user-select: text !important;
-}
-
-/* Security: prevent image dragging (JS dragstart listener handles this too) */
-img {
-  -webkit-user-drag: none;
-  -khtml-user-drag: none;
-  -moz-user-drag: none;
-  user-drag: none;
+  --text-dark: #f8fafc;
+  
+  --border-light: rgba(0, 0, 0, 0.05);
+  --border-strong: rgba(0, 0, 0, 0.1);
 }
 
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 80px; /* offset for sticky header */
-  overflow-x: hidden;
-  width: 100%;
+  background-color: var(--bg-deep);
 }
 
-body.dark-theme {
-  background-color: var(--bg-primary);
-  /* Subtle CSS Grid Background Pattern */
-  background-image: 
-    linear-gradient(rgba(59, 130, 246, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px);
-  background-size: 40px 40px;
-  background-position: center center;
-  color: var(--text-primary);
-  font-family: var(--font-body);
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-deep);
+  color: var(--text-main);
+  line-height: 1.6;
+  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--bg-primary);
-}
-
-::-webkit-scrollbar-thumb {
-  background: #1f2937;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--primary);
-}
-
-/* Typography Customizations */
+/* Typography */
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading);
-  color: var(--text-primary);
-  font-weight: 600;
+  font-weight: 700;
+  line-height: 1.2;
   letter-spacing: -0.02em;
+  color: var(--text-main);
 }
 
 p {
-  color: var(--text-secondary);
-  line-height: 1.6;
+  color: var(--text-muted);
 }
 
-/* Scroll Reveal Animations */
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+a:hover {
+  color: var(--secondary);
+}
+
+/* Utilities */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.section {
+  padding: 8rem 0;
+  position: relative;
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--text-main) 0%, var(--text-muted) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-primary {
+  background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glassmorphism Cards */
+.saas-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: var(--transition);
+}
+
+.saas-card:hover {
+  border-color: var(--border-strong);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  transform: translateY(-2px);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: var(--radius-sm);
+  transition: var(--transition);
+  cursor: pointer;
+  border: none;
+  gap: 0.5rem;
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: white;
+  box-shadow: 0 0 15px var(--primary-glow);
+}
+
+.btn-primary:hover {
+  background-color: #2563eb;
+  box-shadow: 0 0 20px rgba(37, 99, 235, 0.6);
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid var(--border-strong);
+  color: var(--text-main);
+}
+
+.btn-outline:hover {
+  background: var(--bg-surface);
+  border-color: var(--text-muted);
+}
+
+.theme-toggle-btn {
+  background: transparent;
+  border: 1px solid var(--border-strong);
+  color: var(--text-main);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.theme-toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+body.light-theme .theme-toggle-btn:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* Reveal Animations */
 .reveal {
-  opacity: 0;
-  transform: translateY(35px);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: transform, opacity;
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
 }
 
 .reveal.revealed {
@@ -144,155 +210,20 @@ p {
   transform: translateY(0);
 }
 
-/* Global Helper Classes */
-.glass-panel {
-  background: var(--bg-card);
-  backdrop-filter: var(--glass-backdrop);
-  -webkit-backdrop-filter: var(--glass-backdrop);
-  border: 1px solid var(--border-color);
-  border-radius: 16px;
-  transition: var(--transition-smooth);
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
 }
 
-.glass-panel:hover {
-  border-color: var(--border-hover);
-  box-shadow: var(--shadow-glow);
-  transform: translateY(-4px);
+::-webkit-scrollbar-track {
+  background: var(--bg-deep);
 }
 
-/* Animation Keyframes */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+::-webkit-scrollbar-thumb {
+  background: var(--bg-surface);
+  border-radius: 4px;
 }
 
-@keyframes pulseGlow {
-  0%, 100% {
-    opacity: 0.15;
-  }
-  50% {
-    opacity: 0.3;
-  }
-}
-
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-.animate-fade-in {
-  animation: fadeInUp 0.8s ease forwards;
-}
-
-/* Ant Design overrides for dark theme feel */
-.ant-modal-content {
-  background-color: var(--bg-secondary) !important;
-  border: 1px solid var(--border-color);
-}
-
-.ant-drawer-content {
-  background-color: var(--bg-secondary) !important;
-}
-
-.ant-drawer-header {
-  background-color: var(--bg-primary) !important;
-  border-bottom: 1px solid var(--border-color) !important;
-}
-
-.ant-drawer-title {
-  color: var(--text-primary) !important;
-}
-
-.ant-drawer-close {
-  color: var(--text-secondary) !important;
-}
-
-/* ==============================
-   MOBILE PERFORMANCE OPTIMIZATIONS
-   ============================== */
-
-/* Smooth touch scrolling on iOS */
-html, body {
-  -webkit-overflow-scrolling: touch;
-}
-
-/* Improve render performance by creating isolated paint layers per section */
-.hero-section, .about-section, .services-section,
-.skills-section, .projects-section, .experience-section,
-.education-section, .github-section, .contact-section {
-  contain: layout;
-}
-
-/* On mobile: disable expensive backdrop-filter/blur on glass panels */
-@media (max-width: 768px) {
-  .glass-panel {
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-    background: rgba(17, 24, 39, 0.96) !important;
-  }
-
-  body.light-theme .glass-panel {
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-    background: rgba(255, 255, 255, 0.98) !important;
-  }
-
-  /* Stop glow orb blur animation on mobile (heavy GPU) */
-  .glow-orb {
-    animation: none !important;
-    opacity: 0.07 !important;
-    filter: blur(50px) !important;
-  }
-
-  /* Navbar backdrop on mobile */
-  .navbar.scrolled {
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-    background: rgba(11, 15, 25, 0.98) !important;
-  }
-
-  body.light-theme .navbar.scrolled {
-    background: rgba(248, 250, 252, 0.99) !important;
-  }
-
-  /* No hover lift animations on touch devices */
-  .glass-panel:hover,
-  .skill-tag:hover,
-  .btn-primary-glow:hover,
-  .contact-method-card:hover {
-    transform: none !important;
-  }
-
-  /* Faster, shorter reveal animation on mobile */
-  .reveal {
-    transform: translateY(12px) !important;
-    transition: opacity 0.45s ease, transform 0.45s ease !important;
-  }
-
-  /* Tighter section padding on mobile */
-  .about-section, .services-section, .skills-section,
-  .projects-section, .experience-section, .education-section,
-  .github-section, .contact-section {
-    padding-top: 70px !important;
-    padding-bottom: 70px !important;
-  }
-}
-
-/* Respect reduced motion for accessibility & performance */
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-dark);
 }

@@ -1,0 +1,61 @@
+<section class="section contact-section">
+  <div class="container">
+
+    <div class="contact-center reveal">
+
+      <div class="contact-card saas-card">
+        <div class="contact-header">
+          <div class="contact-badge">Initiate Connection</div>
+          <h2>Let's build something enterprise-grade.</h2>
+          <p>Currently open to new opportunities and strategic freelance projects.</p>
+        </div>
+
+        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="saas-form">
+
+          <div class="form-row">
+            <div class="input-group">
+              <label for="name">Full Name</label>
+              <input type="text" id="name" formControlName="name" placeholder="John Doe">
+            </div>
+
+            <div class="input-group">
+              <label for="email">Work Email</label>
+              <input type="email" id="email" formControlName="email" placeholder="john@company.com">
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" formControlName="subject" placeholder="Project Inquiry / Job Opportunity">
+          </div>
+
+          <div class="input-group">
+            <label for="message">Message</label>
+            <textarea id="message" formControlName="message" rows="4" placeholder="How can we collaborate?"></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary submit-btn" [disabled]="contactForm.invalid || isSubmitting">
+            <span *ngIf="!isSubmitting">Send Message <i class="fas fa-paper-plane ml-2"></i></span>
+            <span *ngIf="isSubmitting"><i class="fas fa-circle-notch fa-spin"></i> Processing...</span>
+          </button>
+        </form>
+
+        <div class="direct-contact">
+          <p class="text-muted text-sm">Or reach out directly:</p>
+          <div class="contact-links">
+            <a href="mailto:nirmaltrejilal@gmail.com" class="direct-link">
+              <i class="fas fa-envelope"></i> nirmaltrejilal@gmail.com
+            </a>
+            <span class="divider">•</span>
+            <a href="https://wa.me/918138055705" target="_blank" class="direct-link">
+              <i class="fab fa-whatsapp"></i> +918138055705
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
