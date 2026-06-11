@@ -184,6 +184,12 @@
     gap: 2rem;
   }
   
+  .project-visual {
+    aspect-ratio: auto;
+    min-height: 320px;
+    padding: 2rem 0;
+  }
+
   .project-block.reverse .project-visual {
     order: 0;
   }

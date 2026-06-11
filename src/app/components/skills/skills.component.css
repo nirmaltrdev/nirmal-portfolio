@@ -48,7 +48,14 @@
 }
 
 .terminal-tabs::-webkit-scrollbar {
-  display: none;
+  height: 4px;
+}
+.terminal-tabs::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+.terminal-tabs::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 4px;
 }
 
 .terminal-tab {

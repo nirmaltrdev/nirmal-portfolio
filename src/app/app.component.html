@@ -77,7 +77,7 @@
       <div class="chat-body" id="custom-chat-body">
         <div class="chat-message-row" *ngFor="let msg of chatMessages" [ngClass]="msg.sender">
           <div class="chat-bubble">
-            <div class="chat-text" [innerHTML]="msg.text | slice:0:1000"></div>
+            <div class="chat-text" [innerHTML]="msg.text"></div>
             <span class="chat-time">{{ msg.time }}</span>
           </div>
         </div>
