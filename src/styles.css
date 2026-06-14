@@ -2,16 +2,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap');
 
 :root {
-  /* Premium SaaS Ocean/Tech Blue Theme */
+  /* Modern Enterprise Dark Mode Palette */
   --bg-deep: #050816;
   --bg-surface: #0f172a;
-  --bg-card: #111827;
+  --bg-card: rgba(17, 24, 39, 0.7);
   
   --primary: #3b82f6;
-  --primary-glow: rgba(59, 130, 246, 0.5);
-  --secondary: #06b6d4;
-  --secondary-glow: rgba(6, 182, 212, 0.5);
+  --primary-glow: rgba(59, 130, 246, 0.3);
+  --secondary: #00FFFF;
+  --secondary-glow: rgba(0, 255, 255, 0.3);
   --success: #10b981;
+  --accent-violet: #a78bfa;
+  --accent-violet-glow: rgba(167, 139, 250, 0.3);
   
   --text-main: #f8fafc;
   --text-muted: #94a3b8;
@@ -27,26 +29,34 @@
   --radius-md: 12px;
   --radius-lg: 24px;
   
+  --bg-gradient: linear-gradient(to bottom, #050816, #0f172a);
+  --card-gradient: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(5, 8, 22, 0.9) 100%);
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 body.light-theme {
+  /* Modern Enterprise Light Mode Palette */
   --bg-deep: #f8fafc;
   --bg-surface: #ffffff;
-  --bg-card: #f1f5f9;
+  --bg-card: rgba(255, 255, 255, 0.85);
   
   --primary: #2563eb;
-  --primary-glow: rgba(37, 99, 235, 0.3);
+  --primary-glow: rgba(37, 99, 235, 0.15);
   --secondary: #0891b2;
-  --secondary-glow: rgba(8, 145, 178, 0.3);
+  --secondary-glow: rgba(8, 145, 178, 0.15);
   --success: #059669;
+  --accent-violet: #7c3aed;
+  --accent-violet-glow: rgba(124, 58, 237, 0.15);
   
   --text-main: #0f172a;
   --text-muted: #64748b;
-  --text-dark: #f8fafc;
+  --text-dark: #e2e8f0;
   
-  --border-light: rgba(0, 0, 0, 0.05);
-  --border-strong: rgba(0, 0, 0, 0.1);
+  --border-light: rgba(15, 23, 42, 0.08);
+  --border-strong: rgba(15, 23, 42, 0.15);
+  
+  --bg-gradient: linear-gradient(to bottom, #f8fafc, #ffffff);
+  --card-gradient: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(241, 245, 249, 0.95) 100%);
 }
 
 * {
@@ -77,6 +87,13 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.2;
   letter-spacing: -0.02em;
   color: var(--text-main);
+}
+
+.section-title {
+  color: var(--text-main);
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
 }
 
 p {

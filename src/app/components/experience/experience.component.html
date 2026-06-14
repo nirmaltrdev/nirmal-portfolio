@@ -1,42 +1,33 @@
-<section class="section experience-section">
-  <div class="container">
-    <div class="section-header reveal">
-      <h2 class="section-title">Experience</h2>
-      <p class="section-subtitle text-muted">Professional journey.</p>
+<section class="section experience-section" id="experience">
+  <div class="container" #expContainer>
+    <div class="section-header">
+      <h2 class="section-title text-center">Career Journey</h2>
+      <div class="title-underline"></div>
     </div>
 
-    <div class="experience-layout">
+    <div class="timeline-container">
+      <div class="timeline-line"></div>
       
-      <!-- Sticky Index (Left) -->
-      <div class="exp-index-wrapper">
-        <div class="exp-sticky-index saas-card">
-          <ul class="index-list">
-            <li class="index-item" *ngFor="let exp of experiences; let i = index" [class.active]="activeIndex === i">
-              <span class="index-indicator"></span>
-              <span class="index-name">{{ exp.company.split(',')[0] }}</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Scrollable Details (Right) -->
-      <div class="exp-details-wrapper">
-        <div class="exp-detail-block reveal" *ngFor="let exp of experiences; let i = index">
-          <div class="exp-header">
+      @for (exp of experiences(); track exp.period; let i = $index) {
+        <div class="timeline-item" [class.left]="i % 2 === 0" [class.right]="i % 2 !== 0" #timelineItem>
+          <div class="timeline-dot pulsing-glow"></div>
+          <div class="timeline-content glass-panel magnetic-hover">
+            <span class="exp-period">{{ exp.period }}</span>
             <h3 class="exp-role">{{ exp.role }}</h3>
-            <span class="exp-duration">{{ exp.duration }}</span>
+            <h4 class="exp-company">{{ exp.company }}</h4>
+            <ul class="exp-desc" style="padding-left: 1.25rem; margin-bottom: 1rem; list-style-type: disc;">
+              @for (point of exp.descriptionPoints; track point) {
+                <li style="margin-bottom: 0.5rem; color: var(--text-muted); font-size: 0.9rem; line-height: 1.5;">{{ point }}</li>
+              }
+            </ul>
+            <div class="tech-stack">
+              @for (tech of exp.tech; track tech) {
+                <span class="tech-pill">{{ tech }}</span>
+              }
+            </div>
           </div>
-          <h4 class="exp-company text-gradient-primary">{{ exp.company }}</h4>
-          
-          <ul class="exp-desc-list">
-            <li *ngFor="let desc of exp.description">
-              <i class="fas fa-caret-right text-primary list-bullet"></i>
-              <span>{{ desc }}</span>
-            </li>
-          </ul>
         </div>
-      </div>
-
+      }
     </div>
   </div>
 </section>

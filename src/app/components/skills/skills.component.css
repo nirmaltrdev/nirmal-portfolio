@@ -1,137 +1,84 @@
-.text-center {
-  text-align: center;
-  margin-bottom: 3rem;
+.skills-section {
+  padding: 100px 0;
+  background: var(--bg-deep);
+  position: relative;
+  overflow: hidden;
+}
+
+.section-header {
+  margin-bottom: 4rem;
+}
+
+.section-title {
+  color: var(--text-main);
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 10px;
 }
 
 .section-subtitle {
-  font-size: 1.1rem;
-  margin-top: 0.5rem;
-}
-
-/* Terminal Container */
-.terminal-container {
-  max-width: 900px;
-  margin: 0 auto;
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-}
-
-.terminal-header {
-  background: rgba(10, 15, 25, 0.8);
-  border-bottom: 1px solid var(--border-light);
-  display: flex;
-  align-items: center;
-  padding: 0 1rem;
-}
-
-.terminal-buttons {
-  display: flex;
-  gap: 6px;
-  margin-right: 2rem;
-}
-
-.t-btn {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-}
-
-.t-btn.close { background: #ff5f56; }
-.t-btn.min { background: #ffbd2e; }
-.t-btn.max { background: #27c93f; }
-
-.terminal-tabs {
-  display: flex;
-  gap: 0.5rem;
-  overflow-x: auto;
-}
-
-.terminal-tabs::-webkit-scrollbar {
-  height: 4px;
-}
-.terminal-tabs::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.05);
-}
-.terminal-tabs::-webkit-scrollbar-thumb {
-  background: var(--primary);
-  border-radius: 4px;
-}
-
-.terminal-tab {
-  background: transparent;
-  border: none;
   color: var(--text-muted);
-  padding: 1rem 1.5rem;
-  font-family: var(--font-sans);
-  font-size: 0.9rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: var(--transition);
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  border-bottom: 2px solid transparent;
+  font-size: 1.1rem;
 }
-
-.terminal-tab:hover {
-  color: var(--text-main);
-  background: rgba(255, 255, 255, 0.03);
-}
-
-.terminal-tab.active {
-  color: var(--primary);
-  border-bottom: 2px solid var(--primary);
-  background: rgba(59, 130, 246, 0.05);
-}
-
-.terminal-body {
-  padding: 2rem;
-  min-height: 300px;
-  background: rgba(15, 23, 42, 0.4);
-}
-
-.terminal-content {
-  animation: fadeIn 0.3s ease-out;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(5px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.terminal-prompt {
-  font-family: var(--font-mono);
-  font-size: 0.95rem;
-  margin-bottom: 2rem;
-}
-
-.prompt-user { color: var(--success); }
-.prompt-colon { color: var(--text-main); }
-.prompt-path { color: var(--primary); }
-.prompt-dollar { color: var(--text-main); margin-right: 0.5rem; }
 
 .skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  perspective: 1000px;
+}
+
+.skill-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: 15px;
+  padding: 20px;
   display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
+  align-items: center;
+  gap: 20px;
+  cursor: pointer;
+  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+  will-change: transform;
 }
 
-.skill-pill {
-  background: rgba(59, 130, 246, 0.1);
-  border: 1px solid rgba(59, 130, 246, 0.2);
-  padding: 0.6rem 1.2rem;
-  border-radius: var(--radius-sm);
+.skill-card:hover {
+  transform: translateY(-10px) scale(1.02) rotateX(0deg) rotateY(0deg) !important;
+  background: var(--bg-surface);
+  box-shadow: 0 15px 30px var(--primary-glow);
+  border-color: var(--border-strong);
+}
+
+.skill-icon-wrapper {
+  font-size: 3rem;
+  width: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  filter: drop-shadow(0 0 10px currentColor);
+}
+
+.skill-info {
+  flex-grow: 1;
+}
+
+.skill-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
   color: var(--text-main);
-  font-family: var(--font-mono);
-  font-size: 0.9rem;
-  transition: var(--transition);
-  cursor: default;
+  font-weight: 600;
 }
 
-.skill-pill:hover {
-  background: rgba(59, 130, 246, 0.2);
-  border-color: rgba(59, 130, 246, 0.4);
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(59, 130, 246, 0.15);
+.skill-progress-bg {
+  height: 8px;
+  background: var(--border-strong);
+  border-radius: 4px;
+  overflow: hidden;
 }
+
+.skill-progress-fill {
+  height: 100%;
+  border-radius: 4px;
+  box-shadow: 0 0 10px currentColor;
+}
+

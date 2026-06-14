@@ -17,16 +17,32 @@
         <a class="nav-link" [class.active]="activeSection === 'skills'" (click)="scrollTo('skills')">Skills</a>
         <a class="nav-link" [class.active]="activeSection === 'projects'" (click)="scrollTo('projects')">Work</a>
         <a class="nav-link" [class.active]="activeSection === 'experience'" (click)="scrollTo('experience')">Experience</a>
+        <a class="nav-link" [class.active]="activeSection === 'contact'" (click)="scrollTo('contact')">Contact</a>
       </nav>
 
       <div class="nav-actions">
         <button class="theme-toggle-btn" (click)="toggleTheme()" aria-label="Toggle Theme">
           <i class="fa-solid" [class.fa-moon]="isLightTheme" [class.fa-sun]="!isLightTheme"></i>
         </button>
-        <button class="btn btn-primary" (click)="scrollTo('contact')">Let's Talk <i class="fas fa-paper-plane" style="margin-left: 0.25rem;"></i></button>
+        <button class="btn btn-primary desktop-btn" (click)="scrollTo('contact')">Let's Talk <i class="fas fa-paper-plane" style="margin-left: 0.25rem;"></i></button>
+        <button class="mobile-menu-btn" (click)="toggleMobileMenu()" aria-label="Menu">
+          <i class="fas" [class.fa-bars]="!isMobileMenuOpen" [class.fa-times]="isMobileMenuOpen"></i>
+        </button>
       </div>
     </div>
   </header>
+
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu-overlay" [class.open]="isMobileMenuOpen">
+    <nav class="mobile-nav-links">
+      <a class="nav-link" [class.active]="activeSection === 'about'" (click)="scrollTo('about')">About</a>
+      <a class="nav-link" [class.active]="activeSection === 'skills'" (click)="scrollTo('skills')">Skills</a>
+      <a class="nav-link" [class.active]="activeSection === 'projects'" (click)="scrollTo('projects')">Work</a>
+      <a class="nav-link" [class.active]="activeSection === 'experience'" (click)="scrollTo('experience')">Experience</a>
+      <a class="nav-link" [class.active]="activeSection === 'contact'" (click)="scrollTo('contact')">Contact</a>
+      <button class="btn btn-primary" style="margin-top: 1.5rem;" (click)="scrollTo('contact')">Let's Talk <i class="fas fa-paper-plane" style="margin-left: 0.25rem;"></i></button>
+    </nav>
+  </div>
 
   <main class="saas-main-content">
     
@@ -36,88 +52,30 @@
     <!-- About Section (Enterprise Architecture) -->
     <app-about id="about"></app-about>
 
+    <!-- Services Section -->
+    <app-services id="services"></app-services>
+
     <!-- Skills Section (Terminal Tabs) -->
-    <app-skills id="skills" [skills]="skills"></app-skills>
+    <app-skills id="skills"></app-skills>
 
     <!-- Projects Section -->
-    <app-projects id="projects" [projects]="projects"></app-projects>
+    <app-projects id="projects"></app-projects>
 
     <!-- Experience Section (Sticky Scroll) -->
-    <app-experience id="experience" [experiences]="experiences"></app-experience>
+    <app-experience id="experience"></app-experience>
 
     <!-- Education Section -->
-    <app-education id="education" [education]="education" [certifications]="certifications" [publications]="publications"></app-education>
+    <app-education id="education"></app-education>
 
     <!-- Contact Section -->
-    <app-contact id="contact" [contactForm]="contactForm" [isSubmitting]="isSubmitting" (formSubmit)="submitForm()"></app-contact>
+    <app-contact id="contact"></app-contact>
 
   </main>
 
   <!-- Footer -->
   <app-footer></app-footer>
 
-  <!-- SaaS Chat Widget (Floating) -->
-  <div class="saas-chat-widget" [class.chat-open]="chatOpen">
-    <button class="chat-toggle-btn" (click)="toggleChat()">
-      <i class="fas fa-comment-dots" *ngIf="!chatOpen"></i>
-      <i class="fas fa-times" *ngIf="chatOpen"></i>
-    </button>
-
-    <div class="chat-window saas-card" *ngIf="chatOpen">
-      <div class="chat-header">
-        <div class="chat-header-info">
-          <div class="status-dot"></div>
-          <div>
-            <h4 class="chat-title">Nirmal's AI Assistant</h4>
-            <span class="chat-status">Typically replies instantly</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="chat-body" id="custom-chat-body">
-        <div class="chat-message-row" *ngFor="let msg of chatMessages" [ngClass]="msg.sender">
-          <div class="chat-bubble">
-            <div class="chat-text" [innerHTML]="msg.text"></div>
-            <span class="chat-time">{{ msg.time }}</span>
-          </div>
-        </div>
-        
-        <div class="chat-message-row bot" *ngIf="isTyping">
-          <div class="chat-bubble typing-indicator">
-            <span></span><span></span><span></span>
-          </div>
-        </div>
-      </div>
-
-      <div class="chat-footer">
-        <!-- Preset Questions Toggle -->
-        <div class="presets-container" [class.collapsed]="presetsCollapsed" style="margin-bottom: 1rem;">
-          <div class="presets-header" (click)="presetsCollapsed = !presetsCollapsed">
-            <span>Suggested Questions</span>
-            <i class="fas" [class.fa-chevron-down]="presetsCollapsed" [class.fa-chevron-up]="!presetsCollapsed"></i>
-          </div>
-          <div class="presets-grid" *ngIf="!presetsCollapsed" style="max-height: 200px; overflow-y: auto;">
-            <button *ngFor="let preset of chatPresets" 
-                    class="preset-chip" 
-                    (click)="handlePresetClick(preset.key)"
-                    [disabled]="isTyping">
-              {{ preset.label }}
-            </button>
-          </div>
-        </div>
-
-        <div class="chat-input-wrapper">
-          <input type="text" [(ngModel)]="chatInputText" (keyup.enter)="sendChatMessage()"
-                 placeholder="Ask me anything..." [disabled]="isTyping" maxlength="500">
-          <button class="chat-send-btn" (click)="sendChatMessage()" [disabled]="!chatInputText.trim() || isTyping">
-            <i class="fas fa-paper-plane"></i>
-          </button>
-        </div>
-        <div class="chat-watermark">
-          <span>Powered by Gemini AI</span>
-        </div>
-      </div>
-    </div>
-  </div>
+  <!-- SaaS Chat Widget (Floating Standalone Component) -->
+  <app-chatbot></app-chatbot>
 
 </div>

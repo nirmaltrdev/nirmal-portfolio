@@ -1,24 +1,75 @@
+.about-section {
+  position: relative;
+  padding: 100px 0;
+  background: var(--bg-deep);
+  overflow: hidden;
+}
+
+.about-section::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(0deg, rgba(0,0,0,0.03) 0px, transparent 1px, transparent 3px);
+  z-index: 10;
+}
+
+.about-container {
+  will-change: transform, opacity;
+}
+
 .about-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  align-items: center;
+  grid-template-columns: 1fr;
+  gap: 3rem;
 }
 
-.section-title {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
+@media (min-width: 992px) {
+  .about-grid {
+    grid-template-columns: 300px 1fr 1fr;
+    gap: 4rem;
+  }
 }
 
-.about-lead {
-  font-size: 1.25rem;
-  font-weight: 500;
-  margin-bottom: 1.5rem;
+.profile-img-wrapper {
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px var(--secondary-glow);
+  animation: float 3.2s ease-in-out infinite;
+  transition: all 0.4s ease;
+}
+
+.profile-img-wrapper:hover {
+  transform: scale(1.06) rotate(2deg) translateY(-12px) !important;
+  box-shadow: 0 30px 60px var(--primary-glow);
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+.profile-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
 }
 
 .about-text {
-  font-size: 1rem;
-  margin-bottom: 2.5rem;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+}
+
+/* Add some styles for words split by AnimationService */
+::ng-deep .word {
+  margin-right: 0.25em;
+  will-change: transform, opacity;
 }
 
 .stats-grid {
@@ -29,80 +80,74 @@
 
 .stat-card {
   padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  text-align: center;
+  background: var(--bg-card);
+  border-radius: 15px;
+  border: 1px solid var(--border-light);
 }
 
 .stat-value {
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: 800;
-  font-family: var(--font-mono);
+  color: var(--text-main);
+}
+
+.stat-plus {
+  font-size: 2.5rem;
+  font-weight: 800;
   color: var(--secondary);
 }
 
 .stat-label {
-  font-size: 0.85rem;
+  display: block;
+  font-size: 0.9rem;
   color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  margin-top: 0.5rem;
 }
 
-/* Architecture Flow Diagram */
-.about-architecture {
-  position: relative;
-  padding: 2rem;
-  background: rgba(15, 23, 42, 0.4);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-lg);
-}
-
+/* Architecture Showcase */
 .arch-header {
   margin-bottom: 2rem;
-  text-align: center;
 }
 
 .arch-badge {
-  background: rgba(59, 130, 246, 0.1);
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: var(--primary-glow);
   color: var(--primary);
-  padding: 0.25rem 0.75rem;
-  border-radius: 100px;
-  font-size: 0.75rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  border: 1px solid rgba(59, 130, 246, 0.2);
-}
-
-.arch-flow {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  border: 1px solid var(--border-strong);
 }
 
 .arch-node {
-  width: 100%;
-  max-width: 300px;
   display: flex;
   align-items: center;
-  gap: 1rem;
-  padding: 1rem 1.5rem;
-  border-radius: var(--radius-md);
-  position: relative;
-  z-index: 2;
+  gap: 1.5rem;
+  padding: 1.25rem;
+  background: var(--bg-card);
+  border-radius: 15px;
+  border: 1px solid var(--border-light);
+  transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+}
+
+.arch-node:hover {
+  transform: translateX(10px);
+  border-color: var(--secondary);
+  background: var(--bg-surface);
 }
 
 .arch-icon {
-  width: 40px;
-  height: 40px;
-  background: var(--bg-deep);
-  border: 1px solid var(--border-strong);
-  border-radius: var(--radius-sm);
+  width: 50px;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--secondary);
-  font-size: 1.25rem;
+  background: var(--card-gradient);
+  border-radius: 12px;
+  font-size: 1.5rem;
+  color: var(--text-main);
 }
 
 .arch-info {
@@ -113,45 +158,33 @@
 .arch-name {
   font-weight: 600;
   color: var(--text-main);
-  font-size: 0.95rem;
+  font-size: 1.1rem;
 }
 
 .arch-desc {
-  font-size: 0.75rem;
+  font-size: 0.85rem;
   color: var(--text-muted);
-  font-family: var(--font-mono);
+  margin-top: 0.25rem;
 }
 
 .arch-connector {
-  height: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  position: relative;
+  margin: 0.5rem 0;
+  height: 40px;
 }
 
 .animated-line {
   width: 2px;
-  height: 25px;
+  height: 20px;
   background: linear-gradient(to bottom, var(--primary), transparent);
-  animation: pulse-line 2s infinite;
+  animation: flowDown 1.5s infinite;
 }
 
-.arch-connector i {
-  font-size: 0.65rem;
-  color: var(--primary);
-  margin-top: -5px;
+@keyframes flowDown {
+  0% { transform: translateY(-100%); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: translateY(100%); opacity: 0; }
 }
 
-@keyframes pulse-line {
-  0% { opacity: 0.3; height: 10px; }
-  50% { opacity: 1; height: 25px; }
-  100% { opacity: 0.3; height: 10px; }
-}
-
-@media (max-width: 900px) {
-  .about-grid {
-    grid-template-columns: 1fr;
-  }
-}

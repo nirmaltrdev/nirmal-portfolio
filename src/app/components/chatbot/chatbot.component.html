@@ -1,1 +1,63 @@
-<p>chatbot works!</p>
+<div class="saas-chat-widget" [class.chat-open]="isOpen()">
+  <button class="chat-toggle-btn" (click)="toggleChat()">
+    <i class="fas fa-comment-dots" *ngIf="!isOpen()"></i>
+    <i class="fas fa-times" *ngIf="isOpen()"></i>
+  </button>
+
+  <div class="chat-window saas-card" *ngIf="isOpen()">
+    <div class="chat-header">
+      <div class="chat-header-info">
+        <div class="status-dot"></div>
+        <div>
+          <h4 class="chat-title">Nirmal's AI Assistant</h4>
+          <span class="chat-status">Typically replies instantly</span>
+        </div>
+      </div>
+      <button class="close-btn" (click)="toggleChat()"><i class="fas fa-times"></i></button>
+    </div>
+
+    <div class="chat-body" id="custom-chat-body" data-lenis-prevent>
+      <div class="chat-message-row" *ngFor="let msg of chatMessages" [ngClass]="msg.sender">
+        <div class="chat-bubble">
+          <div class="chat-text" style="white-space: pre-wrap;" [innerHTML]="msg.text"></div>
+          <span class="chat-time">{{ msg.time }}</span>
+        </div>
+      </div>
+      
+      <div class="chat-message-row bot" *ngIf="isTyping">
+        <div class="chat-bubble typing-indicator">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="chat-footer">
+      <!-- Preset Questions Toggle -->
+      <div class="presets-container" [class.collapsed]="presetsCollapsed" style="margin-bottom: 1rem;">
+        <div class="presets-header" (click)="presetsCollapsed = !presetsCollapsed">
+          <span>Suggested Questions</span>
+          <i class="fas" [class.fa-chevron-down]="presetsCollapsed" [class.fa-chevron-up]="!presetsCollapsed"></i>
+        </div>
+        <div class="presets-grid" *ngIf="!presetsCollapsed" style="max-height: 200px; overflow-y: auto;" data-lenis-prevent>
+          <button *ngFor="let preset of chatPresets" 
+                  class="preset-chip" 
+                  (click)="handlePresetClick(preset.key)"
+                  [disabled]="isTyping">
+            {{ preset.label }}
+          </button>
+        </div>
+      </div>
+
+      <div class="chat-input-wrapper">
+        <input type="text" [(ngModel)]="chatInputText" (keyup.enter)="sendChatMessage()"
+               placeholder="Ask me anything..." [disabled]="isTyping" maxlength="500">
+        <button class="chat-send-btn" (click)="sendChatMessage()" [disabled]="!chatInputText.trim() || isTyping">
+          <i class="fas fa-paper-plane"></i>
+        </button>
+      </div>
+      <div class="chat-watermark">
+        <span>Powered by Gemini AI</span>
+      </div>
+    </div>
+  </div>
+</div>

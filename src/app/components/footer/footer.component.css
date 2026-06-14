@@ -1,78 +1,71 @@
-.saas-footer {
-  background: rgba(10, 15, 25, 0.8);
+.footer {
+  background: var(--bg-deep);
+  padding: 60px 0 30px;
   border-top: 1px solid var(--border-light);
-  padding: 4rem 0 2rem;
-  margin-top: 4rem;
 }
 
-.footer-top {
+.footer-content {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
-  margin-bottom: 3rem;
-  flex-wrap: wrap;
-  gap: 2rem;
+  gap: 20px;
+  margin-bottom: 40px;
+  text-align: center;
 }
 
-.brand-text {
+@media (min-width: 768px) {
+  .footer-content {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+}
+
+.logo {
   font-size: 1.5rem;
   font-weight: 800;
-  letter-spacing: -0.05em;
+  color: var(--text-main);
+  letter-spacing: 2px;
 }
 
-.dot {
-  color: var(--primary);
-}
-
-.mt-2 {
-  margin-top: 0.5rem;
+.tagline {
+  color: var(--text-muted);
+  margin-top: 5px;
+  font-size: 0.9rem;
 }
 
 .footer-socials {
   display: flex;
-  gap: 1rem;
+  gap: 15px;
 }
 
 .social-icon {
   width: 40px;
   height: 40px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--border-light);
   border-radius: 50%;
+  background: var(--bg-card);
+  color: var(--text-muted);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--text-main);
-  transition: var(--transition);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: 1px solid var(--border-light);
 }
 
 .social-icon:hover {
   background: var(--primary);
+  color: var(--text-main);
+  transform: translateY(-3px);
   border-color: var(--primary);
-  box-shadow: 0 0 15px var(--primary-glow);
-  transform: translateY(-2px);
 }
 
 .footer-bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-top: 2rem;
+  text-align: center;
+  padding-top: 30px;
   border-top: 1px solid var(--border-light);
-  font-size: 0.85rem;
   color: var(--text-muted);
-  flex-wrap: wrap;
-  gap: 1rem;
+  font-size: 0.85rem;
+  opacity: 0.6;
 }
 
-.footer-meta {
-  font-family: var(--font-mono);
-  opacity: 0.7;
-}
-
-@media (max-width: 640px) {
-  .footer-top, .footer-bottom {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-}

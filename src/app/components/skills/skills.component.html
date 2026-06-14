@@ -1,44 +1,30 @@
-<section class="section skills-section">
-  <div class="container">
-    <div class="section-header text-center reveal">
-      <h2 class="section-title">Technical Arsenal</h2>
-      <p class="section-subtitle text-muted">Core competencies and technologies.</p>
+<section class="section skills-section" id="skills">
+  <div class="container" #skillsContainer>
+    <div class="section-header">
+      <h2 class="section-title text-center">Technical Mastery</h2>
+      <p class="section-subtitle text-center">Weapons of choice for crafting digital experiences.</p>
     </div>
 
-    <div class="terminal-container saas-card reveal">
-      
-      <!-- Terminal Header / Tabs -->
-      <div class="terminal-header">
-        <div class="terminal-buttons">
-          <span class="t-btn close"></span>
-          <span class="t-btn min"></span>
-          <span class="t-btn max"></span>
-        </div>
-        <div class="terminal-tabs">
-          <button class="terminal-tab" *ngFor="let group of skills; let i = index" 
-                  [class.active]="activeTab === i" (click)="setActiveTab(i)">
-            <i class="fas fa-{{ group.icon }}"></i> {{ group.category }}
-          </button>
-        </div>
-      </div>
-
-      <!-- Terminal Body -->
-      <div class="terminal-body">
-        <ng-container *ngFor="let group of skills; let i = index">
-          <div class="terminal-content" *ngIf="activeTab === i">
-            <div class="terminal-prompt">
-              <span class="prompt-user">nirmal@system</span><span class="prompt-colon">:</span><span class="prompt-path">~/skills/{{ group.category.toLowerCase().replace(' ', '-') }}</span><span class="prompt-dollar">$</span> ls -la
+    <div class="skills-grid">
+      @for (group of skillGroups(); track group.category) {
+        <div class="skill-card" #skillCard (mouseenter)="triggerConfetti($event)" style="align-items: flex-start;">
+          <div class="skill-icon-wrapper" style="color: var(--secondary);">
+            <i [class]="getCategoryIcon(group.icon)"></i>
+          </div>
+          <div class="skill-info">
+            <div class="skill-header" style="margin-bottom: 0.75rem;">
+              <span class="skill-name" style="font-size: 1.25rem; font-weight: 700; color: #fff;">{{ group.category }}</span>
             </div>
-            
-            <div class="skills-grid">
-              <div class="skill-pill" *ngFor="let skill of group.skills">
-                <span class="skill-name">{{ skill }}</span>
-              </div>
+            <div class="skill-tags" style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+              @for (s of group.skills; track s) {
+                <span class="skill-tag" style="background: rgba(59, 130, 246, 0.1); color: var(--primary); border: 1px solid rgba(59, 130, 246, 0.2); padding: 0.35rem 0.75rem; border-radius: 20px; font-size: 0.85rem; font-weight: 500;">
+                  {{ s }}
+                </span>
+              }
             </div>
           </div>
-        </ng-container>
-      </div>
-      
+        </div>
+      }
     </div>
   </div>
 </section>

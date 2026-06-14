@@ -1,60 +1,18 @@
-<section id="services" class="services-section container reveal">
-  <div class="section-header">
-    <span class="section-subtitle">Solutions</span>
-    <h2 class="section-title">Freelance Services</h2>
-    <div class="title-underline"></div>
-  </div>
-
-  <div class="services-grid">
-    <!-- Service 1 -->
-    <div class="service-card glass-panel stagger-item">
-      <div class="service-glow purple"></div>
-      <div class="service-icon-box purple">
-        <i class="fas fa-cubes"></i>
-      </div>
-      <h3 class="service-card-title">Custom Business CRMs</h3>
-      <p class="service-card-desc">
-        Get client lifecycle dashboards, automated quotation engines, workshop job-card trackers, and custom reporting
-        panels built specifically to scale your business operations.
-      </p>
-      <div class="service-card-footer">
-        <span>Learn more</span>
-        <i class="fas fa-arrow-right"></i>
-      </div>
+<section class="section services-section" id="services">
+  <div class="container" #servicesContainer>
+    <div class="section-header">
+      <h2 class="section-title text-center">What I Do</h2>
+      <div class="title-underline"></div>
     </div>
 
-    <!-- Service 2 -->
-    <div class="service-card glass-panel stagger-item">
-      <div class="service-glow cyan"></div>
-      <div class="service-icon-box cyan">
-        <i class="fas fa-cogs"></i>
-      </div>
-      <h3 class="service-card-title">Workflow & API Automation</h3>
-      <p class="service-card-desc">
-        Automate repetitive customer follow-ups and campaigns via WhatsApp APIs, configure time-bound shareable links,
-        and establish secure Webhook/REST API channels.
-      </p>
-      <div class="service-card-footer">
-        <span>Learn more</span>
-        <i class="fas fa-arrow-right"></i>
-      </div>
-    </div>
-
-    <!-- Service 3 -->
-    <div class="service-card glass-panel stagger-item">
-      <div class="service-glow pink"></div>
-      <div class="service-icon-box pink">
-        <i class="fas fa-database"></i>
-      </div>
-      <h3 class="service-card-title">Database & System Tuning</h3>
-      <p class="service-card-desc">
-        Ensure high performance with database schema design and complex query optimizations in MySQL and MongoDB, plus
-        secure storage deployments via AWS S3.
-      </p>
-      <div class="service-card-footer">
-        <span>Learn more</span>
-        <i class="fas fa-arrow-right"></i>
-      </div>
+    <div class="services-grid">
+      @for (service of services(); track service.title) {
+        <div class="service-card magnetic-hover" #serviceCard>
+          <div class="service-icon"><i [class]="service.icon"></i></div>
+          <h3 class="service-title">{{ service.title }}</h3>
+          <p class="service-desc">{{ service.description }}</p>
+        </div>
+      }
     </div>
   </div>
 </section>

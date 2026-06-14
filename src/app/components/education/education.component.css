@@ -1,137 +1,112 @@
-.edu-grid {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 4rem;
+.education-section {
+  padding: 100px 0;
+  background: var(--bg-deep);
+  position: relative;
 }
 
-.col-title {
-  font-size: 1.5rem;
-  margin-bottom: 2rem;
-  color: var(--text-main);
-  padding-bottom: 1rem;
-  border-bottom: 1px solid var(--border-light);
-}
-
-.mt-4 {
-  margin-top: 4rem;
-}
-
-/* Lists */
-.edu-list, .cert-list {
+.section-header {
+  margin-bottom: 4rem;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-}
-
-/* Edu Items */
-.edu-item {
-  display: flex;
-  gap: 1.5rem;
-  padding: 2rem;
-  background: rgba(15, 23, 42, 0.3);
-}
-
-.item-icon {
-  width: 50px;
-  height: 50px;
-  background: rgba(59, 130, 246, 0.1);
-  border: 1px solid rgba(59, 130, 246, 0.2);
-  border-radius: var(--radius-md);
-  display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: 1.25rem;
-  color: var(--primary);
+}
+
+.title-underline {
+  width: 60px;
+  height: 4px;
+  background: var(--secondary);
+  border-radius: 2px;
+  margin-top: 10px;
+  box-shadow: 0 0 10px var(--secondary-glow);
+}
+
+.education-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.education-card {
+  display: flex;
+  gap: 2rem;
+  padding: 2.5rem;
+  background: var(--bg-card);
+  border-radius: 15px;
+  border: 1px solid var(--border-light);
+  transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+}
+
+.education-card:hover {
+  transform: translateX(10px);
+  border-color: var(--primary);
+  background: var(--bg-surface);
+}
+
+.edu-icon {
+  font-size: 2.5rem;
+  color: var(--accent-violet);
   flex-shrink: 0;
 }
 
-.item-content h4 {
-  font-size: 1.2rem;
-  margin-bottom: 0.25rem;
-}
-
-.item-content p {
-  font-size: 0.95rem;
-  margin-bottom: 1rem;
-  color: var(--text-main);
-}
-
-.item-meta {
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  background: rgba(255, 255, 255, 0.05);
-  padding: 0.25rem 0.5rem;
-  border-radius: var(--radius-sm);
-}
-
-.pub-links {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  flex-wrap: wrap;
-}
-
-.doi-link {
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-/* Cert Items */
-.cert-item {
-  display: flex;
-  align-items: center;
-  gap: 1.25rem;
-  padding: 1.25rem 1.5rem;
-  background: rgba(15, 23, 42, 0.3);
-  position: relative;
-  overflow: hidden;
-}
-
-.cert-icon {
-  width: 40px;
-  height: 40px;
-  background: rgba(6, 182, 212, 0.1);
-  border-radius: var(--radius-sm);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.edu-year {
+  display: inline-block;
+  padding: 4px 10px;
+  background: var(--secondary-glow);
   color: var(--secondary);
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 15px;
 }
 
-.cert-content h4 {
-  font-size: 1rem;
-  margin-bottom: 0.15rem;
+.edu-degree {
+  font-size: 1.4rem;
+  color: var(--text-main);
+  margin-bottom: 5px;
 }
 
-.cert-issuer {
-  font-size: 0.85rem;
+.edu-institution {
+  font-size: 1.1rem;
+  color: var(--primary);
+  margin-bottom: 15px;
+}
+
+.edu-details {
   color: var(--text-muted);
+  line-height: 1.6;
 }
 
-.cert-check {
-  margin-left: auto;
-  color: var(--success);
-  opacity: 0;
-  transform: scale(0);
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.cert-item:hover {
-  background: rgba(15, 23, 42, 0.6);
-  border-color: rgba(59, 130, 246, 0.4);
-}
-
-.cert-item:hover .cert-check {
-  opacity: 1;
-  transform: scale(1);
-}
-
-@media (max-width: 900px) {
-  .edu-grid {
-    grid-template-columns: 1fr;
+@media (max-width: 768px) {
+  .education-card {
+    flex-direction: column;
+    gap: 1rem;
   }
 }
+
+/* Auto-scroll Certifications Marquee */
+.cert-scroll-container {
+  max-height: 400px;
+  overflow: hidden;
+  position: relative;
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+}
+
+.cert-scroll-track {
+  display: flex;
+  flex-direction: column;
+  animation: scrollVertical 15s linear infinite;
+  padding-right: 0.5rem;
+}
+
+.cert-scroll-container:hover .cert-scroll-track {
+  animation-play-state: paused;
+}
+
+@keyframes scrollVertical {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+

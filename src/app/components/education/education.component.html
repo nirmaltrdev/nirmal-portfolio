@@ -1,57 +1,105 @@
-<section class="section education-section">
-  <div class="container">
-    
-    <div class="edu-grid">
-      
-      <!-- Education & Publications -->
-      <div class="edu-col">
-        <h3 class="col-title reveal">Credentials</h3>
-        
-        <div class="edu-list">
-          <div class="edu-item reveal saas-card" *ngFor="let ed of education">
-            <div class="item-icon"><i class="fas fa-graduation-cap"></i></div>
-            <div class="item-content">
-              <h4>{{ ed.degree }}</h4>
-              <p>{{ ed.institution }}</p>
-              <span class="item-meta">{{ ed.year }}</span>
+<section class="section education-section" id="education">
+  <div class="container" #eduContainer>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 3rem;">
+
+      <!-- Left Column: Education -->
+      <div>
+        <div class="section-header" style="margin-bottom: 2rem; align-items: flex-start;">
+          <h2 class="section-title" style="font-size: 1.8rem; text-align: left;">Education</h2>
+          <div class="title-underline" style="margin-top: 5px; margin-left: 0;"></div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+          @for (edu of education(); track edu.degree) {
+          <div class="education-card saas-card" #eduCard style="padding: 1.5rem; display: flex; gap: 1.25rem;">
+            <div class="edu-icon" style="font-size: 2rem; color: var(--secondary);"><i
+                class="fas fa-graduation-cap"></i></div>
+            <div class="edu-content">
+              <span class="edu-year" style="margin-bottom: 8px;">{{ edu.year }}</span>
+              <h3 class="edu-degree" style="font-size: 1.15rem; font-weight: 700; margin-bottom: 2px;">{{ edu.degree }}
+              </h3>
+              <h4 class="edu-institution" style="font-size: 0.95rem; color: var(--primary); margin-bottom: 0;">{{
+                edu.institution }}</h4>
             </div>
           </div>
+          }
         </div>
+      </div>
 
-        <h3 class="col-title reveal mt-4" *ngIf="publications && publications.length > 0">Research</h3>
-        
-        <div class="edu-list">
-          <div class="edu-item reveal saas-card" *ngFor="let pub of publications">
-            <div class="item-icon"><i class="fas fa-book"></i></div>
-            <div class="item-content">
-              <h4>{{ pub.title }}</h4>
-              <p>{{ pub.authors }}</p>
-              <div class="pub-links">
-                <span class="item-meta">{{ pub.date }}</span>
-                <a [href]="pub.url" target="_blank" class="doi-link"><i class="fas fa-external-link-alt"></i> Read Publication</a>
+      <!-- Middle Column: Certifications -->
+      <div>
+        <div class="section-header" style="margin-bottom: 2rem; align-items: flex-start;">
+          <h2 class="section-title" style="font-size: 1.8rem; text-align: left;">Certifications</h2>
+          <div class="title-underline" style="margin-top: 5px; margin-left: 0;"></div>
+        </div>
+        <div class="cert-scroll-container">
+          <div class="cert-scroll-track">
+            <!-- Original Items -->
+            @for (cert of certifications(); track cert.name) {
+            <div class="education-card saas-card"
+              style="padding: 1.25rem; display: flex; gap: 1rem; align-items: center; margin-bottom: 0.5rem;">
+              <div class="edu-icon" style="font-size: 1.5rem; color: #10b981;"><i class="fas fa-certificate"></i></div>
+              <div>
+                <h4 style="font-size: 0.95rem; font-weight: 700; color: var(--text-main); margin-bottom: 2px;">{{ cert.name }}</h4>
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0;">{{ cert.issuer }}</p>
               </div>
             </div>
+            }
+            <!-- Duplicated Items for Seamless Loop -->
+            @for (cert of certifications(); track cert.name + '_copy') {
+            <div class="education-card saas-card" aria-hidden="true"
+              style="padding: 1.25rem; display: flex; gap: 1rem; align-items: center; margin-bottom: 0.5rem;">
+              <div class="edu-icon" style="font-size: 1.5rem; color: #10b981;"><i class="fas fa-certificate"></i></div>
+              <div>
+                <h4 style="font-size: 0.95rem; font-weight: 700; color: var(--text-main); margin-bottom: 2px;">{{ cert.name }}</h4>
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0;">{{ cert.issuer }}</p>
+              </div>
+            </div>
+            }
           </div>
         </div>
       </div>
 
-      <!-- Certifications -->
-      <div class="edu-col">
-        <h3 class="col-title reveal" style="animation-delay: 0.1s;">Certifications</h3>
-        
-        <div class="cert-list">
-          <div class="cert-item reveal saas-card" *ngFor="let cert of certifications; let i = index" [style.animation-delay]="(i * 0.1) + 's'">
-            <div class="cert-icon"><i class="fas fa-award"></i></div>
-            <div class="cert-content">
-              <h4>{{ cert.name }}</h4>
-              <span class="cert-issuer">{{ cert.issuer }}</span>
+      <!-- Right Column: Publications -->
+      <div>
+        <div class="section-header" style="margin-bottom: 2rem; align-items: flex-start;">
+          <h2 class="section-title" style="font-size: 1.8rem; text-align: left;">Publications</h2>
+          <div class="title-underline" style="margin-top: 5px; margin-left: 0;"></div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+          @for (pub of publications(); track pub.title) {
+          <div class="education-card saas-card" style="padding: 1.5rem; display: flex; gap: 1.25rem;">
+            <div class="edu-icon" style="font-size: 2rem; color: var(--accent-violet);"><i class="fas fa-book-open"></i>
             </div>
-            <i class="fas fa-check-circle cert-check"></i>
+            <div class="edu-content">
+              <span class="edu-year"
+                style="margin-bottom: 8px; background: var(--accent-violet-glow); color: var(--accent-violet);">{{
+                pub.date }}</span>
+              <h3 class="edu-degree" style="font-size: 1.1rem; font-weight: 700; margin-bottom: 4px; line-height: 1.4;">
+                {{ pub.title }}</h3>
+              <h4 class="edu-institution" style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 6px;">{{
+                pub.authors }}</h4>
+              <div style="display: flex; flex-direction: column; gap: 6px;">
+                <!-- <span style="font-size: 0.85rem; color: var(--text-muted);">
+                    DOI: {{ pub.doi }}
+                  </span> -->
+                <a [href]="pub.url" target="_blank" class="btn btn-outline"
+                  style="font-size: 0.85rem; padding: 0.5rem 1rem; border-radius: 20px; color: var(--text-main); display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--border-strong); width: fit-content; text-decoration: none;">
+                  View Publication
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                    <polyline points="15 3 21 3 21 9"></polyline>
+                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                  </svg>
+                </a>
+              </div>
+            </div>
           </div>
+          }
         </div>
       </div>
 
     </div>
-
   </div>
 </section>
