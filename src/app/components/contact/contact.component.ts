@@ -79,7 +79,7 @@ export class ContactComponent {
         });
       }
 
-      this.http.post('https://formsubmit.co/ajax/nirmaltrejial@gmail.com', formData)
+      this.http.post('https://formsubmit.co/ajax/nirmaltrejilal@gmail.com', formData)
         .subscribe({
           next: () => {
             this.message.success('Thank you! Your message has been sent. Nirmal will get in touch with you shortly.', {
