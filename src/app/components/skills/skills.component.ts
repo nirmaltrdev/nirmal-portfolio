@@ -27,15 +27,15 @@ export class SkillsComponent {
         const cards = this.skillCards().map(el => el.nativeElement);
         
         gsap.from(cards, {
-          y: 60,
+          y: 40,
           opacity: 0,
-          rotationX: -45,
           stagger: 0.1,
           duration: 0.8,
-          ease: 'back.out(1.5)',
+          ease: 'power3.out',
           scrollTrigger: {
             trigger: this.containerRef()!.nativeElement,
-            start: 'top 75%'
+            start: 'top 80%',
+            once: true
           }
         });
       }

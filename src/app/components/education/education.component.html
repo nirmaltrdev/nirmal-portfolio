@@ -60,10 +60,10 @@
         </div>
       </div>
 
-      <!-- Right Column: Publications -->
+      <!-- Right Column: Publications & Memberships -->
       <div>
         <div class="section-header" style="margin-bottom: 2rem; align-items: flex-start;">
-          <h2 class="section-title" style="font-size: 1.8rem; text-align: left;">Publications</h2>
+          <h2 class="section-title" style="font-size: 1.8rem; text-align: left;">Research & Memberships</h2>
           <div class="title-underline" style="margin-top: 5px; margin-left: 0;"></div>
         </div>
         <div style="display: flex; flex-direction: column; gap: 1.5rem;">
@@ -80,9 +80,6 @@
               <h4 class="edu-institution" style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 6px;">{{
                 pub.authors }}</h4>
               <div style="display: flex; flex-direction: column; gap: 6px;">
-                <!-- <span style="font-size: 0.85rem; color: var(--text-muted);">
-                    DOI: {{ pub.doi }}
-                  </span> -->
                 <a [href]="pub.url" target="_blank" class="btn btn-outline"
                   style="font-size: 0.85rem; padding: 0.5rem 1rem; border-radius: 20px; color: var(--text-main); display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--border-strong); width: fit-content; text-decoration: none;">
                   View Publication
@@ -97,6 +94,19 @@
             </div>
           </div>
           }
+
+          <!-- Professional Memberships -->
+          <div style="margin-top: 0.5rem;">
+            <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--text-main); margin-bottom: 0.75rem;">Professional Memberships</h4>
+            <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+              @for (m of memberships(); track m.name) {
+                <div class="saas-card" style="padding: 0.85rem 1.25rem; display: flex; align-items: center; justify-content: space-between; border-radius: 10px;">
+                  <span style="font-weight: 700; color: #fff; font-size: 0.95rem;">{{ m.name }}</span>
+                  <span style="color: var(--secondary); font-size: 0.85rem; font-weight: 500;">{{ m.role }}</span>
+                </div>
+              }
+            </div>
+          </div>
         </div>
       </div>
 

@@ -21,6 +21,7 @@ export class EducationComponent {
   education = signal(this.portfolioData.education);
   certifications = signal(this.portfolioData.certifications);
   publications = signal(this.portfolioData.publications);
+  memberships = signal(this.portfolioData.memberships);
 
   constructor() {
     afterNextRender(() => {

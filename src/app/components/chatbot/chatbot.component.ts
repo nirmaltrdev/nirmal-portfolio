@@ -225,19 +225,19 @@ export class ChatbotComponent {
       if (has('available', 'hire', 'hiring', 'open') || t.includes('for hire')) {
         reply = "Yes! I am actively open to full-time roles and freelance/contract projects. 👋\n\nBest ways to reach me:\n• ✉️ Email: nirmaltrejial@gmail.com\n• 💬 WhatsApp: +91 8138055705 (Link: https://wa.me/918138055705)\n• 🔗 LinkedIn: linkedin.com/in/nirmaltr\n• 📝 Contact Form on this page";
       } else if (has('tech', 'stack', 'skill', 'language', 'framework', 'tools') || t.includes('tech stack')) {
-        reply = "Here is my full tech stack:\n\n• 🛠️ Backend: Java (Spring Boot), PHP (CodeIgniter 4), Node.js, REST APIs\n• 💻 Frontend: Angular, TypeScript, HTML5, CSS3, Tailwind CSS\n• 💾 Databases: MySQL, MongoDB\n• ☁️ Cloud & Integrations: AWS S3, Firebase, FCM, Socket.IO, WhatsApp API, VoIP\n• ⚙️ Tools: Git, GitHub, Postman\n\nCheck out the Skills section for the complete breakdown!";
+        reply = "Here is my full tech stack:\n\n• 🛠️ Backend: Java (Spring Boot), PHP (CodeIgniter 4), Node.js, REST APIs, MPDF\n• 💻 Frontend: Angular, TypeScript, HTML5, CSS3, Tailwind CSS\n• 💾 Databases: MySQL, Oracle, MariaDB, MongoDB, Schema Design, Query Optimization\n• ☁️ Cloud, Security & Tools: AWS S3, Firebase (FCM), Socket.IO, WebSockets, JWT, OAuth, RBAC, Git, GitHub, Postman, Swagger, Linux, PuTTY\n\nCheck out the Skills section for the complete breakdown!";
       } else if (has('crm') || t.includes('crm work') || t.includes('crm project')) {
-        reply = "My flagship project is an Enterprise CRM & Automation Hub: 🏢\n\n• Dual-backend microservices: PHP (CodeIgniter 4) + Java (Spring Boot)\n• Angular frontend with real-time Socket.IO chat\n• WhatsApp API campaign automation & bulk messaging\n• VoIP call/telephony system integration\n• AWS S3 file storage & PDF report generation\n• Led a team of 2–4 developers\n\nIt is a large-scale internal SaaS platform — source is confidential, but happy to discuss architecture!";
+        reply = "My flagship project is the Enterprise CRM Platform for the Automobile Service Industry: 🏢\n\n• Modular architecture: PHP (CodeIgniter 4) + Java (Spring Boot)\n• Angular frontend with real-time Socket.IO updates and FCM notifications\n• Workflows: Lead intake, appointment scheduling, workshop operations, job cards, vehicle inspection, quotations\n• Retention features: Customer recall management, lost customer tracking, service reminders\n• AWS S3 file storage & MPDF automated reporting\n• Led and mentored a team of 2–4 developers\n\nHappy to discuss architecture in detail!";
       } else if (has('remote', 'work from home', 'wfh', 'location', 'onsite', 'hybrid') || t.includes('remote work')) {
-        reply = "Yes, I am fully open to remote work! 🌍\n\nI am based in Trivandrum, Kerala, India (GMT+5:30) and comfortable working with teams across time zones. I am also open to hybrid or onsite roles in Trivandrum.";
+        reply = "Yes, I am fully open to remote work! 🌍\n\nI am based in Thiruvananthapuram, Kerala, India (GMT+5:30) and comfortable working with teams across time zones. I am also open to hybrid or onsite roles.";
       } else if (has('notice') || t.includes('notice period') || t.includes('join') || t.includes('start')) {
-        reply = "My notice period is typically 30 days. For urgent freelance projects, I can start within a few days depending on scope. 📅\n\nFeel free to reach me at nirmaltrejial@gmail.com to discuss timelines!";
+        reply = "My notice period is typically 30 days. For urgent freelance projects, I can start within a few days depending on scope. 📅\n\nFeel free to reach me at nirmaltrejilal@gmail.com to discuss timelines!";
       } else if (has('salary', 'rate', 'cost', 'price', 'charge', 'budget', 'pay', 'ctc', 'compensation')) {
-        reply = "For salary and rate discussions, I prefer a direct conversation to understand the role and scope first. 💬\n\nPlease reach out via:\n• ✉️ nirmaltrejial@gmail.com\n• 📝 Contact Form on this page\n\nI will respond within 24 hours!";
+        reply = "For salary and rate discussions, I prefer a direct conversation to understand the role and scope first. 💬\n\nPlease reach out via:\n• ✉️ nirmaltrejilal@gmail.com\n• 📝 Contact Form on this page\n\nI will respond within 24 hours!";
       } else if (has('experience', 'years', 'background', 'career') || t.includes('how long')) {
-        reply = "I have 4 years of professional experience as a Software Engineer: 💼\n\n• LOGICINFEEL, Trivandrum (Feb 2023 – Present): Enterprise CRM, WhatsApp automation, VoIP, real-time systems\n• Bitbridge Technologies, Trivandrum (Jul 2022 – Feb 2023): Auth systems, REST APIs, responsive UI\n\nSee the Experience section for the full timeline!";
+        reply = "I have 4+ years of professional experience as a Software Engineer: 💼\n\n• LogicInfeel, Trivandrum (Feb 2023 – Present): Enterprise CRM for automobile service industry, Spring Boot vehicle inspection, AWS S3, MPDF, real-time systems, team mentoring (2–4 devs)\n• Bitbridge Technologies, Trivandrum (Jul 2022 – Feb 2023): Auth systems, REST APIs, reusable UI components, Agile sprints\n\nSee the Experience section for the full timeline!";
       } else if (has('project', 'portfolio', 'built', 'developed', 'vehicle', 'inspection', 'whatsapp', 'automation')) {
-        reply = "Here are my 3 key projects: 🚀\n\n1. Enterprise CRM & Automation Hub — Angular, Spring Boot, WhatsApp API, VoIP, Socket.IO\n2. Vehicle Inspection & Job Card System — Spring Boot, Angular, MySQL, REST APIs\n3. WhatsApp Automation Platform — Angular, Node.js, Webhooks, bulk campaigns\n\nAll are enterprise-grade internal systems. See the Projects section for details!";
+        reply = "Here are my key projects: 🚀\n\n1. Enterprise CRM Platform (Automobile Service Industry) — Angular, PHP (CI4), Spring Boot, MySQL, MongoDB, Socket.IO, S3\n2. Vehicle Inspection & Job Card System — Java Spring Boot, REST APIs, time-bound token validation for external report sharing\n3. WhatsApp Automation & Messaging Engine — Angular, Node.js, Webhooks, automated campaigns\n\nSee the Projects section for details!";
       } else if (has('angular', 'frontend', 'ui', 'react', 'vue', 'css', 'html', 'typescript') || t.includes('front end') || t.includes('front-end')) {
         reply = "Yes, Angular is one of my primary skills! 🅰️\n\nI have 4 years of Angular experience building UIs with TypeScript, reactive forms, routing, state management, and REST API integration. I also work with HTML5, CSS3, and responsive design.";
       } else if (has('java', 'spring', 'springboot', 'backend', 'api', 'php', 'node') || t.includes('spring boot') || t.includes('back end') || t.includes('back-end')) {
@@ -251,9 +251,9 @@ export class ChatbotComponent {
       } else if (has('hello', 'hey', 'greetings', 'howdy') || t === 'hi' || t.startsWith('hi ') || t.endsWith(' hi')) {
         reply = "Hello there! 👋 I'm Nirmal's AI Assistant.\n\nYou can ask me about his:\n• Skills & tech stack\n• Experience & projects\n• Availability & rates\n• How to get in touch\n\nOr click a quick option below!";
       } else if (t.includes('what else') || t.includes('what can') || t.includes('capabilities') || t.includes('overview') || has('everything', 'details', 'about', 'tell', 'who', 'nirmal')) {
-        reply = "Here's a quick overview of Nirmal T R: 👨‍💻\n\n• Role: Full Stack Developer with 4 years experience\n• Current: LOGICINFEEL, Trivandrum (Feb 2023–Present)\n• Frontend: Angular, TypeScript, HTML5, CSS3\n• Backend: Java (Spring Boot), PHP (CodeIgniter 4), Node.js\n• Databases: MySQL, MongoDB\n• Cloud: AWS S3, Firebase, Socket.IO, WhatsApp API, VoIP\n• Key Projects: Enterprise CRM, Vehicle Inspection System, WhatsApp Automation\n• Publication: Healthcare Data Fusion (IJERT, 2021)\n\nFeel free to click the options below or ask anything specific!";
+        reply = "Here's a quick overview of Nirmal T R: 👨‍💻\n\n• Role: Full Stack Software Engineer with 4+ years experience\n• Current: LogicInfeel, Trivandrum (Feb 2023–Present)\n• Frontend: Angular, TypeScript, HTML5, CSS3, Tailwind CSS\n• Backend: Java (Spring Boot), PHP (CodeIgniter 4), Node.js, REST APIs, MPDF\n• Databases: MySQL, Oracle, MariaDB, MongoDB\n• Cloud & Security: AWS S3, Firebase (FCM), Socket.IO, WebSockets, JWT, OAuth, RBAC\n• Key Projects: Enterprise CRM (Automobile Service), Vehicle Inspection System, WhatsApp Automation Engine\n• Publication: Healthcare Data Fusion (IJERT, 2021)\n\nFeel free to click the options below or ask anything specific!";
       } else {
-        reply = "Thanks for your message! 🙏 For the best answer, please use the Contact Form or email nirmaltrejial@gmail.com directly — Nirmal will respond within 24 hours!";
+        reply = "Thanks for your message! 🙏 For the best answer, please use the Contact Form or email nirmaltrejilal@gmail.com directly — Nirmal will respond within 24 hours!";
       }
 
       this.chatMessages.push({ sender: 'bot', text: reply, time: this.getCurrentTime() });
@@ -272,33 +272,43 @@ Keep your answers highly professional, confident, and polite. Make sure to repre
 
 Here are Nirmal T R's professional details:
 - Name: Nirmal T R
-- Title: Full Stack Developer / Software Engineer
-- Location: Trivandrum, Kerala, India (GMT+5:30)
-- Contact Email: nirmaltrejial@gmail.com
+- Title: Full Stack Software Engineer
+- Location: Thiruvananthapuram, Kerala, India (GMT+5:30)
+- Contact Email: nirmaltrejilal@gmail.com
 - Phone / WhatsApp: +91 8138055705 (Link: https://wa.me/918138055705)
 - LinkedIn: https://www.linkedin.com/in/nirmaltr
 - GitHub: https://github.com/nirmaltrdev
+- Portfolio: https://nirmaltr.vercel.app
 
 Experience:
-1. Software Engineer at LOGICINFEEL, Trivandrum (Feb 2023 - Present)
-   - Built scalable CRM applications using a dual-backend microservices setup (PHP/CodeIgniter 4 & Java/Spring Boot).
-   - Integrated extensive 3rd party communication pipelines, including WhatsApp automation campaigns and VoIP call/telephony systems.
-   - Designed real-time systems using Socket.IO and Firebase Cloud Messaging (FCM).
-   - Designed AWS S3-based file storage and PDF report generation.
-   - Led and mentored a team of 2-4 developers.
-2. Software Engineer at Bitbridge Technologies, Trivandrum (Jul 2022 - Feb 2023)
-   - Developed authentication systems, frontend modules, and integrated REST APIs.
+1. Software Engineer at LogicInfeel, Trivandrum (Feb 2023 – Present)
+   - Architected and developed a full-scale Enterprise CRM platform for the automobile service industry (lead intake, appointment scheduling, workshop operations, job card management, vehicle inspection, service reminders, quotations).
+   - Designed and implemented a Vehicle Inspection System using Java Spring Boot with time-bound token validation for secure shareable inspection reports.
+   - Built customer recall management, lost customer tracking, dashboards, and analytics.
+   - Integrated WhatsApp communication, Firebase Cloud Messaging (FCM) push notifications, and Socket.IO real-time updates.
+   - Designed AWS S3 file storage architecture and MPDF reporting pipelines for job cards, quotations, and inspection reports.
+   - Implemented JWT-based authentication with Role-Based Access Control (RBAC) and documented REST APIs with Postman and Swagger.
+   - Led and mentored a team of 2–4 developers, conducting code reviews and driving on-time delivery.
+2. Software Engineer at Bitbridge Technologies, Trivandrum (Jul 2022 – Feb 2023)
+   - Developed authentication systems and reusable frontend modules with Angular and TypeScript.
+   - Connected responsive user interfaces with backend REST APIs within an Agile workflow.
 
 Key Skills:
-- Backend: PHP (CodeIgniter 4), Java (Spring Boot), Node.js, REST APIs.
-- Frontend: Angular, TypeScript, HTML5, CSS3, Tailwind, JavaScript.
-- Databases: MySQL, MongoDB, Database/Schema Design, Query Optimization.
-- Integrations: WhatsApp API, VoIP Telephony, AWS, S3, Firebase, Socket.IO, FCM, Git, GitHub.
+- Frontend: Angular, TypeScript, JavaScript, HTML5, CSS3, Tailwind CSS
+- Backend: PHP (CodeIgniter 4), Node.js, Java, Spring Boot, REST APIs, MPDF
+- Databases: MySQL, Oracle, MariaDB, MongoDB, Schema Design, Query Optimization
+- Cloud, Security & Tools: AWS, Amazon S3, Firebase, FCM, Socket.IO, WebSockets, JWT, OAuth, RBAC, Git, GitHub, Postman, Swagger, Linux, PuTTY
 
 Featured Projects:
-1. Enterprise CRM & Automation Hub: Dual-backend (PHP & Java) CRM featuring real-time Socket.IO chat, direct WhatsApp campaign automation, and VoIP call system integration.
-2. Vehicle Inspection & Job Card System: Built with Spring Boot, Angular, Java, MySQL. Feature secure shareable links.
-3. WhatsApp Automation Platform: Angular, Node.js. Bulk campaign triggers and live messaging analytics.
+1. Enterprise CRM Platform — Automobile Service Industry: Comprehensive CRM handling full lifecycle operations and customer retention workflows.
+2. Vehicle Inspection & Job Card System: Java Spring Boot system with secure expiring link access for vehicle inspection reports.
+3. WhatsApp Automation & Messaging Engine: Communication engine integrated into the CRM ecosystem for notifications and automated customer workflows.
+
+Memberships & Credentials:
+- B.Tech in Computer Science and Engineering — APJ Abdul Kalam Technological University (2021)
+- IEEE — Associate Member
+- CSI — Associate Member
+- Publication: Healthcare Data Fusion (IJERT, 2021)
 
 Guidelines:
 1. Always respond in first-person (e.g., "I built", "My experience") as if representing Nirmal, or refer to yourself as Nirmal's Assistant.

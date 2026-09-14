@@ -20,12 +20,14 @@ export class ExperienceComponent {
   containerRef = viewChild<ElementRef<HTMLElement>>('expContainer');
   timelineItems = viewChildren<ElementRef<HTMLElement>>('timelineItem');
 
+  achievements = signal(this.portfolioData.achievements);
+
   experiences = signal(this.portfolioData.experiences.map(exp => {
     let tech: string[] = [];
-    if (exp.company.includes('LOGICINFEEL')) {
-      tech = ['Angular', 'Spring Boot', 'CodeIgniter 4', 'MySQL', 'MongoDB', 'Socket.IO', 'Firebase', 'AWS'];
-    } else if (exp.company.includes('Bitbridge')) {
-      tech = ['Angular', 'TypeScript', 'REST APIs', 'Auth Systems'];
+    if (exp.company.toLowerCase().includes('logicinfeel')) {
+      tech = ['Angular', 'PHP (CI4)', 'Java Spring Boot', 'Node.js', 'MySQL', 'MongoDB', 'AWS S3', 'MPDF', 'JWT / RBAC', 'Socket.IO', 'Swagger'];
+    } else if (exp.company.toLowerCase().includes('bitbridge')) {
+      tech = ['Angular', 'TypeScript', 'REST APIs', 'Auth Systems', 'Agile'];
     }
     return {
       role: exp.role,

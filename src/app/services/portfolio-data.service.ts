@@ -41,6 +41,17 @@ export interface Publication {
   url?: string;
 }
 
+export interface Membership {
+  name: string;
+  role: string;
+}
+
+export interface Achievement {
+  title: string;
+  description: string;
+  icon: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -50,44 +61,67 @@ export class PortfolioDataService {
     {
       category: 'Backend Architecture',
       icon: 'database',
-      skills: ['PHP (CodeIgniter 4)', 'Node.js', 'Java', 'REST APIs']
+      skills: ['PHP (CodeIgniter 4)', 'Node.js', 'Java', 'Spring Boot', 'REST APIs', 'MPDF']
     },
     {
       category: 'Frontend Engineering',
       icon: 'layout',
-      skills: ['Angular', 'TypeScript', 'HTML5', 'CSS3', 'Tailwind', 'JavaScript']
+      skills: ['Angular', 'TypeScript', 'JavaScript', 'HTML5', 'CSS3', 'Tailwind CSS']
     },
     {
       category: 'Databases & Storage',
       icon: 'hdd',
-      skills: ['MySQL', 'MongoDB', 'Database Design', 'Schema Design', 'Query Optimization']
+      skills: ['MySQL', 'Oracle', 'MariaDB', 'MongoDB', 'Schema Design', 'Query Optimization']
     },
     {
-      category: 'Cloud, DevOps & Integrations',
+      category: 'Cloud, Security & Tools',
       icon: 'cloud-server',
-      skills: ['AWS', 'S3 Bucket', 'Firebase', 'Socket.IO', 'FCM', 'Git', 'GitHub']
+      skills: ['AWS (S3)', 'Firebase (FCM)', 'Socket.IO', 'WebSockets', 'JWT', 'OAuth', 'RBAC', 'Git', 'GitHub', 'Postman', 'Swagger', 'Linux', 'PuTTY']
+    }
+  ];
+
+  achievements: Achievement[] = [
+    {
+      title: 'Database & API Performance',
+      description: 'Optimized slow-running SQL queries and database schemas across MySQL and MariaDB, noticeably boosting response times and API performance for core CRM modules.',
+      icon: 'fas fa-bolt'
+    },
+    {
+      title: 'End-to-End Ownership',
+      description: 'Took full lifecycle ownership of major CRM features — from requirement analysis and architectural design through cloud deployment and production support.',
+      icon: 'fas fa-shield-alt'
+    },
+    {
+      title: 'Customer Retention Impact',
+      description: 'Delivered high-value platform enhancements including recall management, lost customer tracking, and automated service reminders to retain repeat customers.',
+      icon: 'fas fa-chart-line'
+    },
+    {
+      title: 'Team Mentorship & Delivery',
+      description: 'Led and mentored a team of 2–4 developers, maintaining code quality and ensuring consistent on-time sprint deliveries through structured code reviews.',
+      icon: 'fas fa-users'
     }
   ];
 
   projects: Project[] = [
     {
-      title: 'Enterprise CRM & Automation Hub',
-      description: 'A highly sophisticated customer relationship platform built on a dual-backend microservices architecture (PHP/CodeIgniter 4 & Java/Spring Boot). Integrates multiple 3rd party APIs, real-time Socket.IO chat, direct WhatsApp automation campaigns, and an integrated VoIP call/telephony system.',
-      technologies: ['Angular', 'CodeIgniter 4', 'Spring Boot (Java)', 'MySQL', 'MongoDB', 'WhatsApp API', 'VoIP Integration', 'Socket.IO'],
+      title: 'Enterprise CRM Platform — Automobile Service Industry',
+      description: 'Full-scale enterprise CRM platform running day-to-day operations for automobile service centers. Handles end-to-end workflows from lead intake through appointment scheduling, workshop operations, job card management, quotations, and customer follow-ups (recall management, lost customer tracking, service reminders) to maximize customer retention.',
+      technologies: ['Angular', 'PHP (CodeIgniter 4)', 'Node.js', 'MySQL', 'MongoDB', 'Socket.IO', 'Firebase', 'AWS S3', 'MPDF'],
       icon: 'user-switch',
       github: 'https://github.com/nirmaltrdev'
     },
     {
-      title: 'Vehicle Inspection & Job Card System',
-      description: 'Enterprise inspection, quotation, job card, and workshop management platform built with modern architecture. Implemented secure time-bound shareable link functionality and inspection workflow APIs.',
-      technologies: ['Spring Boot', 'Angular', 'Java', 'MySQL', 'REST APIs'],
+      title: 'Vehicle Inspection & Job Card System (Java Spring Boot)',
+      description: 'Secure companion module built with Java Spring Boot allowing workshop inspectors to conduct vehicle inspections, generate reports, and share them externally with vehicle owners via time-bound expiring token links without exposing internal CRM systems.',
+      technologies: ['Java', 'Spring Boot', 'REST APIs', 'Token Validation', 'MySQL', 'MPDF'],
       icon: 'car',
       github: 'https://github.com/nirmaltrdev'
     },
     {
-      title: 'WhatsApp Automation Platform',
-      description: 'Automated customer engagement platform featuring bulk media campaign triggers, scheduled messaging, conditional follow-up actions, and live messaging analytics workflows.',
-      technologies: ['Angular', 'Node.js', 'REST APIs', 'Webhooks'],
+      title: 'WhatsApp Automation & Messaging Engine',
+      description: 'Automated customer engagement and communication pipeline integrated into the enterprise CRM ecosystem. Features bulk campaign triggers, scheduled notifications, follow-up workflows, and real-time updates via webhooks.',
+      technologies: ['Angular', 'Node.js', 'REST APIs', 'Webhooks', 'Socket.IO'],
       icon: 'message',
       github: 'https://github.com/nirmaltrdev'
     }
@@ -96,15 +130,18 @@ export class PortfolioDataService {
   experiences: Experience[] = [
     {
       role: 'Software Engineer',
-      company: 'LOGICINFEEL, Trivandrum, Kerala',
+      company: 'LogicInfeel, Trivandrum, Kerala',
       duration: 'Feb 2023 – Present',
       description: [
-        'Designed and developed scalable CRM applications using a dual-backend microservices architecture with Angular, PHP (CodeIgniter 4), and Java (Spring Boot).',
-        'Integrated third-party messaging and communication systems, including WhatsApp API marketing campaigns and VoIP telephony/call channels.',
-        'Architected database schemas, optimized queries for performance, and integrated third-party APIs.',
-        'Developed real-time communication systems using Socket.IO and Firebase Cloud Messaging (FCM) for push notifications.',
-        'Designed AWS S3-based file storage solutions and built PDF generation systems using MPDF.',
-        'Led and mentored a team of 2–4 developers, overseeing task allocation, code reviews, and ensuring high-quality feature delivery across projects.'
+        'Architected and developed a full-scale Enterprise CRM platform for the automobile service industry, spanning customer management, lead management, appointment scheduling, workshop operations, job card management, vehicle inspection, service reminders, and quotation management modules.',
+        'Designed and implemented a Vehicle Inspection System using Java Spring Boot, including inspection workflows, secure shareable inspection links with time-bound token validation, and backend APIs for report generation.',
+        'Engineered core CRM modules end-to-end using Angular, PHP (CodeIgniter 4), Node.js, MySQL, and MongoDB, delivering customer recall management, lost customer tracking, dashboards, and analytics.',
+        'Integrated third-party services including WhatsApp for customer communication and Firebase Cloud Messaging (FCM) for real-time push notifications, and developed real-time CRM updates using Socket.IO.',
+        'Designed AWS S3-based file storage architecture and built PDF generation/reporting pipelines using MPDF for job cards, quotations, and inspection reports.',
+        'Designed and documented REST APIs using Postman and Swagger, and implemented JWT-based authentication with role-based access control (RBAC) across CRM modules.',
+        'Developed Java-based backend modules and cross-service integrations, extending the platform beyond its core PHP stack.',
+        'Collaborated directly with clients and stakeholders to analyze requirements, resolve production issues, and translate business needs into scalable technical solutions.',
+        'Led and mentored a team of 2–4 developers, driving code quality and on-time delivery through structured code reviews.'
       ]
     },
     {
@@ -112,16 +149,16 @@ export class PortfolioDataService {
       company: 'Bitbridge Technologies, Trivandrum, Kerala',
       duration: 'Jul 2022 – Feb 2023',
       description: [
-        'Developed secure authentication systems and frontend modules.',
-        'Built responsive customer-facing user interfaces and integrated modular REST APIs.',
-        'Collaborated closely with backend engineering teams to ensure seamless feature delivery.'
+        'Developed authentication systems and reusable frontend modules for web applications using Angular and TypeScript.',
+        'Built responsive user interfaces and integrated REST APIs to connect frontend and backend services.',
+        'Collaborated closely with backend engineering teams to deliver features on schedule within an Agile workflow.'
       ]
     }
   ];
 
   education: Education[] = [
     {
-      degree: 'B.Tech in Computer Science Engineering',
+      degree: 'B.Tech in Computer Science and Engineering',
       institution: 'APJ Abdul Kalam Technological University',
       year: '2021'
     }
@@ -143,6 +180,11 @@ export class PortfolioDataService {
       doi: '10.17577/IJERTCONV9IS13031',
       url: 'https://www.ijert.org/healthcare-data-fusion'
     }
+  ];
+
+  memberships: Membership[] = [
+    { name: 'IEEE', role: 'Associate Member' },
+    { name: 'CSI (Computer Society of India)', role: 'Associate Member' }
   ];
 
   constructor() { }

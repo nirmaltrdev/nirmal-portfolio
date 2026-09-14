@@ -20,17 +20,17 @@ export class ServicesComponent {
     {
       title: 'Enterprise CRM Development',
       icon: 'fas fa-chart-line',
-      description: 'Custom-built, scalable CRM solutions designed to streamline workflows and integrate multiple backends.'
+      description: 'Scalable CRM solutions designed for automobile service operations, workshop management, and customer recall workflows.'
     },
     {
-      title: 'Full Stack Web Apps',
+      title: 'Full Stack & Cloud Architecture',
       icon: 'fas fa-layer-group',
-      description: 'End-to-end development using Angular, Node.js, and modern cloud architectures.'
+      description: 'End-to-end systems engineered with Angular, Java Spring Boot, PHP, Node.js, and AWS S3 cloud storage pipelines.'
     },
     {
-      title: 'UI/UX & Cinematic Animation',
-      icon: 'fas fa-paint-brush',
-      description: 'Creating award-winning interfaces with GSAP, Three.js, and complex interactive animations.'
+      title: 'Real-Time Systems & REST APIs',
+      icon: 'fas fa-network-wired',
+      description: 'High-performance API design with Swagger/Postman, secure JWT/RBAC access control, and live Socket.IO & Firebase messaging.'
     }
   ]);
 

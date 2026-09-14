@@ -1,8 +1,23 @@
 <section class="section experience-section" id="experience">
   <div class="container" #expContainer>
     <div class="section-header">
-      <h2 class="section-title text-center">Career Journey</h2>
+      <h2 class="section-title text-center">Career Journey & Key Impact</h2>
       <div class="title-underline"></div>
+    </div>
+
+    <!-- Key Achievements Impact Grid -->
+    <div class="achievements-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-bottom: 4rem;">
+      @for (ach of achievements(); track ach.title) {
+        <div class="achievement-card saas-card" style="padding: 1.5rem; border-radius: 12px; background: var(--bg-card); border: 1px solid var(--border-light);">
+          <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+            <div style="width: 36px; height: 36px; border-radius: 8px; background: rgba(59, 130, 246, 0.1); display: flex; align-items: center; justify-content: center; color: var(--secondary); font-size: 1.1rem;">
+              <i [class]="ach.icon"></i>
+            </div>
+            <h3 style="font-size: 1rem; font-weight: 700; color: #fff; margin: 0;">{{ ach.title }}</h3>
+          </div>
+          <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.5; margin: 0;">{{ ach.description }}</p>
+        </div>
+      }
     </div>
 
     <div class="timeline-container">

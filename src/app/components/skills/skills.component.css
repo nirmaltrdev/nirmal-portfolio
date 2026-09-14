@@ -23,28 +23,34 @@
 
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
-  perspective: 1000px;
+}
+
+@media (max-width: 900px) {
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .skill-card {
   background: var(--bg-card);
   border: 1px solid var(--border-light);
-  border-radius: 15px;
-  padding: 20px;
+  border-radius: 16px;
+  padding: 24px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 20px;
+  min-height: 160px;
   cursor: pointer;
-  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   will-change: transform;
 }
 
 .skill-card:hover {
-  transform: translateY(-10px) scale(1.02) rotateX(0deg) rotateY(0deg) !important;
+  transform: translateY(-6px);
   background: var(--bg-surface);
-  box-shadow: 0 15px 30px var(--primary-glow);
+  box-shadow: 0 16px 32px var(--primary-glow);
   border-color: var(--border-strong);
 }
 
