@@ -20,10 +20,11 @@ export class AboutComponent {
   narrativeRef = viewChild<ElementRef<HTMLElement>>('narrativeText');
 
   architectureNodes = signal([
-    { name: 'Angular', icon: 'fab fa-angular', desc: 'Frontend Architecture' },
-    { name: 'Node.js', icon: 'fab fa-node-js', desc: 'Backend Services' },
-    { name: 'Database', icon: 'fas fa-database', desc: 'Data Storage' },
-    { name: 'Cloud', icon: 'fab fa-aws', desc: 'Deployment' }
+    { name: 'Angular & TypeScript', icon: 'fab fa-angular', desc: 'Reactive Enterprise SPA & Modular UI' },
+    { name: 'PHP (CI4) + Java (Spring Boot)', icon: 'fas fa-layer-group', desc: 'Dual-Backend Core CRM & Inspection Engine' },
+    { name: 'Node.js & REST APIs', icon: 'fab fa-node-js', desc: 'Real-Time Services & Communication Pipelines' },
+    { name: 'MySQL • MariaDB • MongoDB • Oracle', icon: 'fas fa-database', desc: 'Relational & NoSQL Optimized Data Stores' },
+    { name: 'AWS S3 & Firebase FCM', icon: 'fab fa-aws', desc: 'Cloud Storage & Push Messaging Pipelines' }
   ]);
 
   constructor() {

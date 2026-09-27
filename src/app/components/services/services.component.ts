@@ -20,17 +20,17 @@ export class ServicesComponent {
     {
       title: 'Enterprise CRM Development',
       icon: 'fas fa-chart-line',
-      description: 'Scalable CRM solutions designed for automobile service operations, workshop management, and customer recall workflows.'
+      description: 'Production CRM platforms covering the customer lifecycle, lead management, appointment scheduling, workshop/job card workflows, quotations, service reminders, and customer recall management.'
     },
     {
-      title: 'Full Stack & Cloud Architecture',
+      title: 'Full Stack Architecture & API Engineering',
       icon: 'fas fa-layer-group',
-      description: 'End-to-end systems engineered with Angular, Java Spring Boot, PHP, Node.js, and AWS S3 cloud storage pipelines.'
+      description: 'End-to-end systems engineered with Angular, Java Spring Boot, PHP (CodeIgniter), and Node.js, featuring secure REST APIs, database design, SQL query optimization, authentication, and AWS S3 pipelines.'
     },
     {
-      title: 'Real-Time Systems & REST APIs',
-      icon: 'fas fa-network-wired',
-      description: 'High-performance API design with Swagger/Postman, secure JWT/RBAC access control, and live Socket.IO & Firebase messaging.'
+      title: 'AI, KPI & Business Automation',
+      icon: 'fas fa-brain',
+      description: 'Enterprise Performance Center & KPI architecture with hierarchical goal cascading, AI Copilot CRM integration for customer profile insights, and automated real-time workflows.'
     }
   ]);
 

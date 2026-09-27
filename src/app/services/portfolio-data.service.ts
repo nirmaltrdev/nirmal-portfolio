@@ -61,7 +61,7 @@ export class PortfolioDataService {
     {
       category: 'Backend Architecture',
       icon: 'database',
-      skills: ['PHP (CodeIgniter 4)', 'Node.js', 'Java', 'Spring Boot', 'REST APIs', 'MPDF']
+      skills: ['Java', 'Spring Boot', 'Node.js', 'PHP', 'CodeIgniter 4', 'REST APIs', 'MPDF']
     },
     {
       category: 'Frontend Engineering',
@@ -69,36 +69,41 @@ export class PortfolioDataService {
       skills: ['Angular', 'TypeScript', 'JavaScript', 'HTML5', 'CSS3', 'Tailwind CSS']
     },
     {
-      category: 'Databases & Storage',
+      category: 'Databases & Query Optimization',
       icon: 'hdd',
-      skills: ['MySQL', 'Oracle', 'MariaDB', 'MongoDB', 'Schema Design', 'Query Optimization']
+      skills: ['MySQL', 'MariaDB', 'MongoDB', 'Oracle', 'SQL', 'Database Design', 'Query Optimization']
     },
     {
-      category: 'Cloud, Security & Tools',
+      category: 'Cloud, Real-Time & Security',
       icon: 'cloud-server',
-      skills: ['AWS (S3)', 'Firebase (FCM)', 'Socket.IO', 'WebSockets', 'JWT', 'OAuth', 'RBAC', 'Git', 'GitHub', 'Postman', 'Swagger', 'Linux', 'PuTTY']
+      skills: ['AWS', 'Amazon S3', 'Firebase', 'Firebase Cloud Messaging (FCM)', 'Socket.IO', 'WebSockets', 'JWT', 'OAuth', 'RBAC']
+    },
+    {
+      category: 'Architecture, Business & Tools',
+      icon: 'shield',
+      skills: ['Enterprise CRM', 'System Architecture', 'API Integration', 'Performance Optimization', 'KPI / Performance Management', 'AI Copilot Design', 'Git', 'GitHub', 'Postman', 'Swagger', 'VS Code', 'Linux', 'PuTTY']
     }
   ];
 
   achievements: Achievement[] = [
     {
-      title: 'Database & API Performance',
-      description: 'Optimized slow-running SQL queries and database schemas across MySQL and MariaDB, noticeably boosting response times and API performance for core CRM modules.',
+      title: 'SQL Query Optimization',
+      description: 'Reduced a core CRM search from over 60 seconds to under 2 seconds through SQL/query optimization.',
       icon: 'fas fa-bolt'
     },
     {
-      title: 'End-to-End Ownership',
-      description: 'Took full lifecycle ownership of major CRM features — from requirement analysis and architectural design through cloud deployment and production support.',
-      icon: 'fas fa-shield-alt'
-    },
-    {
-      title: 'Customer Retention Impact',
-      description: 'Delivered high-value platform enhancements including recall management, lost customer tracking, and automated service reminders to retain repeat customers.',
+      title: 'Performance Center & KPI Architecture',
+      description: 'Designed and built an enterprise Performance Center / KPI capability within the CRM, featuring a configurable N-level organizational hierarchy (Group of Companies → Company → Department/KRA), KPI assignment, goal cascading, employee performance tracking, and hierarchical drill-down of performance scores.',
       icon: 'fas fa-chart-line'
     },
     {
-      title: 'Team Mentorship & Delivery',
-      description: 'Led and mentored a team of 2–4 developers, maintaining code quality and ensuring consistent on-time sprint deliveries through structured code reviews.',
+      title: 'AI Copilot CRM Integration',
+      description: 'Architected an AI Copilot layer on top of the CRM with AI service & gateway concepts, prompt management, provider routing, and customer-facing AI Copilot integration for AI-assisted business and customer profile insights.',
+      icon: 'fas fa-brain'
+    },
+    {
+      title: 'Engineering Leadership & Delivery',
+      description: 'Led and mentored a team of 2–4 developers, taking end-to-end feature ownership from requirement analysis and architecture through development, database design, API integration, code reviews, deployment, and production support.',
       icon: 'fas fa-users'
     }
   ];
@@ -106,23 +111,23 @@ export class PortfolioDataService {
   projects: Project[] = [
     {
       title: 'Enterprise CRM Platform — Automobile Service Industry',
-      description: 'Full-scale enterprise CRM platform running day-to-day operations for automobile service centers. Handles end-to-end workflows from lead intake through appointment scheduling, workshop operations, job card management, quotations, and customer follow-ups (recall management, lost customer tracking, service reminders) to maximize customer retention.',
-      technologies: ['Angular', 'PHP (CodeIgniter 4)', 'Node.js', 'MySQL', 'MongoDB', 'Socket.IO', 'Firebase', 'AWS S3', 'MPDF'],
+      description: 'Primary production multi-module CRM for automobile service centers running the full customer lifecycle: lead intake, appointment scheduling, workshop/service operations, job cards, quotations, service reminders, customer recall, and lost customer tracking. Extended with an N-level KPI Performance Center, AI Copilot layer, real-time updates, and role-based access control.',
+      technologies: ['Angular', 'TypeScript', 'PHP (CodeIgniter 4)', 'Node.js', 'Java', 'MySQL', 'MongoDB', 'Socket.IO', 'Firebase', 'AWS S3', 'JWT/RBAC'],
       icon: 'user-switch',
       github: 'https://github.com/nirmaltrdev'
     },
     {
-      title: 'Vehicle Inspection & Job Card System (Java Spring Boot)',
-      description: 'Secure companion module built with Java Spring Boot allowing workshop inspectors to conduct vehicle inspections, generate reports, and share them externally with vehicle owners via time-bound expiring token links without exposing internal CRM systems.',
-      technologies: ['Java', 'Spring Boot', 'REST APIs', 'Token Validation', 'MySQL', 'MPDF'],
+      title: 'Vehicle Inspection & Job Card Management System',
+      description: 'Companion module built with Java Spring Boot enabling inspectors to generate vehicle inspection reports linked to job cards and share them externally via time-bound expiring token links without exposing internal CRM systems. Integrated file storage and job card data processing via secure REST APIs.',
+      technologies: ['Java', 'Spring Boot', 'REST APIs', 'Token-Based Authentication', 'AWS S3', 'MySQL', 'MPDF'],
       icon: 'car',
       github: 'https://github.com/nirmaltrdev'
     },
     {
-      title: 'WhatsApp Automation & Messaging Engine',
-      description: 'Automated customer engagement and communication pipeline integrated into the enterprise CRM ecosystem. Features bulk campaign triggers, scheduled notifications, follow-up workflows, and real-time updates via webhooks.',
-      technologies: ['Angular', 'Node.js', 'REST APIs', 'Webhooks', 'Socket.IO'],
-      icon: 'message',
+      title: 'CRM AI & Performance Platform',
+      description: 'Integrated intelligence platform built directly on the CRM data model, combining an N-level configurable Performance Center / KPI module (Group → Company → Department/KRA, goal cascading, employee performance tracking) with an AI Copilot layer (AI gateway, prompt routing, customer profile integration for AI-assisted business insights).',
+      technologies: ['Angular', 'TypeScript', 'Node.js', 'AI Gateway', 'Prompt Management', 'REST APIs', 'MySQL', 'MongoDB'],
+      icon: 'brain',
       github: 'https://github.com/nirmaltrdev'
     }
   ];
@@ -133,15 +138,17 @@ export class PortfolioDataService {
       company: 'LogicInfeel, Trivandrum, Kerala',
       duration: 'Feb 2023 – Present',
       description: [
-        'Architected and developed a full-scale Enterprise CRM platform for the automobile service industry, spanning customer management, lead management, appointment scheduling, workshop operations, job card management, vehicle inspection, service reminders, and quotation management modules.',
-        'Designed and implemented a Vehicle Inspection System using Java Spring Boot, including inspection workflows, secure shareable inspection links with time-bound token validation, and backend APIs for report generation.',
-        'Engineered core CRM modules end-to-end using Angular, PHP (CodeIgniter 4), Node.js, MySQL, and MongoDB, delivering customer recall management, lost customer tracking, dashboards, and analytics.',
-        'Integrated third-party services including WhatsApp for customer communication and Firebase Cloud Messaging (FCM) for real-time push notifications, and developed real-time CRM updates using Socket.IO.',
-        'Designed AWS S3-based file storage architecture and built PDF generation/reporting pipelines using MPDF for job cards, quotations, and inspection reports.',
+        'Architected and developed a production enterprise CRM platform for the automobile service industry, spanning customer management, lead management, potential lead management, appointment scheduling, workshop/service operations, job card management, quotation management, service reminders, customer recall management, and lost customer tracking.',
+        'Engineered core CRM modules end-to-end using Angular, PHP (CodeIgniter 4), Node.js, MySQL, and MongoDB, and extended select backend modules and integrations using Java, broadening the platform beyond its core PHP stack.',
+        'Designed and built a Performance Center / KPI capability within the CRM, covering a configurable N-level organizational hierarchy (Group of Companies → Company → Department/KRA), KPI assignment, goal cascading, employee performance tracking, and hierarchical drill-down of performance scores.',
+        'Designed an AI Copilot layer on top of the existing CRM, including AI service and gateway concepts, prompt management, provider routing, and a customer-facing AI Copilot integrated with the CRM customer profile to support AI-assisted business insights.',
+        'Developed a Java Spring Boot Vehicle Inspection System integrated with the CRM, including inspection workflows, job card integration, report generation, and secure externally-shareable inspection links protected by time-bound token validation.',
+        'Integrated third-party services including WhatsApp for customer communication and Firebase Cloud Messaging (FCM) for real-time push notifications, and implemented real-time CRM updates using Socket.IO.',
+        'Designed an AWS S3-based file storage architecture and built PDF generation/reporting pipelines using MPDF for job cards, quotations, and inspection reports.',
         'Designed and documented REST APIs using Postman and Swagger, and implemented JWT-based authentication with role-based access control (RBAC) across CRM modules.',
-        'Developed Java-based backend modules and cross-service integrations, extending the platform beyond its core PHP stack.',
-        'Collaborated directly with clients and stakeholders to analyze requirements, resolve production issues, and translate business needs into scalable technical solutions.',
-        'Led and mentored a team of 2–4 developers, driving code quality and on-time delivery through structured code reviews.'
+        'Reduced a core CRM search from over 60 seconds to under 2 seconds through SQL/query optimization.',
+        'Took end-to-end ownership of major CRM feature areas, from requirement analysis and architecture through development, database design, API integration, testing, deployment, and production support.',
+        'Led and mentored a team of 2–4 developers, driving code quality and on-time delivery through structured code reviews and technical guidance.'
       ]
     },
     {
@@ -149,7 +156,7 @@ export class PortfolioDataService {
       company: 'Bitbridge Technologies, Trivandrum, Kerala',
       duration: 'Jul 2022 – Feb 2023',
       description: [
-        'Developed authentication systems and reusable frontend modules for web applications using Angular and TypeScript.',
+        'Developed authentication systems and reusable frontend modules for web applications.',
         'Built responsive user interfaces and integrated REST APIs to connect frontend and backend services.',
         'Collaborated closely with backend engineering teams to deliver features on schedule within an Agile workflow.'
       ]
@@ -184,7 +191,7 @@ export class PortfolioDataService {
 
   memberships: Membership[] = [
     { name: 'IEEE', role: 'Associate Member' },
-    { name: 'CSI (Computer Society of India)', role: 'Associate Member' }
+    { name: 'CSI', role: 'Associate Member' }
   ];
 
   constructor() { }

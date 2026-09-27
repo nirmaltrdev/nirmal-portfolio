@@ -47,7 +47,12 @@ export class HeroComponent {
 
       // 3. Typewriter effect
       this.typeSvc.type(
-        ["Full Stack Developer", "Angular Expert", "UI/UX Enthusiast", "Problem Solver"],
+        [
+          "Full Stack Software Engineer",
+          "Enterprise CRM Engineer",
+          "Java & Spring Boot Engineer",
+          "Angular & TypeScript Engineer"
+        ],
         80, 40, this.typedRole
       );
 

@@ -56,7 +56,8 @@ export class SkillsComponent {
       'database': 'fas fa-database',
       'layout': 'fas fa-laptop-code',
       'hdd': 'fas fa-hdd',
-      'cloud-server': 'fas fa-cloud'
+      'cloud-server': 'fas fa-cloud',
+      'shield': 'fas fa-shield-alt'
     };
     return map[icon] || `fas fa-${icon}`;
   }
