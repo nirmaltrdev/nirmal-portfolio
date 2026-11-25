@@ -255,6 +255,7 @@
   overflow-wrap: anywhere; /* long URLs / unbroken input never widen the bubble */
 }
 
+
 .chat-time {
   font-size: 0.7rem;
   color: var(--text-muted);

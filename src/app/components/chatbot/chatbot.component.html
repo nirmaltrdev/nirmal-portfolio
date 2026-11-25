@@ -20,7 +20,9 @@
     <div class="chat-body" id="custom-chat-body" data-lenis-prevent aria-live="polite" aria-relevant="additions">
       <div class="chat-message-row" *ngFor="let msg of chatMessages" [ngClass]="msg.sender">
         <div class="chat-bubble">
-          <div class="chat-text" [innerHTML]="msg.text"></div>
+          <!-- Bot replies: escaped, then basic Markdown (lists, bold, code). User text: plain interpolation. -->
+          <div *ngIf="msg.sender === 'bot'; else userText" class="chat-text chat-text--md" [innerHTML]="msg.text | chatMarkdown"></div>
+          <ng-template #userText><div class="chat-text">{{ msg.text }}</div></ng-template>
           <span class="chat-time">{{ msg.time }}</span>
         </div>
       </div>

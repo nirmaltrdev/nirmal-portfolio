@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import { ChatMarkdownPipe } from './chat-markdown';
 import { timeout } from 'rxjs/operators';
 
 /** Server-side proxy to Gemini (api/chat.js). The API key never reaches the browser. */
@@ -13,7 +14,7 @@ const CHAT_API_TIMEOUT_MS = 12000;
 @Component({
   selector: 'app-chatbot',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, ChatMarkdownPipe],
   templateUrl: './chatbot.component.html',
   styleUrls: ['./chatbot.component.css']
 })

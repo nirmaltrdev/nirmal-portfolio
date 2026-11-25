@@ -454,3 +454,39 @@ textarea:-webkit-autofill {
     scroll-behavior: auto !important;
   }
 }
+
+/* Chatbot: Markdown rendered into bot replies via [innerHTML].
+   Global on purpose: Angular's emulated encapsulation cannot style innerHTML content.
+   Scoped by the .chat-text--md class, so nothing else on the page is affected. */
+.chat-text--md {
+  white-space: normal;
+}
+
+.chat-text--md ul,
+.chat-text--md ol {
+  margin: 0.4rem 0;
+  padding-left: 1.4rem;
+}
+
+.chat-text--md li {
+  margin: 0.2rem 0;
+}
+
+.chat-text--md li::marker {
+  color: var(--text-muted);
+}
+
+.chat-text--md strong {
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.chat-text--md code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.85em;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+  background: var(--overlay-2);
+  border: 1px solid var(--border-strong);
+  overflow-wrap: anywhere;
+}
