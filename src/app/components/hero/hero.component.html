@@ -1,37 +1,37 @@
-<section class="hero-section" [class.color-shift]="enableColorShift">
-  <!-- Particle & ThreeJS Layers -->
-  <canvas #particleCanvas class="particle-canvas"></canvas>
-  <div #threeContainer class="three-bg"></div>
-  
+<section class="hero-section" #heroSection [class.color-shift]="enableColorShift">
+  <!-- Particle & ThreeJS Layers (decorative) -->
+  <canvas #particleCanvas class="particle-canvas" aria-hidden="true"></canvas>
+  <div #threeContainer class="three-bg" aria-hidden="true"></div>
+
   <div class="hero-content">
     <div class="hero-badge">
-      <span class="status-dot pulsing"></span>
-      Full Stack Software Engineer | Angular • Java • Spring Boot • Node.js • PHP/CodeIgniter
+      <span class="status-dot pulsing" aria-hidden="true"></span>
+      <span class="badge-text"><span class="nowrap">PHP Application Developer</span> | <span class="nowrap">Full Stack Software Engineer</span></span>
     </div>
 
-    <!-- Glitch Name -->
-    <h1 class="hero-title hero-name" [class.glitching]="enableGlitch">
-      {{ glitchText() }}
+    <!-- Glitch Name: screen readers get the stable name, not the scrambled frames -->
+    <h1 class="hero-title hero-name" [class.glitching]="enableGlitch" [attr.aria-label]="name">
+      <span aria-hidden="true">{{ glitchText() }}</span>
     </h1>
 
     <!-- Typewriter Role -->
     <h2 class="hero-subheading hero-role">
-      {{ typedRole() }}<span class="blink-cursor">|</span>
+      {{ typedRole() }}<span class="blink-cursor" aria-hidden="true">|</span>
     </h2>
 
     <p class="hero-subtitle hero-desc">
-      Architecting and delivering production enterprise CRM and business applications for the automobile service industry with Angular, Java Spring Boot, Node.js, and PHP/CodeIgniter.
+      Developing, deploying and supporting production enterprise CRM applications for the automobile service industry with PHP, CodeIgniter 4, MySQL and REST APIs on Linux-based AWS EC2 servers.
     </p>
 
     <div class="hero-actions">
-      <button #ctaBtn class="btn btn-primary cta-btn magnetic" (click)="scrollTo('projects')">
-        Explore Case Studies <i class="fas fa-arrow-right"></i>
+      <button #ctaBtn type="button" class="btn btn-primary cta-btn magnetic" (click)="scrollTo('projects')">
+        Explore Case Studies <i class="fas fa-arrow-right" aria-hidden="true"></i>
       </button>
-      <a href="assets/Nirmal_TR_Resume.pdf" download="Nirmal_TR_Resume.pdf" target="_blank" class="btn btn-outline cta-btn magnetic">
-        <i class="fas fa-download"></i> Download Resume
+      <a href="assets/Nirmal_TR.pdf" download="Nirmal_TR.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline cta-btn magnetic">
+        <i class="fas fa-download" aria-hidden="true"></i> Download Resume
       </a>
     </div>
   </div>
 
-  <div class="scroll-hint"><span></span></div>
+  <div class="scroll-hint" aria-hidden="true"><span></span></div>
 </section>

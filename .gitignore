@@ -42,4 +42,13 @@ testem.log
 Thumbs.db
 
 # Credentials / Local Config
+config.json
 /src/assets/config.json
+
+# Environment files (GEMINI_API_KEY etc.). Only the example file is committed.
+.env
+.env.*
+!.env.example
+
+# Vercel CLI project link / local build output
+.vercel

@@ -8,39 +8,41 @@
   <!-- Sticky Blurred Navbar -->
   <header class="saas-nav" [class.glass-nav]="scrolled">
     <div class="container nav-inner">
-      <a class="nav-brand" (click)="scrollTo('hero')">
+      <a class="nav-brand" href="#hero" (click)="scrollTo('hero', $event)">
         <span class="brand-text text-gradient-primary">Nirmal T R</span>
       </a>
       
       <nav class="nav-links">
-        <a class="nav-link" [class.active]="activeSection === 'about'" (click)="scrollTo('about')">About</a>
-        <a class="nav-link" [class.active]="activeSection === 'skills'" (click)="scrollTo('skills')">Skills</a>
-        <a class="nav-link" [class.active]="activeSection === 'projects'" (click)="scrollTo('projects')">Work</a>
-        <a class="nav-link" [class.active]="activeSection === 'experience'" (click)="scrollTo('experience')">Experience</a>
-        <a class="nav-link" [class.active]="activeSection === 'contact'" (click)="scrollTo('contact')">Contact</a>
+        <a class="nav-link" [class.active]="activeSection === 'about'" href="#about" (click)="scrollTo('about', $event)">About</a>
+        <a class="nav-link" [class.active]="activeSection === 'skills'" href="#skills" (click)="scrollTo('skills', $event)">Skills</a>
+        <a class="nav-link" [class.active]="activeSection === 'projects'" href="#projects" (click)="scrollTo('projects', $event)">Work</a>
+        <a class="nav-link" [class.active]="activeSection === 'experience'" href="#experience" (click)="scrollTo('experience', $event)">Experience</a>
+        <a class="nav-link" [class.active]="activeSection === 'contact'" href="#contact" (click)="scrollTo('contact', $event)">Contact</a>
       </nav>
 
       <div class="nav-actions">
-        <button class="theme-toggle-btn" (click)="toggleTheme()" aria-label="Toggle Theme">
-          <i class="fa-solid" [class.fa-moon]="isLightTheme" [class.fa-sun]="!isLightTheme"></i>
+        <button class="theme-toggle-btn" (click)="toggleTheme()" type="button"
+                [attr.aria-label]="isLightTheme ? 'Switch to dark theme' : 'Switch to light theme'"
+                [attr.aria-pressed]="isLightTheme">
+          <i class="fa-solid" [class.fa-moon]="isLightTheme" [class.fa-sun]="!isLightTheme" aria-hidden="true"></i>
         </button>
-        <button class="btn btn-primary desktop-btn" (click)="scrollTo('contact')">Let's Talk <i class="fas fa-paper-plane" style="margin-left: 0.25rem;"></i></button>
-        <button class="mobile-menu-btn" (click)="toggleMobileMenu()" aria-label="Menu">
-          <i class="fas" [class.fa-bars]="!isMobileMenuOpen" [class.fa-times]="isMobileMenuOpen"></i>
+        <button class="btn btn-primary desktop-btn" type="button" (click)="scrollTo('contact')">Let's Talk <i class="fas fa-paper-plane btn-icon-gap" aria-hidden="true"></i></button>
+        <button class="mobile-menu-btn" (click)="toggleMobileMenu()" aria-label="Menu" type="button" [attr.aria-expanded]="isMobileMenuOpen" aria-controls="mobile-menu">
+          <i class="fas" [class.fa-bars]="!isMobileMenuOpen" [class.fa-times]="isMobileMenuOpen" aria-hidden="true"></i>
         </button>
       </div>
     </div>
   </header>
 
   <!-- Mobile Menu Overlay -->
-  <div class="mobile-menu-overlay" [class.open]="isMobileMenuOpen">
+  <div class="mobile-menu-overlay" id="mobile-menu" [class.open]="isMobileMenuOpen" [attr.aria-hidden]="!isMobileMenuOpen" [attr.inert]="isMobileMenuOpen ? null : ''">
     <nav class="mobile-nav-links">
-      <a class="nav-link" [class.active]="activeSection === 'about'" (click)="scrollTo('about')">About</a>
-      <a class="nav-link" [class.active]="activeSection === 'skills'" (click)="scrollTo('skills')">Skills</a>
-      <a class="nav-link" [class.active]="activeSection === 'projects'" (click)="scrollTo('projects')">Work</a>
-      <a class="nav-link" [class.active]="activeSection === 'experience'" (click)="scrollTo('experience')">Experience</a>
-      <a class="nav-link" [class.active]="activeSection === 'contact'" (click)="scrollTo('contact')">Contact</a>
-      <button class="btn btn-primary" style="margin-top: 1.5rem;" (click)="scrollTo('contact')">Let's Talk <i class="fas fa-paper-plane" style="margin-left: 0.25rem;"></i></button>
+      <a class="nav-link" [class.active]="activeSection === 'about'" href="#about" (click)="scrollTo('about', $event)">About</a>
+      <a class="nav-link" [class.active]="activeSection === 'skills'" href="#skills" (click)="scrollTo('skills', $event)">Skills</a>
+      <a class="nav-link" [class.active]="activeSection === 'projects'" href="#projects" (click)="scrollTo('projects', $event)">Work</a>
+      <a class="nav-link" [class.active]="activeSection === 'experience'" href="#experience" (click)="scrollTo('experience', $event)">Experience</a>
+      <a class="nav-link" [class.active]="activeSection === 'contact'" href="#contact" (click)="scrollTo('contact', $event)">Contact</a>
+      <button class="btn btn-primary mobile-menu-cta" type="button" (click)="scrollTo('contact')">Let's Talk <i class="fas fa-paper-plane btn-icon-gap" aria-hidden="true"></i></button>
     </nav>
   </div>
 

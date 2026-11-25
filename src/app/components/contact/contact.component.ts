@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { timeout } from 'rxjs/operators';
 import { AnimationService } from '../../services/animation.service';
 
 @Component({
@@ -26,6 +27,8 @@ export class ContactComponent {
   submitBtn = viewChild<ElementRef<HTMLElement>>('submitBtn');
 
   isSubmitting = false;
+  /** Set on the first submit attempt so empty required fields show their invalid state. */
+  submitAttempted = false;
 
   contactForm = this.fb.group({
     name: ['', [Validators.required]],
@@ -62,7 +65,15 @@ export class ContactComponent {
     });
   }
 
+  /** aria-invalid value for a field: only after the visitor edited it or tried to submit. */
+  isInvalid(field: 'name' | 'email' | 'message'): boolean | null {
+    const control = this.contactForm.controls[field];
+    return control.invalid && (control.dirty || control.touched || this.submitAttempted) ? true : null;
+  }
+
   submitForm(): void {
+    if (this.isSubmitting) return; // no double submit (e.g. Enter pressed twice)
+    this.submitAttempted = true;
     if (this.contactForm.valid) {
       this.isSubmitting = true;
       const formData = {
@@ -80,6 +91,7 @@ export class ContactComponent {
       }
 
       this.http.post('https://formsubmit.co/ajax/nirmaltrejilal@gmail.com', formData)
+        .pipe(timeout(15000)) // offline / hung request: fail cleanly instead of spinning forever
         .subscribe({
           next: () => {
             this.message.success('Thank you! Your message has been sent. Nirmal will get in touch with you shortly.', {
@@ -97,6 +109,7 @@ export class ContactComponent {
             }
 
             this.contactForm.reset();
+            this.submitAttempted = false;
             this.isSubmitting = false;
             this.cdr.markForCheck();
           },

@@ -8,12 +8,15 @@ interface Particle {
   vy: number;
   mass: number;
   symbol: string;
-  color: string;
+  colorIndex: number;
   size: number;
   opacity: number;
   seed: number;
   life: number;
 }
+
+/** CSS custom properties (styles.css) that hold the theme-aware particle palette. */
+const PALETTE_VARS = ['--particle-1', '--particle-2', '--particle-3', '--particle-4'];
 
 @Injectable({ providedIn: 'root' })
 export class ParticleService {
@@ -25,47 +28,68 @@ export class ParticleService {
   private mx = -1000;
   private my = -1000;
   private gravityReversed = false;
-  private gravityTimeout?: any;
+  private gravityTimeout?: ReturnType<typeof setTimeout>;
+  private palette: string[] = ['#00ffff', '#8b5cf6', '#a78bfa', 'rgba(255,255,255,0.8)'];
+  private blend: GlobalCompositeOperation = 'screen';
+  private staticMode = false;
+  private running = false;
 
-  initAntigravity(canvas: HTMLCanvasElement) {
+  // Bound once so removeEventListener actually removes them
+  private readonly onResize = () => {
+    this.resize();
+    if (this.staticMode) this.drawStaticFrame();
+  };
+  private readonly onMouseMove = (e: MouseEvent) => {
+    if (!this.canvas) return;
+    const rect = this.canvas.getBoundingClientRect();
+    this.mx = e.clientX - rect.left;
+    this.my = e.clientY - rect.top;
+  };
+  private readonly onMouseLeave = () => {
+    this.mx = -1000;
+    this.my = -1000;
+  };
+  private readonly onClick = () => this.triggerBurst(this.mx, this.my);
+
+  /**
+   * @param staticFrame draw one still frame and never animate (prefers-reduced-motion)
+   */
+  initAntigravity(canvas: HTMLCanvasElement, staticFrame = false) {
     if (!isPlatformBrowser(this.platformId)) return;
     this.canvas = canvas;
     this.ctx = canvas.getContext('2d');
     if (!this.ctx) return;
+    this.staticMode = staticFrame;
 
+    this.readTheme();
     this.resize();
-    window.addEventListener('resize', this.resize.bind(this));
-    
-    this.canvas.addEventListener('mousemove', this.onMouseMove.bind(this));
-    this.canvas.addEventListener('click', this.onClick.bind(this));
-    this.canvas.addEventListener('mouseleave', this.onMouseLeave.bind(this));
+    window.addEventListener('resize', this.onResize);
 
-    this.initParticles();
-    this.animate();
-  }
-
-  private resize() {
-    if (this.canvas) {
-      this.canvas.width = window.innerWidth;
-      this.canvas.height = window.innerHeight;
+    if (staticFrame) {
+      this.initParticles(true);
+      this.drawStaticFrame();
+      return;
     }
+
+    this.canvas.addEventListener('mousemove', this.onMouseMove);
+    this.canvas.addEventListener('click', this.onClick);
+    this.canvas.addEventListener('mouseleave', this.onMouseLeave);
+
+    this.initParticles(false);
+    this.start();
   }
 
-  private onMouseMove(e: MouseEvent) {
-    if (this.canvas) {
-      const rect = this.canvas.getBoundingClientRect();
-      this.mx = e.clientX - rect.left;
-      this.my = e.clientY - rect.top;
-    }
+  /** Re-read the palette after a theme switch (redraws immediately when static). */
+  refreshTheme() {
+    this.readTheme();
+    if (this.staticMode) this.drawStaticFrame();
   }
 
-  private onMouseLeave() {
-    this.mx = -1000;
-    this.my = -1000;
-  }
-
-  private onClick() {
-    this.triggerBurst(this.mx, this.my);
+  /** Pause/resume the loop, e.g. while the hero is scrolled out of view. */
+  setActive(active: boolean) {
+    if (this.staticMode) return;
+    if (active) this.start();
+    else this.stop();
   }
 
   triggerBurst(x: number, y: number) {
@@ -84,20 +108,64 @@ export class ParticleService {
     }
   }
 
-  private initParticles() {
+  destroy() {
+    if (!isPlatformBrowser(this.platformId)) return;
+    this.stop();
+    if (this.gravityTimeout) clearTimeout(this.gravityTimeout);
+    window.removeEventListener('resize', this.onResize);
+    if (this.canvas) {
+      this.canvas.removeEventListener('mousemove', this.onMouseMove);
+      this.canvas.removeEventListener('click', this.onClick);
+      this.canvas.removeEventListener('mouseleave', this.onMouseLeave);
+    }
+  }
+
+  private start() {
+    if (this.running) return;
+    this.running = true;
+    this.animationFrameId = requestAnimationFrame(this.animate);
+  }
+
+  private stop() {
+    this.running = false;
+    if (this.animationFrameId) cancelAnimationFrame(this.animationFrameId);
+    this.animationFrameId = undefined;
+  }
+
+  private readTheme() {
+    const cs = getComputedStyle(document.body);
+    const colors = PALETTE_VARS.map(v => cs.getPropertyValue(v).trim()).filter(Boolean);
+    if (colors.length === PALETTE_VARS.length) this.palette = colors;
+    const blend = cs.getPropertyValue('--particle-blend').trim();
+    this.blend = (blend || 'screen') as GlobalCompositeOperation;
+  }
+
+  private resize() {
+    if (this.canvas) {
+      this.canvas.width = window.innerWidth;
+      this.canvas.height = window.innerHeight;
+    }
+  }
+
+  /**
+   * @param onScreen place particles inside the canvas (static frame) instead of below it,
+   *                 where the animated version lets them float up into view.
+   */
+  private initParticles(onScreen: boolean) {
     this.particles = [];
     const symbols = ['{', '}', '<', '>', '/', ';', '=', '[', ']', '0', '1', '#', '@', '!', '?'];
-    const colors = ['#00FFFF', '#8B5CF6', '#a78bfa', 'rgba(255,255,255,0.8)'];
-    
+    const w = this.canvas?.width || 1000;
+    const h = this.canvas?.height || 1000;
+
     for (let i = 0; i < 150; i++) {
       this.particles.push({
-        x: Math.random() * (this.canvas?.width || 1000),
-        y: Math.random() * (this.canvas?.height || 1000) + (this.canvas?.height || 1000),
+        x: Math.random() * w,
+        y: onScreen ? Math.random() * h : Math.random() * h + h,
         vx: 0,
         vy: 0,
         mass: 0.5 + Math.random() * 1.5,
         symbol: symbols[Math.floor(Math.random() * symbols.length)],
-        color: colors[Math.floor(Math.random() * colors.length)],
+        colorIndex: Math.floor(Math.random() * 4),
         size: 10 + Math.random() * 8,
         opacity: 0.4 + Math.random() * 0.5,
         seed: Math.random() * 1000,
@@ -106,22 +174,43 @@ export class ParticleService {
     }
   }
 
-  private animate = () => {
+  private drawParticles() {
     if (!this.ctx || !this.canvas) return;
-    
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    this.ctx.globalCompositeOperation = 'screen';
-    
+    this.ctx.globalCompositeOperation = this.blend;
+    for (const p of this.particles) {
+      this.ctx.font = `${p.size}px "Courier New"`;
+      this.ctx.fillStyle = this.palette[p.colorIndex % this.palette.length];
+      this.ctx.globalAlpha = p.opacity;
+      this.ctx.fillText(p.symbol, p.x, p.y);
+    }
+    this.ctx.globalAlpha = 1;
+  }
+
+  private drawStaticFrame() {
+    if (this.canvas && this.particles.length) {
+      // keep the still frame inside the (possibly resized) canvas
+      for (const p of this.particles) {
+        p.x = p.x % this.canvas.width;
+        p.y = p.y % this.canvas.height;
+      }
+    }
+    this.drawParticles();
+  }
+
+  private animate = () => {
+    if (!this.ctx || !this.canvas || !this.running) return;
+
     const time = performance.now() * 0.001;
 
     for (const p of this.particles) {
       const lift = 0.04 / p.mass;
       const drag = 0.982;
       const wobble = Math.sin(time * 20 + p.seed) * 0.35;
-      
+
       p.vx += wobble;
       p.vy += lift - (this.gravityReversed ? -0.05 : 0.012);
-      
+
       // mouse repel
       if (this.mx !== -1000) {
         const dist = Math.hypot(this.mx - p.x, this.my - p.y);
@@ -144,30 +233,9 @@ export class ParticleService {
         p.vx = 0;
         p.vy = 0;
       }
-      
-      this.ctx.font = `${p.size}px "Courier New"`;
-      this.ctx.fillStyle = p.color;
-      this.ctx.globalAlpha = p.opacity;
-      this.ctx.fillText(p.symbol, p.x, p.y);
     }
-    
-    this.ctx.globalAlpha = 1;
-    this.animationFrameId = requestAnimationFrame(this.animate);
-  }
 
-  destroy() {
-    if (!isPlatformBrowser(this.platformId)) return;
-    if (this.animationFrameId) {
-      cancelAnimationFrame(this.animationFrameId);
-    }
-    if (this.gravityTimeout) {
-      clearTimeout(this.gravityTimeout);
-    }
-    window.removeEventListener('resize', this.resize.bind(this));
-    if (this.canvas) {
-      this.canvas.removeEventListener('mousemove', this.onMouseMove.bind(this));
-      this.canvas.removeEventListener('click', this.onClick.bind(this));
-      this.canvas.removeEventListener('mouseleave', this.onMouseLeave.bind(this));
-    }
-  }
+    this.drawParticles();
+    this.animationFrameId = requestAnimationFrame(this.animate);
+  };
 }

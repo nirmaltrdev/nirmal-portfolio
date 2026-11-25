@@ -1,25 +1,33 @@
-<section class="section skills-section" id="skills">
+<section class="section skills-section">
   <div class="container" #skillsContainer>
     <div class="section-header">
       <h2 class="section-title text-center">Technical Mastery</h2>
       <p class="section-subtitle text-center">Weapons of choice for crafting digital experiences.</p>
     </div>
 
+    <!-- Core Competencies (reuses the skill-tag chip style) -->
+    <div class="core-competencies">
+      <h3 class="core-competencies-title">Core Competencies</h3>
+      <div class="skill-tags skill-tags--center">
+        @for (c of coreCompetencies(); track c) {
+          <span class="skill-tag">{{ c }}</span>
+        }
+      </div>
+    </div>
+
     <div class="skills-grid">
       @for (group of skillGroups(); track group.category) {
-        <div class="skill-card" #skillCard (mouseenter)="triggerConfetti($event)" style="align-items: flex-start;">
-          <div class="skill-icon-wrapper" style="color: var(--secondary);">
+        <div class="skill-card" #skillCard (mouseenter)="triggerConfetti($event)">
+          <div class="skill-icon-wrapper" aria-hidden="true">
             <i [class]="getCategoryIcon(group.icon)"></i>
           </div>
           <div class="skill-info">
-            <div class="skill-header" style="margin-bottom: 0.75rem;">
-              <span class="skill-name" style="font-size: 1.25rem; font-weight: 700; color: #fff;">{{ group.category }}</span>
+            <div class="skill-header">
+              <h3 class="skill-name">{{ group.category }}</h3>
             </div>
-            <div class="skill-tags" style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+            <div class="skill-tags">
               @for (s of group.skills; track s) {
-                <span class="skill-tag" style="background: rgba(59, 130, 246, 0.1); color: var(--primary); border: 1px solid rgba(59, 130, 246, 0.2); padding: 0.35rem 0.75rem; border-radius: 20px; font-size: 0.85rem; font-weight: 500;">
-                  {{ s }}
-                </span>
+                <span class="skill-tag">{{ s }}</span>
               }
             </div>
           </div>

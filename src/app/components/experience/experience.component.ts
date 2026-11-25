@@ -25,9 +25,9 @@ export class ExperienceComponent {
   experiences = signal(this.portfolioData.experiences.map(exp => {
     let tech: string[] = [];
     if (exp.company.toLowerCase().includes('logicinfeel')) {
-      tech = ['Angular', 'TypeScript', 'Java Spring Boot', 'PHP (CI4)', 'Node.js', 'MySQL', 'MongoDB', 'Performance Center (KPI)', 'AI Copilot', 'AWS S3', 'MPDF', 'JWT / RBAC', 'Socket.IO', 'Swagger'];
+      tech = ['CodeIgniter 4', 'PHP', 'MySQL', 'Angular 15', 'AWS EC2', 'AWS S3', 'Apache', 'Linux', 'cron', 'WhatsApp Cloud API', 'OpenAI', 'Yeastar PBX'];
     } else if (exp.company.toLowerCase().includes('bitbridge')) {
-      tech = ['Angular', 'TypeScript', 'REST APIs', 'Auth Systems', 'Agile'];
+      tech = ['REST APIs', 'Agile'];
     }
     return {
       role: exp.role,

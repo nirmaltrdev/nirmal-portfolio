@@ -1,15 +1,36 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="dark-theme">
 <head>
   <meta charset="utf-8">
-  <title>Nirmal T R | Full Stack Software Engineer</title>
+  <title>Nirmal T R | PHP Application Developer | Full Stack Software Engineer</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+  <!-- Theme: apply the saved choice (or the OS preference on a first visit) before anything paints,
+       so there is no flash of the wrong theme. The Angular app keeps it in sync afterwards. -->
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" content="#050816">
+  <script>
+    (function () {
+      var light = false;
+      try {
+        var saved = localStorage.getItem('theme');
+        light = saved ? saved === 'light' : window.matchMedia('(prefers-color-scheme: light)').matches;
+      } catch (e) { /* storage blocked: fall back to dark */ }
+      var root = document.documentElement;
+      root.classList.toggle('light-theme', light);
+      root.classList.toggle('dark-theme', !light);
+      root.style.backgroundColor = light ? '#f8fafc' : '#050816';
+      var meta = document.querySelector('meta[name="theme-color"]');
+      if (meta) meta.setAttribute('content', light ? '#f8fafc' : '#050816');
+    })();
+  </script>
+
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
+  <link rel="canonical" href="https://nirmaltr.vercel.app/">
 
   <!-- ═══ Security Headers (via meta equivalents) ═══ -->
-  <!-- Prevent MIME type sniffing -->
-  <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <!-- Control referrer info sent on external links -->
   <meta name="referrer" content="strict-origin-when-cross-origin">
 
@@ -18,34 +39,41 @@
   <link rel="dns-prefetch" href="https://fonts.gstatic.com">
   <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
 
-  <!-- Google Fonts with display=swap to avoid FOIT (Flash of Invisible Text) -->
+  <!-- Google Fonts (Inter only; the single source of the site font) with display=swap -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- FontAwesome: preloaded for fast icon rendering (navbar icons are critical) -->
   <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
 
   <!-- SEO & Performance Meta -->
-  <meta name="description" content="Nirmal T R – Full Stack Software Engineer specializing in Angular, Java, Spring Boot, Node.js, PHP/CodeIgniter, and Enterprise CRM architectures.">
-  <meta name="keywords" content="Nirmal T R, Full Stack Software Engineer, Angular, Java, Spring Boot, Node.js, PHP, CodeIgniter, Enterprise CRM, Trivandrum">
+  <meta name="description" content="Nirmal T R - PHP Application Developer | Full Stack Software Engineer with 4+ years developing, deploying and supporting production enterprise CRM applications with PHP, CodeIgniter 4, MySQL and REST APIs on Linux-based AWS EC2 servers.">
+  <meta name="keywords" content="PHP, CodeIgniter 4, MySQL, REST APIs, AWS EC2, Linux, Apache, Nirmal T R, PHP Application Developer, Full Stack Software Engineer, Angular 15, Enterprise CRM, Thiruvananthapuram">
   <meta name="author" content="Nirmal T R">
   <meta name="robots" content="index, follow">
-  <meta name="theme-color" content="#0b0f19">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
   <!-- Open Graph (social sharing preview) -->
-  <meta property="og:title" content="Nirmal T R | Full Stack Software Engineer">
-  <meta property="og:description" content="Full Stack Software Engineer specializing in Angular, Java, Spring Boot, Node.js, PHP/CodeIgniter, and Enterprise CRM architectures.">
+  <meta property="og:title" content="Nirmal T R | PHP Application Developer | Full Stack Software Engineer">
+  <meta property="og:description" content="Nirmal T R - PHP Application Developer | Full Stack Software Engineer with 4+ years developing, deploying and supporting production enterprise CRM applications with PHP, CodeIgniter 4, MySQL and REST APIs on Linux-based AWS EC2 servers.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://nirmaltr.vercel.app">
+  <meta property="og:url" content="https://nirmaltr.vercel.app/">
+  <meta property="og:image" content="https://nirmaltr.vercel.app/assets/profile.jpg">
+  <meta property="og:image:alt" content="Nirmal T R">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Nirmal T R | Full Stack Software Engineer">
+  <meta name="twitter:title" content="Nirmal T R | PHP Application Developer | Full Stack Software Engineer">
+  <meta name="twitter:description" content="Nirmal T R - PHP Application Developer | Full Stack Software Engineer with 4+ years developing, deploying and supporting production enterprise CRM applications with PHP, CodeIgniter 4, MySQL and REST APIs on Linux-based AWS EC2 servers.">
+  <meta name="twitter:image" content="https://nirmaltr.vercel.app/assets/profile.jpg">
 </head>
 <body class="dark-theme">
+  <script>
+    /* Mirror the theme class onto <body> (component styles use body.light-theme) before first paint */
+    document.body.className = document.documentElement.classList.contains('light-theme') ? 'light-theme' : 'dark-theme';
+  </script>
   <app-root></app-root>
 </body>
 </html>

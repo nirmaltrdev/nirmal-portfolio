@@ -1,4 +1,4 @@
-<section class="section contact-section" id="contact">
+<section class="section contact-section">
   <div class="container" #contactContainer>
     <div class="section-header">
       <h2 class="section-title text-center">Let's Connect</h2>
@@ -9,26 +9,26 @@
       <div class="contact-info">
         <h3 class="info-title">Reach Out</h3>
         <p class="info-text">Whether you have a question, a project proposal, or just want to say hi, my inbox is always open.</p>
-        
+
         <div class="info-items">
-          <div class="info-item" style="color: inherit;">
-            <i class="fas fa-map-marker-alt"></i>
+          <div class="info-item">
+            <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
             <span>Thiruvananthapuram, Kerala, India</span>
           </div>
-          <a href="tel:+918138055705" class="info-item" style="text-decoration: none; color: inherit;">
-            <i class="fas fa-phone-alt"></i>
+          <a href="tel:+918138055705" class="info-item">
+            <i class="fas fa-phone-alt" aria-hidden="true"></i>
             <span>+91-8138055705</span>
           </a>
-          <a href="mailto:nirmaltrejilal@gmail.com" target="_blank" class="info-item" style="text-decoration: none; color: inherit;">
-            <i class="fas fa-envelope"></i>
+          <a href="mailto:nirmaltrejilal@gmail.com" class="info-item">
+            <i class="fas fa-envelope" aria-hidden="true"></i>
             <span>nirmaltrejilal&#64;gmail.com</span>
           </a>
-          <a href="https://linkedin.com/in/nirmaltr" target="_blank" class="info-item" style="text-decoration: none; color: inherit;">
-            <i class="fab fa-linkedin"></i>
+          <a href="https://linkedin.com/in/nirmaltr" target="_blank" rel="noopener noreferrer" class="info-item">
+            <i class="fab fa-linkedin" aria-hidden="true"></i>
             <span>linkedin.com/in/nirmaltr</span>
           </a>
-          <a href="https://github.com/nirmaltrdev" target="_blank" class="info-item" style="text-decoration: none; color: inherit;">
-            <i class="fab fa-github"></i>
+          <a href="https://github.com/nirmaltrdev" target="_blank" rel="noopener noreferrer" class="info-item">
+            <i class="fab fa-github" aria-hidden="true"></i>
             <span>github.com/nirmaltrdev</span>
           </a>
         </div>
@@ -37,16 +37,19 @@
       <div class="contact-form-wrapper glass-panel">
         <form class="contact-form" [formGroup]="contactForm" (ngSubmit)="submitForm()">
            <div class="form-group">
-             <input type="text" class="form-control" formControlName="name" placeholder="Your Name" required>
+             <input type="text" class="form-control" formControlName="name" autocomplete="name" placeholder="Your Name" aria-label="Your Name" required
+                    [attr.aria-invalid]="isInvalid('name')">
            </div>
            <div class="form-group">
-             <input type="email" class="form-control" formControlName="email" placeholder="Your Email" required>
+             <input type="email" class="form-control" autocomplete="email" formControlName="email" placeholder="Your Email" aria-label="Your Email" required
+                    [attr.aria-invalid]="isInvalid('email')">
            </div>
            <div class="form-group">
-             <textarea class="form-control" rows="5" formControlName="message" placeholder="Your Message" required></textarea>
+             <textarea class="form-control" rows="5" formControlName="message" placeholder="Your Message" aria-label="Your Message" required
+                       [attr.aria-invalid]="isInvalid('message')"></textarea>
            </div>
-           <button type="submit" class="btn btn-primary submit-btn magnetic" #submitBtn [disabled]="isSubmitting">
-             {{ isSubmitting ? 'Sending...' : 'Send Message' }} <i class="fas fa-paper-plane"></i>
+           <button type="submit" class="btn btn-primary submit-btn magnetic" #submitBtn [disabled]="isSubmitting" [attr.aria-busy]="isSubmitting">
+             {{ isSubmitting ? 'Sending...' : 'Send Message' }} <i class="fas fa-paper-plane" aria-hidden="true"></i>
            </button>
         </form>
       </div>

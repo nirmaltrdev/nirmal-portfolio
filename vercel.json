@@ -1,6 +1,21 @@
 {
-  "buildCommand": "echo '{\"geminiApiKey\":\"'$GEMINI_API_KEY'\"}' > src/assets/config.json && npx ng build --configuration production",
+  "buildCommand": "npx ng build --configuration production",
+  "devCommand": "npx ng serve --port $PORT",
   "outputDirectory": "dist/portfolio-web",
   "installCommand": "npm ci",
-  "framework": null
+  "framework": null,
+  "functions": {
+    "api/chat.js": {
+      "maxDuration": 15
+    }
+  },
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+      ]
+    }
+  ]
 }

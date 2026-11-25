@@ -20,6 +20,7 @@ export class SkillsComponent {
   skillCards = viewChildren<ElementRef<HTMLElement>>('skillCard');
 
   skillGroups = signal(this.portfolioData.skills);
+  coreCompetencies = signal(this.portfolioData.coreCompetencies);
 
   constructor() {
     afterNextRender(() => {
@@ -67,11 +68,18 @@ export class SkillsComponent {
     const x = (rect.left + rect.width / 2) / window.innerWidth;
     const y = (rect.top + rect.height / 2) / window.innerHeight;
 
+    // Theme colours (so the burst is visible on both the dark and the light background)
+    const cs = getComputedStyle(document.body);
+    const colors = ['--primary', '--secondary', '--accent-violet']
+      .map(v => cs.getPropertyValue(v).trim())
+      .filter(Boolean);
+
     confetti({
       particleCount: 30,
       spread: 60,
       origin: { x, y },
-      colors: ['#3b82f6', '#06b6d4', '#ffffff']
+      colors,
+      disableForReducedMotion: true
     });
   }
 }

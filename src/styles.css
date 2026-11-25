@@ -1,60 +1,169 @@
-/* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap');
+/* Global styles and theme tokens.
+   Fonts are loaded once, from index.html (Inter 400-800). */
 
 :root {
   /* Modern Enterprise Dark Mode Palette */
+  color-scheme: dark;
+
   --bg-deep: #050816;
   --bg-surface: #0f172a;
   --bg-card: rgba(17, 24, 39, 0.7);
-  
+
   --primary: #3b82f6;
   --primary-glow: rgba(59, 130, 246, 0.3);
   --secondary: #00FFFF;
   --secondary-glow: rgba(0, 255, 255, 0.3);
   --success: #10b981;
+  --success-glow: rgba(16, 185, 129, 0.5);
   --accent-violet: #a78bfa;
   --accent-violet-glow: rgba(167, 139, 250, 0.3);
-  
+
   --text-main: #f8fafc;
   --text-muted: #94a3b8;
   --text-dark: #334155;
-  
+
   --border-light: rgba(255, 255, 255, 0.05);
   --border-strong: rgba(255, 255, 255, 0.1);
-  
+
+  /* Solid fills that carry text (buttons, user chat bubble): >= 4.5:1 against --on-primary */
+  --primary-solid: #2563eb;
+  --primary-solid-hover: #1d4ed8;
+  --primary-glow-strong: rgba(37, 99, 235, 0.6);
+  --on-primary: #ffffff;
+  /* Text on the cyan-to-blue gradient buttons */
+  --on-accent: #050816;
+
+  /* Chips / tags (skills, core competencies, achievement icons) */
+  --chip-bg: rgba(59, 130, 246, 0.1);
+  --chip-border: rgba(59, 130, 246, 0.25);
+  --chip-text: #60a5fa;
+  --primary-tint: rgba(59, 130, 246, 0.05);
+  /* Text on tinted badges (>= 4.5:1 on their own glow backgrounds) */
+  --accent-violet-text: #c4b5fd;
+  --secondary-text: #00ffff;
+
+  /* Status colours */
+  --danger: #f87171;
+  --danger-bg: rgba(239, 68, 68, 0.06);
+  --danger-border: rgba(239, 68, 68, 0.3);
+
+  /* Neutral overlays: lighten a surface in dark theme, darken it in light theme */
+  --overlay-1: rgba(255, 255, 255, 0.04);
+  --overlay-2: rgba(255, 255, 255, 0.08);
+  --overlay-3: rgba(255, 255, 255, 0.12);
+  --overlay-4: rgba(255, 255, 255, 0.22);
+
+  /* Shadows */
+  --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.15);
+  --shadow-nav: 0 4px 30px rgba(0, 0, 0, 0.1);
+  --scanline: rgba(0, 0, 0, 0.03);
+
+  /* Hero background, 3D constellation and particles (read by TypeScript too) */
+  --hero-bg: hsl(230, 85%, 8%);
+  --hero-points: #8b5cf6;
+  --hero-lines: #00ffff;
+  --hero-line-opacity: 0.15;
+  --particle-1: #00ffff;
+  --particle-2: #8b5cf6;
+  --particle-3: #a78bfa;
+  --particle-4: rgba(255, 255, 255, 0.8);
+  --particle-blend: screen;
+
+  /* Chatbot */
+  --chat-header-bg: linear-gradient(to right, rgba(15, 23, 42, 0.9), rgba(5, 8, 22, 0.9));
+  --chat-body-bg: rgba(5, 8, 22, 0.6);
+  --chat-input-bg: rgba(5, 8, 22, 0.5);
+  --chat-time-on-primary: rgba(255, 255, 255, 0.85);
+
+  /* Scrollbars */
+  --scrollbar-track: var(--bg-deep);
+  --scrollbar-thumb: #334155;
+  --scrollbar-thumb-hover: #475569;
+
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
-  
+
   --radius-sm: 6px;
   --radius-md: 12px;
   --radius-lg: 24px;
-  
+
   --bg-gradient: linear-gradient(to bottom, #050816, #0f172a);
   --card-gradient: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(5, 8, 22, 0.9) 100%);
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Light theme: on <html> and <body>. The inline script in index.html sets it before Angular boots. */
+html.light-theme,
 body.light-theme {
-  /* Modern Enterprise Light Mode Palette */
+  color-scheme: light;
+
   --bg-deep: #f8fafc;
   --bg-surface: #ffffff;
   --bg-card: rgba(255, 255, 255, 0.85);
-  
+
   --primary: #2563eb;
   --primary-glow: rgba(37, 99, 235, 0.15);
-  --secondary: #0891b2;
-  --secondary-glow: rgba(8, 145, 178, 0.15);
-  --success: #059669;
+  --secondary: #0e7490;
+  --secondary-glow: rgba(14, 116, 144, 0.14);
+  --success: #047857;
+  --success-glow: rgba(4, 120, 87, 0.35);
   --accent-violet: #7c3aed;
-  --accent-violet-glow: rgba(124, 58, 237, 0.15);
-  
+  --accent-violet-glow: rgba(124, 58, 237, 0.14);
+
   --text-main: #0f172a;
-  --text-muted: #64748b;
+  --text-muted: #475569;
   --text-dark: #e2e8f0;
-  
-  --border-light: rgba(15, 23, 42, 0.08);
-  --border-strong: rgba(15, 23, 42, 0.15);
-  
+
+  --border-light: rgba(15, 23, 42, 0.1);
+  --border-strong: rgba(15, 23, 42, 0.18);
+
+  --primary-solid: #2563eb;
+  --primary-solid-hover: #1d4ed8;
+  --primary-glow-strong: rgba(37, 99, 235, 0.35);
+  --on-primary: #ffffff;
+  --on-accent: #ffffff;
+
+  --chip-bg: rgba(37, 99, 235, 0.08);
+  --chip-border: rgba(37, 99, 235, 0.25);
+  --chip-text: #1d4ed8;
+  --primary-tint: rgba(37, 99, 235, 0.05);
+  --accent-violet-text: #6d28d9;
+  --secondary-text: #155e75;
+
+  --danger: #b91c1c;
+  --danger-bg: rgba(220, 38, 38, 0.06);
+  --danger-border: rgba(220, 38, 38, 0.3);
+
+  --overlay-1: rgba(15, 23, 42, 0.03);
+  --overlay-2: rgba(15, 23, 42, 0.06);
+  --overlay-3: rgba(15, 23, 42, 0.1);
+  --overlay-4: rgba(15, 23, 42, 0.2);
+
+  --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.08), 0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-md: 0 10px 15px -3px rgba(15, 23, 42, 0.08), 0 4px 6px -2px rgba(15, 23, 42, 0.04);
+  --shadow-lg: 0 20px 40px rgba(15, 23, 42, 0.1);
+  --shadow-nav: 0 4px 30px rgba(15, 23, 42, 0.06);
+  --scanline: transparent;
+
+  --hero-bg: hsl(230, 40%, 93%);
+  --hero-points: #7c3aed;
+  --hero-lines: #0e7490;
+  --hero-line-opacity: 0.25;
+  --particle-1: #0e7490;
+  --particle-2: #7c3aed;
+  --particle-3: #2563eb;
+  --particle-4: rgba(15, 23, 42, 0.55);
+  --particle-blend: source-over;
+
+  --chat-header-bg: linear-gradient(to right, rgba(241, 245, 249, 0.97), rgba(226, 232, 240, 0.97));
+  --chat-body-bg: rgba(241, 245, 249, 0.8);
+  --chat-input-bg: #ffffff;
+  --chat-time-on-primary: rgba(255, 255, 255, 0.9);
+
+  --scrollbar-thumb: #cbd5e1;
+  --scrollbar-thumb-hover: #94a3b8;
+
   --bg-gradient: linear-gradient(to bottom, #f8fafc, #ffffff);
   --card-gradient: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(241, 245, 249, 0.95) 100%);
 }
@@ -68,6 +177,11 @@ body.light-theme {
 html {
   scroll-behavior: smooth;
   background-color: var(--bg-deep);
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+  /* Keep anchored section tops clear of the fixed navbar */
+  scroll-padding-top: 5rem;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
@@ -76,6 +190,7 @@ body {
   color: var(--text-main);
   line-height: 1.6;
   overflow-x: hidden;
+  overflow-wrap: break-word;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   transition: background-color 0.3s ease, color 0.3s ease;
@@ -91,7 +206,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .section-title {
   color: var(--text-main);
-  font-size: 2.5rem;
+  font-size: clamp(1.75rem, 1.2rem + 2.4vw, 2.5rem);
   font-weight: 800;
   margin-bottom: 1rem;
 }
@@ -103,11 +218,25 @@ p {
 a {
   color: var(--primary);
   text-decoration: none;
-  transition: var(--transition);
+  /* every property except outline, so the keyboard focus ring appears instantly */
+  transition-property: color, background-color, border-color, box-shadow, transform, opacity;
+  transition-duration: 0.3s;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 a:hover {
   color: var(--secondary);
+}
+
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+}
+
+img {
+  height: auto;
 }
 
 /* Utilities */
@@ -115,12 +244,48 @@ a:hover {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 clamp(1rem, 4vw, 2rem);
+  padding-left: max(clamp(1rem, 4vw, 2rem), env(safe-area-inset-left));
+  padding-right: max(clamp(1rem, 4vw, 2rem), env(safe-area-inset-right));
+}
+
+@media (min-width: 1600px) {
+  .container {
+    max-width: 1320px;
+  }
 }
 
 .section {
-  padding: 8rem 0;
+  padding: clamp(4rem, 10vw, 8rem) 0;
   position: relative;
+}
+
+/* Section components are the scroll / anchor targets (#about, #skills, ...): make them real blocks */
+app-hero, app-about, app-services, app-skills, app-projects,
+app-experience, app-education, app-contact, app-footer {
+  display: block;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* Visible keyboard focus everywhere (mouse clicks stay clean via :focus-visible) */
+/* "html" prefix: must out-rank ng-zorro's base reset (a, a:focus { outline: 0 }), which loads later */
+html a:focus-visible,
+html button:focus-visible,
+html input:focus-visible,
+html textarea:focus-visible,
+html select:focus-visible,
+html [tabindex]:focus-visible {
+  outline: 2px solid var(--secondary);
+  outline-offset: 3px;
+}
+
+/* Sections receive programmatic focus after nav clicks (tabindex=-1): no ring around a whole section */
+html [tabindex="-1"]:focus,
+html [tabindex="-1"]:focus-visible {
+  outline: none;
 }
 
 .text-gradient {
@@ -142,7 +307,7 @@ a:hover {
   background: var(--bg-surface);
   border: 1px solid var(--border-light);
   border-radius: var(--radius-md);
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--shadow-sm);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   transition: var(--transition);
@@ -150,7 +315,7 @@ a:hover {
 
 .saas-card:hover {
   border-color: var(--border-strong);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow-md);
   transform: translateY(-2px);
 }
 
@@ -170,14 +335,15 @@ a:hover {
 }
 
 .btn-primary {
-  background-color: var(--primary);
-  color: white;
+  background-color: var(--primary-solid);
+  color: var(--on-primary);
   box-shadow: 0 0 15px var(--primary-glow);
 }
 
 .btn-primary:hover {
-  background-color: #2563eb;
-  box-shadow: 0 0 20px rgba(37, 99, 235, 0.6);
+  background-color: var(--primary-solid-hover);
+  color: var(--on-primary);
+  box-shadow: 0 0 20px var(--primary-glow-strong);
   transform: translateY(-1px);
 }
 
@@ -206,13 +372,16 @@ a:hover {
   transition: var(--transition);
 }
 
-.theme-toggle-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
-  transform: translateY(-2px);
+@media (max-width: 900px) {
+  .theme-toggle-btn {
+    width: 44px;
+    height: 44px;
+  }
 }
 
-body.light-theme .theme-toggle-btn:hover {
-  background: rgba(0, 0, 0, 0.05);
+.theme-toggle-btn:hover {
+  background: var(--overlay-3);
+  transform: translateY(-2px);
 }
 
 /* Reveal Animations */
@@ -233,14 +402,55 @@ body.light-theme .theme-toggle-btn:hover {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--bg-deep);
+  background: var(--scrollbar-track);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--bg-surface);
+  background: var(--scrollbar-thumb);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--text-dark);
+  background: var(--scrollbar-thumb-hover);
+}
+
+/* Form fields: readable placeholders and theme-matching browser autofill in both themes */
+::placeholder {
+  color: var(--text-muted);
+  opacity: 1;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill {
+  -webkit-text-fill-color: var(--text-main);
+  caret-color: var(--text-main);
+  -webkit-box-shadow: 0 0 0 1000px var(--bg-deep) inset;
+  box-shadow: 0 0 0 1000px var(--bg-deep) inset;
+  transition: background-color 9999s ease-out 0s;
+}
+
+/* No backdrop-filter support (older Firefox): use an opaque surface so text stays readable */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .saas-card,
+  .saas-nav.glass-nav {
+    background-color: var(--bg-surface);
+  }
+}
+
+/* Respect the OS "reduce motion" setting: no CSS animations, transitions or smooth scrolling */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

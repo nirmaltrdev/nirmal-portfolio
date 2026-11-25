@@ -1,25 +1,22 @@
-<section class="section education-section" id="education">
+<section class="section education-section">
   <div class="container" #eduContainer>
 
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 3rem;">
+    <div class="edu-layout">
 
       <!-- Left Column: Education -->
       <div>
-        <div class="section-header" style="margin-bottom: 2rem; align-items: flex-start;">
-          <h2 class="section-title" style="font-size: 1.8rem; text-align: left;">Education</h2>
-          <div class="title-underline" style="margin-top: 5px; margin-left: 0;"></div>
+        <div class="section-header edu-col-header">
+          <h2 class="section-title edu-col-title">Education</h2>
+          <div class="title-underline edu-col-underline"></div>
         </div>
-        <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+        <div class="edu-stack">
           @for (edu of education(); track edu.degree) {
-          <div class="education-card saas-card" #eduCard style="padding: 1.5rem; display: flex; gap: 1.25rem;">
-            <div class="edu-icon" style="font-size: 2rem; color: var(--secondary);"><i
-                class="fas fa-graduation-cap"></i></div>
+          <div class="education-card saas-card edu-main-card" #eduCard>
+            <div class="edu-icon edu-icon--secondary" aria-hidden="true"><i class="fas fa-graduation-cap"></i></div>
             <div class="edu-content">
-              <span class="edu-year" style="margin-bottom: 8px;">{{ edu.year }}</span>
-              <h3 class="edu-degree" style="font-size: 1.15rem; font-weight: 700; margin-bottom: 2px;">{{ edu.degree }}
-              </h3>
-              <h4 class="edu-institution" style="font-size: 0.95rem; color: var(--primary); margin-bottom: 0;">{{
-                edu.institution }}</h4>
+              <span class="edu-year edu-year--tight">{{ edu.year }}</span>
+              <h3 class="edu-degree edu-degree--main">{{ edu.degree }}</h3>
+              <h4 class="edu-institution edu-institution--main">{{ edu.institution }}</h4>
             </div>
           </div>
           }
@@ -28,31 +25,29 @@
 
       <!-- Middle Column: Certifications -->
       <div>
-        <div class="section-header" style="margin-bottom: 2rem; align-items: flex-start;">
-          <h2 class="section-title" style="font-size: 1.8rem; text-align: left;">Certifications</h2>
-          <div class="title-underline" style="margin-top: 5px; margin-left: 0;"></div>
+        <div class="section-header edu-col-header">
+          <h2 class="section-title edu-col-title">Certifications</h2>
+          <div class="title-underline edu-col-underline"></div>
         </div>
         <div class="cert-scroll-container">
           <div class="cert-scroll-track">
             <!-- Original Items -->
             @for (cert of certifications(); track cert.name) {
-            <div class="education-card saas-card"
-              style="padding: 1.25rem; display: flex; gap: 1rem; align-items: center; margin-bottom: 0.5rem;">
-              <div class="edu-icon" style="font-size: 1.5rem; color: #10b981;"><i class="fas fa-certificate"></i></div>
+            <div class="education-card saas-card cert-card">
+              <div class="edu-icon cert-icon" aria-hidden="true"><i class="fas fa-certificate"></i></div>
               <div>
-                <h4 style="font-size: 0.95rem; font-weight: 700; color: var(--text-main); margin-bottom: 2px;">{{ cert.name }}</h4>
-                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0;">{{ cert.issuer }}</p>
+                <h3 class="cert-name">{{ cert.name }}</h3>
+                <p class="cert-issuer">{{ cert.issuer }}</p>
               </div>
             </div>
             }
             <!-- Duplicated Items for Seamless Loop -->
             @for (cert of certifications(); track cert.name + '_copy') {
-            <div class="education-card saas-card" aria-hidden="true"
-              style="padding: 1.25rem; display: flex; gap: 1rem; align-items: center; margin-bottom: 0.5rem;">
-              <div class="edu-icon" style="font-size: 1.5rem; color: #10b981;"><i class="fas fa-certificate"></i></div>
+            <div class="education-card saas-card cert-card" aria-hidden="true">
+              <div class="edu-icon cert-icon"><i class="fas fa-certificate"></i></div>
               <div>
-                <h4 style="font-size: 0.95rem; font-weight: 700; color: var(--text-main); margin-bottom: 2px;">{{ cert.name }}</h4>
-                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0;">{{ cert.issuer }}</p>
+                <h3 class="cert-name">{{ cert.name }}</h3>
+                <p class="cert-issuer">{{ cert.issuer }}</p>
               </div>
             </div>
             }
@@ -61,30 +56,24 @@
       </div>
 
       <!-- Right Column: Publications & Memberships -->
-      <div>
-        <div class="section-header" style="margin-bottom: 2rem; align-items: flex-start;">
-          <h2 class="section-title" style="font-size: 1.8rem; text-align: left;">Research & Memberships</h2>
-          <div class="title-underline" style="margin-top: 5px; margin-left: 0;"></div>
+      <div class="edu-col-research">
+        <div class="section-header edu-col-header">
+          <h2 class="section-title edu-col-title">Research & Memberships</h2>
+          <div class="title-underline edu-col-underline"></div>
         </div>
-        <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+        <div class="edu-stack">
           @for (pub of publications(); track pub.title) {
-          <div class="education-card saas-card" style="padding: 1.5rem; display: flex; gap: 1.25rem;">
-            <div class="edu-icon" style="font-size: 2rem; color: var(--accent-violet);"><i class="fas fa-book-open"></i>
-            </div>
+          <div class="education-card saas-card edu-main-card">
+            <div class="edu-icon edu-icon--violet" aria-hidden="true"><i class="fas fa-book-open"></i></div>
             <div class="edu-content">
-              <span class="edu-year"
-                style="margin-bottom: 8px; background: var(--accent-violet-glow); color: var(--accent-violet);">{{
-                pub.date }}</span>
-              <h3 class="edu-degree" style="font-size: 1.1rem; font-weight: 700; margin-bottom: 4px; line-height: 1.4;">
-                {{ pub.title }}</h3>
-              <h4 class="edu-institution" style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 6px;">{{
-                pub.authors }}</h4>
-              <div style="display: flex; flex-direction: column; gap: 6px;">
-                <a [href]="pub.url" target="_blank" class="btn btn-outline"
-                  style="font-size: 0.85rem; padding: 0.5rem 1rem; border-radius: 20px; color: var(--text-main); display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--border-strong); width: fit-content; text-decoration: none;">
+              <span class="edu-year edu-year--violet">{{ pub.date }}</span>
+              <h3 class="edu-degree edu-degree--pub">{{ pub.title }}</h3>
+              <h4 class="edu-institution edu-institution--authors">{{ pub.authors }}</h4>
+              <div class="pub-actions">
+                <a [href]="pub.url" target="_blank" rel="noopener noreferrer" class="btn btn-outline pub-link">
                   View Publication
                   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
                     <polyline points="15 3 21 3 21 9"></polyline>
                     <line x1="10" y1="14" x2="21" y2="3"></line>
@@ -96,13 +85,13 @@
           }
 
           <!-- Professional Memberships -->
-          <div style="margin-top: 0.5rem;">
-            <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--text-main); margin-bottom: 0.75rem;">Professional Memberships</h4>
-            <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+          <div class="memberships">
+            <h3 class="memberships-title">Professional Memberships</h3>
+            <div class="memberships-list">
               @for (m of memberships(); track m.name) {
-                <div class="saas-card" style="padding: 0.85rem 1.25rem; display: flex; align-items: center; justify-content: space-between; border-radius: 10px;">
-                  <span style="font-weight: 700; color: #fff; font-size: 0.95rem;">{{ m.name }}</span>
-                  <span style="color: var(--secondary); font-size: 0.85rem; font-weight: 500;">{{ m.role }}</span>
+                <div class="saas-card membership-card">
+                  <span class="membership-name">{{ m.name }}</span>
+                  <span class="membership-role">{{ m.role }}</span>
                 </div>
               }
             </div>

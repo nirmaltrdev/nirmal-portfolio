@@ -20,11 +20,11 @@ export class AboutComponent {
   narrativeRef = viewChild<ElementRef<HTMLElement>>('narrativeText');
 
   architectureNodes = signal([
-    { name: 'Angular & TypeScript', icon: 'fab fa-angular', desc: 'Reactive Enterprise SPA & Modular UI' },
-    { name: 'PHP (CI4) + Java (Spring Boot)', icon: 'fas fa-layer-group', desc: 'Dual-Backend Core CRM & Inspection Engine' },
-    { name: 'Node.js & REST APIs', icon: 'fab fa-node-js', desc: 'Real-Time Services & Communication Pipelines' },
-    { name: 'MySQL • MariaDB • MongoDB • Oracle', icon: 'fas fa-database', desc: 'Relational & NoSQL Optimized Data Stores' },
-    { name: 'AWS S3 & Firebase FCM', icon: 'fab fa-aws', desc: 'Cloud Storage & Push Messaging Pipelines' }
+    { name: 'Angular 15 & TypeScript', icon: 'fab fa-angular', desc: 'CRM Frontend Consuming JSON REST APIs' },
+    { name: 'CodeIgniter 4 REST API (PHP)', icon: 'fab fa-php', desc: 'JSON Backend with JWT Authentication & RBAC' },
+    { name: 'MySQL', icon: 'fas fa-database', desc: 'Two Production Environments & a Shared Common Database' },
+    { name: 'AWS EC2 & AWS S3', icon: 'fab fa-aws', desc: 'Linux, Apache & Cron on EC2; Media & PDF Storage on S3' },
+    { name: 'External Integrations', icon: 'fas fa-plug', desc: 'WhatsApp Cloud API • Firebase • OpenAI • Yeastar PBX' }
   ]);
 
   constructor() {

@@ -1,5 +1,5 @@
 .education-section {
-  padding: 100px 0;
+  padding: clamp(4rem, 9vw, 100px) 0;
   background: var(--bg-deep);
   position: relative;
 }
@@ -18,6 +18,197 @@
   border-radius: 2px;
   margin-top: 10px;
   box-shadow: 0 0 10px var(--secondary-glow);
+}
+
+/* Education | Certifications | Research: 1 → 2 (research spans the row) → 3 columns */
+.edu-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 3rem);
+}
+
+@media (min-width: 700px) {
+  .edu-layout {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .edu-col-research {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (min-width: 1024px) {
+  .edu-layout {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .edu-col-research {
+    grid-column: auto;
+  }
+}
+
+.edu-layout > div {
+  min-width: 0;
+}
+
+/* Column headers (smaller, left-aligned variant of the section title) */
+.section-header.edu-col-header {
+  margin-bottom: 2rem;
+  align-items: flex-start;
+}
+
+.edu-col-title {
+  font-size: 1.8rem;
+  text-align: left;
+}
+
+.edu-col-underline {
+  margin-top: 5px;
+  margin-left: 0;
+}
+
+.edu-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.education-card.edu-main-card {
+  padding: 1.5rem;
+  display: flex;
+  gap: 1.25rem;
+}
+
+.edu-icon.edu-icon--secondary {
+  font-size: 2rem;
+  color: var(--secondary);
+}
+
+.edu-icon.edu-icon--violet {
+  font-size: 2rem;
+  color: var(--accent-violet);
+}
+
+.edu-year.edu-year--tight {
+  margin-bottom: 8px;
+}
+
+.edu-year.edu-year--violet {
+  margin-bottom: 8px;
+  background: var(--accent-violet-glow);
+  color: var(--accent-violet-text);
+}
+
+.edu-degree.edu-degree--main {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.edu-degree.edu-degree--pub {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
+
+.edu-institution.edu-institution--main {
+  font-size: 0.95rem;
+  color: var(--primary);
+  margin-bottom: 0;
+}
+
+.edu-institution.edu-institution--authors {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+/* Certifications */
+.education-card.cert-card {
+  padding: 1.25rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.edu-icon.cert-icon {
+  font-size: 1.5rem;
+  color: var(--success);
+}
+
+.cert-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: normal;
+  color: var(--text-main);
+  margin-bottom: 2px;
+}
+
+.cert-issuer {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 0;
+}
+
+/* Publication link */
+.pub-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.btn.pub-link {
+  min-height: 44px;
+  width: fit-content;
+  padding: 0.5rem 1rem;
+  gap: 6px;
+  font-size: 0.85rem;
+  border-radius: 20px;
+  color: var(--text-main);
+  border: 1px solid var(--border-strong);
+  text-decoration: none;
+}
+
+/* Memberships */
+.memberships {
+  margin-top: 0.5rem;
+}
+
+.memberships-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 0.75rem;
+}
+
+.memberships-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.membership-card {
+  padding: 0.85rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border-radius: 10px;
+}
+
+.membership-name {
+  font-weight: 700;
+  color: var(--text-main);
+  font-size: 0.95rem;
+}
+
+.membership-role {
+  color: var(--secondary);
+  font-size: 0.85rem;
+  font-weight: 500;
 }
 
 .education-grid {
@@ -39,7 +230,7 @@
 }
 
 .education-card:hover {
-  transform: translateX(10px);
+  transform: translateY(-2px);
   border-color: var(--primary);
   background: var(--bg-surface);
 }
@@ -54,7 +245,7 @@
   display: inline-block;
   padding: 4px 10px;
   background: var(--secondary-glow);
-  color: var(--secondary);
+  color: var(--secondary-text);
   border-radius: 15px;
   font-size: 0.8rem;
   font-weight: 600;
@@ -103,6 +294,23 @@
 
 .cert-scroll-container:hover .cert-scroll-track {
   animation-play-state: paused;
+}
+
+/* Reduced motion: no marquee; show each certification once as a plain list */
+@media (prefers-reduced-motion: reduce) {
+  .cert-scroll-container {
+    max-height: none;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .cert-scroll-track {
+    animation: none !important;
+  }
+
+  .cert-scroll-track > [aria-hidden="true"] {
+    display: none !important;
+  }
 }
 
 @keyframes scrollVertical {

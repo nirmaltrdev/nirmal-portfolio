@@ -1,11 +1,11 @@
 .services-section {
-  padding: 100px 0;
+  padding: clamp(4rem, 9vw, 100px) 0;
   background: var(--bg-deep);
   position: relative;
 }
 
 .section-header {
-  margin-bottom: 4rem;
+  margin-bottom: clamp(2.5rem, 6vw, 4rem);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,27 +22,53 @@
 
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
+  grid-template-columns: 1fr;
+  gap: clamp(1.25rem, 3vw, 2rem);
+}
+
+/* Tablets: two columns; the odd last card spans the row instead of sitting alone */
+@media (min-width: 640px) {
+  .services-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .service-card:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: min(100%, calc(50% - 1rem));
+  }
+}
+
+@media (min-width: 960px) {
+  .services-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .service-card:last-child:nth-child(odd) {
+    grid-column: auto;
+    width: auto;
+  }
 }
 
 .service-card {
   background: var(--card-gradient);
   border: 1px solid var(--border-light);
-  padding: 3rem 2rem;
+  padding: clamp(2rem, 5vw, 3rem) clamp(1.25rem, 3vw, 2rem);
   border-radius: 20px;
   text-align: center;
   transition: transform 0.4s ease, border-color 0.4s ease, background 0.4s ease;
 }
 
+@media (hover: hover) {
 .service-card:hover {
   transform: translateY(-10px);
   border-color: var(--accent-violet);
   background: var(--bg-surface);
 }
+}
 
 .service-icon {
-  font-size: 3rem;
+  font-size: clamp(2.25rem, 1.8rem + 1.5vw, 3rem);
   color: var(--secondary);
   margin-bottom: 1.5rem;
   display: inline-block;
@@ -59,7 +85,7 @@
 
 .service-title {
   color: var(--text-main);
-  font-size: 1.4rem;
+  font-size: clamp(1.2rem, 1.05rem + 0.6vw, 1.4rem);
   margin-bottom: 1rem;
 }
 

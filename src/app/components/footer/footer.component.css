@@ -1,6 +1,6 @@
 .footer {
   background: var(--bg-deep);
-  padding: 60px 0 30px;
+  padding: clamp(40px, 7vw, 60px) 0 calc(30px + env(safe-area-inset-bottom));
   border-top: 1px solid var(--border-light);
 }
 
@@ -30,18 +30,20 @@
 
 .tagline {
   color: var(--text-muted);
-  margin-top: 5px;
+  margin-top: 0.25rem;
   font-size: 0.9rem;
 }
 
 .footer-socials {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 15px;
 }
 
 .social-icon {
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   background: var(--bg-card);
   color: var(--text-muted);
@@ -54,8 +56,8 @@
 }
 
 .social-icon:hover {
-  background: var(--primary);
-  color: var(--text-main);
+  background: var(--primary-solid);
+  color: var(--on-primary);
   transform: translateY(-3px);
   border-color: var(--primary);
 }
@@ -65,7 +67,11 @@
   padding-top: 30px;
   border-top: 1px solid var(--border-light);
   color: var(--text-muted);
-  font-size: 0.85rem;
-  opacity: 0.6;
+  font-size: 0.875rem;
+}
+
+/* Muted text at full strength: the old 0.6 opacity dropped below 4.5:1 contrast */
+.footer-bottom p {
+  color: var(--text-muted);
 }
 
